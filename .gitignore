@@ -1,8 +1,33 @@
 
 .idea
-*.pdf
-*.pyc
 
+
+*.pyc
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*~
+.*sw?
+\#*
+.DS_Store
+*.idb
+*.pdb
+.idea/
+*.dvi
+*.lol
+#html
+#latex
+#html/
+#latex/
+*.db
 
 # Node .gitignore template
 ################################################
