@@ -2,30 +2,33 @@
 
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{graphicx}
 
-\title{SE 3XA3: Problem Statement\\Title of Project}
+\title{SE 3XA3: Problem Statement\\Title of Project\\Revision 0	}
 
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\author{Team 31
+		\\ REST Assured
+		\\ Dawson Myers 400005616  mysersd1
+		\\ Yang Liu 400038517 liuy136
+		\\ Brandon Roberts 400018117 roberb1
 }
-
 \date{}
 
-\input{../Comments}
+%\input{../Comments}
 
 \begin{document}
 
+
 \begin{table}[hp]
 \caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
+\begin{tabularx}{\textwidth}{lXlX}
 \toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change} & \textbf{Revision}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+Sept​ ​22,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Initial Draft & 0\\
+\hline
+Sept​ ​25,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Revision​ ​0​ ​Completion & 0\\
+\hline
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -34,16 +37,40 @@ Date2 & Name(s) & Description of changes\\
 
 \maketitle
 
-Put your problem statement here.
+\newpage
+\section{Problem Statement}
+RESTful web services are a very popular way to implement web applications and mobile applications. They simplify the delivery of resources between the front-end and back-end of an application by allowing the programmers to link resources to simple API endpoints. These services provide a window to clients to access resources such as data, files, and other information, and enable developers to build maintainable and scalable web services and            applications. Developers need solutions for testing their RESTful web applications. The reproduction of the Sails Live Chrome application delivers a REST API testing tool that caters to this​ ​need​ ​by​ ​executing​ ​requests​ ​and​ ​providing​ ​response​ ​to​ ​these​ ​requests.
 
-\wss{comment}
+\subsection{Issues​ ​to​ ​be​ ​addressed​ ​and​ ​problems​ ​to​ ​be​ ​solved.}
 
-\ds{comment}
+The application will provide a user interface through which HTML requests can be made. Using               the app, users can specify route into an address bar, initiate GET, POST, PUT and DELETE                requests with custom payload and manage these created requests. The application will provide             JSON-formatted responses for user-input requests (using query terms) and confirmation on           whether​ ​the​ ​request​ ​was​ ​successful. 
 
-\mj{comment}
+\subsection{Importance​ ​of​ ​the​ ​problem }
 
-\cm{comment}
+The development of this application will save valuable development time by allowing true black box testing to be performed by people other than a backend programmer. For example, a secondary developer can create test cases and test API endpoints by monitoring the responses from the tool. This can be more convenient in many situations, including the early stages of development when a project will generally lack a UI, and a tester’s alternative would often be making crude HTTP requests manually. We aim to create a lightweight Chrome application that will allow developers of small projects to test their REST API endpoints without having to use the​ ​aforementioned​ ​crude​ ​method,​ ​or​ ​a​ ​heavier​ ​application​ ​like​ ​Sails​ ​Live​ ​or​ ​Postman. 
 
-\mh{comment}
+\newpage
+\subsection{ Context​ ​of​ ​the​ ​problem }
+The recreation of the app is not limited to any particular platform since most devices are able to support the Chrome web browser and run JavaScript. The reproduction of the app will remove the limitation presented by Sails Live that users can interface with only the Sails server. Instead, the reproduced app aim to enable communication with interfaces featuring RESTful Web APIs not​ ​limited​ ​to​ ​Sails. 
+
+\subsubsection{ Stakeholders }
+Multiple parties will be affected by the reproduction of the application. The set of stakeholders               include team members, the course instructor, teaching assistants, and users of the end product              of the project. Team members participating in the development of the application will benefit              from the experiential learning presented by the challenges of the reproduction and development             process. With the guidance of the course instructor and teaching assistants, team members aim              to successfully reproduce the application within the defined scope. A special subset of             stakeholders who should be highlighted are software developers using RESTful web services in             their​ ​application​ ​who​ ​wish​ ​to​ ​test​ ​the​ ​correctness​ ​of​ ​the​ ​implemented​ ​RESTful​ ​services. 
+
+\subsubsection{ Software​ ​Environment  }
+The application will be reproduced in the Google Chrome App format and thus will not require any special software environment (standard environment able to support the Chrome browser will suffice; OS includes Mac, Linux, and Windows). The app aims to serve software developers involved​ ​in​ ​building​ ​RESTful​ ​web​ ​services. 
+
+
+
+
+
+%\wss{comment}
+
+%\ds{comment}
+
+%\mj{comment}
+
+%\cm{comment}
+
+%\mh{comment}
 
 \end{document}
