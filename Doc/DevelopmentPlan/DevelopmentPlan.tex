@@ -3,17 +3,17 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 
-\title{SE 3XA3: Development Plan\\Title of Project}
+\title{SE 3XA3: Development Plan\\Chrome App REST Test Client}
 
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\author{Team \#31, REST-Assured
+		\\ Dawson Myers 400005616
+		\\ Yang Liu 400038517
+		\\ Brandon Roberts 400018117
 }
 
 \date{}
 
-\input{../Comments}
+%\input{../Comments}
 
 \begin{document}
 
@@ -23,9 +23,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+29-Sep-2017 Rev0 & Revision 0\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -34,26 +32,74 @@ Date2 & Name(s) & Description of changes\\
 
 \maketitle
 
-Put your introductory blurb here.
+%Put your introductory blurb here.
 
 \section{Team Meeting Plan}
+The REST-Assured team will be holding weekly meetings on Sunday mornings on McMaster University campus to evaluate project progress, update project goals, and collaborate on project deliverables. 
+
+\section{Agenda}
+During meetings, the team will adhere to the Harvard guidelines as discussed in lecture:
+\begin{itemize}
+\item Review the agenda
+\item Evaluate Overall Project Progress
+\item View Gantt Charts to identify problems
+\item Identify who is responsible for leading discussion on each topic
+\item Address agenda items in order of priority 
+\item Work on upcoming deliverables
+\item For next meeting
+\begin{itemize}
+    \item Identify each member’s preparations and action items before the next meeting
+    \item Draft goals for next meeting
+\end{itemize}
+\item Review meeting’s effectiveness
+\end{itemize}
 
 \section{Team Communication Plan}
+Direct collaboration will be divided between team weekly meetings, where members are expected to be physically present, or participate remotely with audio and video presence (for example, Google Hangout session), and online collaboration sessions using share productivity tools such as Google G Suite. Discussion of major project issues will be achieved through a combination of Slack, Git issues, some E-mail. Discussion of minor project issues, including administrative issues such as meeting scheduling will be mainly accomplished via phone, text, and Facebook. Contact information of all members pertaining to the above have been exchanged during the first week lab sessions. 
+
 
 \section{Team Member Roles}
+For each meeting, the team administrator is responsible for notifying all team members and confirming the meeting time and location. Prior to the meeting, the team will define the meeting agenda, which the team leader will approve and revise as necessary. The team leader will chair the meeting, ensure items on the meeting agenda are covered, and drive discussion on project issues. The team scribe is responsible for logging the meeting minutes when appropriate, documenting a written statement on decisions made in each meeting, and recording and distributing action items agreed upon during the meeting. Team members are also responsible for being aware of and completing action items they are responsible for each week.
+
+Roles for team members may change as project progresses. Each team member is responsible for being aware of, developing, and advancing their expertise areas throughout the term.
+
+\begin{center}
+    \begin{tabular}{c | c | c}
+         Team Member & Primary Roles & Expertise \\ 
+         \hline
+         Dawson Myers & Team Leader and Tester & Git, LaTex, REST, JavaScript, Angular \\  
+         Yang Liu & Scribe and administration & Documentation, JavaScript \\
+         Brandon Roberts & Developer & Git, LaTex, JavaScript, Technology \\
+    \end{tabular}
+\end{center}
 
 \section{Git Workflow Plan}
+The team repository will be divided into a master branch and a development branch. All team members will have read/write access to the development branch; the master branch will only be writable by the team leader. When the team members push a new feature to the development branch, they will submit a pull request to the team leader for approval. The team leader will be responsible for merging approved pull requests.
 
 \section{Proof of Concept Demonstration Plan}
+The only risk in this project comes from the fact that the team dog shit easy is made up of students in the same program. This means that there is a very real risk that team will all be tied up with work from other courses i.e. all members having an upcoming. This could lead to extremely slow development at times. To reduce the severity of this, the team plans to prepare milestones in advance of foreseen periods of decreased development. 
+
+Other than that we all have experience in creating these types of applications, so the team anticipates very little technical difficulty. We also expect minor issues with dependencies at compilation time, but that is typically common in any web-based application due to the fact that libraries in the web ecosystem are frequently updated. 
+
 
 \section{Technology}
+The following technologies will be utilized in this project: 
+\begin{itemize}
+    \item JavaScript
+    \item NodeJs
+    \item WebSockets
+    \item Visual Studio
+    \item Karma Test Runner
+    \item Electron
+\end{itemize}
 
 \section{Coding Style}
+All JavaScript development will strictly follow the Google JavaScript Style Guide (https://google.github.io/styleguide/javascriptguide.xml).
 
 \section{Project Schedule}
-
+The team will be tracking the progress of the project using the gantt chart in the ProjectSchedule directory of the GitLab repo.
 Provide a pointer to your Gantt Chart.
 
-\section{Project Review}
+%\section{Project Review}
 
 \end{document}
