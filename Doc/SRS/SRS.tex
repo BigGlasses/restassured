@@ -17,7 +17,7 @@
 %------------------------------------------------------------------------------
 %------------------------------------------------------------------------------
 \newcommand{\revisionTable}{
-	\begin{table}[bp]
+	\begin{table}[hp]
 		\caption{\bf Revision History}
 		\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 			\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
@@ -30,6 +30,31 @@
 	\end{table}
 }
 
+\newcommand{\pbox}[1]{\parbox[t]{.85\linewidth}{#1}
+}
+\newcommand{\myline}{%\par
+	\kern1pt % space above the rules
+	%	\hrule height 1.5pt
+	%	\kern2pt % space between the rules
+	\hrule height 0.8pt
+	\kern3pt % space below the rules
+}
+\newcommand{\requirement}[7]{
+
+	\noindent
+	\vspace{5pt}
+	\parbox{\linewidth}{
+		\fontsize{10pt}{5pt}\selectfont
+		\noindent\textbf{#1} \hspace{26pt}\pbox{\textit{#2}} \\
+		%		\hrule height 1pt
+		\myline
+		%		\parbox{0.7\linewidth}{
+		\textit{Rationale:}	\hspace{10pt} \pbox{#3} \\
+		\textit{Fit Criterion:} \pbox{#4} \\
+		\textit{Priority:} \hspace{18pt} \pbox{#5} \\
+		\textit{Originator:} \hspace{7pt} \pbox{#6} \\
+		\textit{History:} \hspace{25pt}{#7} \\
+}}
 
 \begin{document}
 %------------------------------------------------------------------------------
@@ -49,6 +74,9 @@
 %------------------------------------------------------------------------------
 
 \pagenumbering{roman}
+\def\thesection{\arabic{section}} 
+\renewcommand\thesection{\arabic{section}} 
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
 
 \tableofcontents
 
@@ -65,10 +93,8 @@
 %==============================================================================
 \revisionTable
 
-This document describes the requirements for ....  The template for the Software
-Requirements Specification (SRS) is a subset of the Volere
-template~\citep{RobertsonAndRobertson2012}.  If you make further modifications
-to the template, you should explicity state what modifications were made.
+This document describes the requirements for the REST client testing tool. The template for the Software
+Requirements Specification (SRS) is a subset of the Volere template~\citep{RobertsonAndRobertson2012}.
 
 %==============================================================================
 \section{Project Drivers}
@@ -99,18 +125,15 @@ Given the limited scope of the project, there are no other stakeholders beyond w
 \subsection{Mandated Constraints}
 %------------------------------------------------------------------------------
 \subsubsection{Solution Constraints}
-Description: The product shall operate on up-to-date versions of Windows, Mac, Linux operating systems with up-to-date versions of Chrome browsers installed that allow JavaScript to run.
-Rationale: Target client are users of up-to-date Windows, Mac, Linux operating systems with JavaScript client. 
-Fit criterion: The product shall be approved as Windows, Mac, and Linux compliant by the testing group.
 
-Description: The product shall operate with a working and secure internet connection with a download speed above 5 Mbps and an upload speed above 1 Mbps. The desired Internet connection speed is directly proportional to the quantity of data clients require for the testing of their specific web APIs (higher Internet connection speed is desired for applications with higher data traffic).
+The product shall operate on up-to-date versions of Windows, Mac, Linux operating systems with up-to-date versions of Chrome browsers installed that allow JavaScript to run. Rationale: Target client are users of up-to-date Windows, Mac, Linux operating systems with JavaScript client. 
+
+
+The product shall operate with a working and secure Internet connection with a download speed above 5 Mbps and an upload speed above 1 Mbps. The desired Internet connection speed is directly proportional to the quantity of data clients require for the testing of their specific web APIs (higher Internet connection speed is desired for applications with higher data traffic).
 Rationale: The product uses Internet connection to serve REST requests to required resources and to display request responses.
-Fit criterion: The product requirements shall be met for users with an Internet connection suitable for allowing web API requests. 
 
-Description: The product shall comply with Canadian federal privacy laws (Privacy Act and Personal Information Protection and Electronic Documents Act) and other relevant legal requirements.
-Reference [https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/]
-Rationale: The product should not breach legal requirements in the intended operating environment.
-Fit criterion: The product shall be approved as legal compliant by the testing group based on application requirements.
+The product shall comply with Canadian federal privacy laws (Privacy Act and Personal Information Protection and Electronic Documents Act) and other relevant legal requirements. Rationale: The product should not breach legal requirements in the intended operating environment.
+
 
 \subsubsection{Off-the-Shelf Software}
 The execution of product requires the following off-the-shelf software:
@@ -191,37 +214,7 @@ Figure \ref{image:usecase} shows a use case for the app.
 %==============================================================================
 \section{Non-functional Requirements}
 %==============================================================================
-\newcommand{\pbox}[1]{\parbox[t]{.85\linewidth}{#1}
-}
-\newcommand{\myline}{%\par
-	\kern1pt % space above the rules
-%	\hrule height 1.5pt
-%	\kern2pt % space between the rules
-	\hrule height 0.8pt
-	\kern3pt % space below the rules
-}
-\newcommand{\requirement}[7]{
-%	{\setstretch{1.0}
-%	\begin{center}
-%	\begin{tabular}{c c}
-\noindent
-\vspace{5pt}
-	\parbox{\linewidth}{
-		\fontsize{10pt}{5pt}\selectfont
-		\noindent\textbf{#1} \hspace{26pt}\pbox{\textit{#2}} \\
-%		\hrule height 1pt
-\myline
-%		\parbox{0.7\linewidth}{
-			\textit{Rationale:}	\hspace{10pt} \pbox{#3} \\
-			\textit{Fit Criterion:} \pbox{#4} \\
-			\textit{Priority:} \hspace{18pt} \pbox{#5} \\
-			\textit{Originator:} \hspace{7pt} \pbox{#6} \\
-			\textit{History:} \hspace{25pt}{#7} \\
-		}}
-%	}
-%	\end{tabular}
-%\end{center}
-%}
+
 
 %\requirement{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}
 \subsection{Look and Feel Requirements}
