@@ -9,21 +9,21 @@ var CONTEXT_MENU_CONTENTS = {
     'Selection context menu'
   ],
   forLauncher : [
-    'Launch Window "A"',
+    //'Launch Window "A"',
     'Launch Window "B"'
   ]
 }
 
 function setUpContextMenus() {
-  CONTEXT_MENU_CONTENTS.forWindows.forEach(function(commandId) {
-    chrome.contextMenus.create({
-      title: 'A: ' + commandId,
-      type: 'radio',
-      id: 'A' + commandId,
-      documentUrlPatterns: [ "chrome-extension://*/a.html"],
-      contexts: ['all']
-    });
-  });
+  // CONTEXT_MENU_CONTENTS.forWindows.forEach(function(commandId) {
+  //   chrome.contextMenus.create({
+  //     title: 'A: ' + commandId,
+  //     type: 'radio',
+  //     id: 'A' + commandId,
+  //     documentUrlPatterns: [ "chrome-extension://*/a.html"],
+  //     contexts: ['all']
+  //   });
+  // });
 
   CONTEXT_MENU_CONTENTS.forWindows.forEach(function(commandId) {
     chrome.contextMenus.create({
@@ -58,7 +58,7 @@ function setUpContextMenus() {
 }
 
 chrome.app.runtime.onLaunched.addListener(function() {
-  chrome.app.window.create('a.html', {id: 'a', outerBounds:{top: 0, left: 0, width: 300, height: 300}});
+  //chrome.app.window.create('a.html', {id: 'a', outerBounds:{top: 0, left: 0, width: 300, height: 300}});
   chrome.app.window.create('b.html', {id: 'b', outerBounds:{top: 0, left: 310, width: 300, height: 300}});
 });
 
@@ -68,8 +68,8 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.contextMenus.onClicked.addListener(function(itemData) {
-  if (itemData.menuItemId == "launcher0")
-    chrome.app.window.create('a.html', {id: 'a', outerBounds:{top: 0, left: 0, width: 300, height: 300}});
+  // if (itemData.menuItemId == "launcher0")
+  //   chrome.app.window.create('a.html', {id: 'a', outerBounds:{top: 0, left: 0, width: 300, height: 300}});
   if (itemData.menuItemId == "launcher1")
     chrome.app.window.create('b.html', {id: 'b', outerBounds:{top: 0, left: 310, width: 300, height: 300}});
 });
