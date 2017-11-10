@@ -1,5 +1,4 @@
 \documentclass[12pt, titlepage]{article}
-\usepackage{../../project_latex/report-style}
 
 \usepackage{fullpage}
 \usepackage[round]{natbib}
@@ -40,135 +39,35 @@
 
 \date{\today}
 
-%\input{../../Comments}
-
-
-
-%------------------------------------------------------------------------------
-%------------------------------------------------------------------------------
-% Document Info
-%------------------------------------------------------------------------------
-%------------------------------------------------------------------------------
-\newcommand{\docTitle}{Module Guide}
-\newcommand{\dueDate}{November 10, 2017}
-
-
-%------------------------------------------------------------------------------
-%------------------------------------------------------------------------------
-% Revision Table
-%------------------------------------------------------------------------------
-%------------------------------------------------------------------------------
-\newcommand{\revisionTable}{
-	\begin{table}[hp]
-		
-		\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-			\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-			\midrule
-			
-			10-Nov-2017 & 0.0 & Revision 0\\
-			
-			\bottomrule
-		\end{tabularx}
-		\caption{\bf Revision History}
-	\end{table}
-}
-
-
-
-
-% Header
-%-------------------------------------------------------------------------------
-\usepackage{afterpage}
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\setlength{\headheight}{15pt}
-%\fancyhead[LE,RO]{\slshape \rightmark}
-%\fancyhead[LO,RE]{\slshape \leftmark}
-\fancyhead[LE,RO]{\slshape Assignment 1}
-\fancyhead[LO,RE]{\slshape \leftmark}
-\fancyfoot[C]{\thepage}
-%\headrulewidth 0.4pt
-%\footrulewidth 0 pt
-
-\fancyhead{} % clear all header fields
-%\fancyhead[RO,LE]{\textbf{\docTitle}}
-\fancyhead[C]{\textbf{\docTitle}}
-\fancyfoot{} % clear all footer fields
-\fancyfoot[LE,RO]{\thepage}
-\fancyfoot[LO,CE]{\dueDate}
-%\fancyfoot[CO,RE]{\textbf{\teamname}}
-\fancyfoot[CO,RE]{\teamname}
-\renewcommand{\headrulewidth}{0.4pt}
-%\renewcommand{\footrulewidth}{0.4pt}
-\setlength{\headsep}{0.2in}
+\input{../../Comments}
 
 \begin{document}
 
-%\maketitle
-%
-%\pagenumbering{roman}
-%\tableofcontents
-%\listoftables
-%\listoffigures
-%
-%\begin{table}[bp]
-%\caption{\bf Revision History}
-%\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-%\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-%\midrule
-%Date 1 & 1.0 & Notes\\
-%Date 2 & 1.1 & Notes\\
-%\bottomrule
-%\end{tabularx}
-%\end{table}
-%
-%\newpage
-%
-%\pagenumbering{arabic}
-
-
-	%------------------------------------------------------------------------------
-%------------------------------------------------------------------------------
-%	Title Page
-%------------------------------------------------------------------------------
-%------------------------------------------------------------------------------
-
-
-\input{../../project_latex/titlepage.tex}
-
-
-%------------------------------------------------------------------------------
-%------------------------------------------------------------------------------
-%	Report
-%------------------------------------------------------------------------------
-%------------------------------------------------------------------------------
+\maketitle
 
 \pagenumbering{roman}
-\def\thesection{\arabic{section}} 
-\renewcommand\thesection{\arabic{section}} 
-\renewcommand\thesubsection{\thesection.\arabic{subsection}}
-
 \tableofcontents
-
 \listoftables
-
 \listoffigures
 
+\begin{table}[bp]
+\caption{\bf Revision History}
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+Date 1 & 1.0 & Notes\\
+Date 2 & 1.1 & Notes\\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \newpage
 
 \pagenumbering{arabic}
-%==============================================================================
-\section{Revision History}
-%==============================================================================
-\revisionTable
 
-
-%==============================================================================
 \section{Introduction}
-%==============================================================================
-\hyperlink{Decomposing}{TESTER}
-\hypertarget{Decomposing}{Decomposing} a system into modules is a commonly accepted approach to developing
+
+Decomposing a system into modules is a commonly accepted approach to developing
 software.  A module is a work assignment for a programmer or programming
 team~\citep{ParnasEtAl1984}.  We advocate a decomposition
 based on the principle of information hiding~\citep{Parnas1972a}.  This
@@ -217,9 +116,7 @@ the completeness of the design against the requirements provided in the SRS. The
 other shows the relation between anticipated changes and the modules. Section
 \ref{SecUse} describes the use relation between modules.
 
-%==============================================================================
 \section{Anticipated and Unlikely Changes} \label{SecChange}
-%==============================================================================
 
 This section lists possible changes to the system. According to the likeliness
 of the change, the possible changes are classified into two
@@ -227,7 +124,7 @@ categories. Anticipated changes are listed in Section \ref{SecAchange}, and
 unlikely changes are listed in Section \ref{SecUchange}.
 
 \subsection{Anticipated Changes} \label{SecAchange}
-%------------------------------------------------------------------------------
+
 Anticipated changes are the source of the information that is to be hidden
 inside the modules. Ideally, changing one of the anticipated changes will only
 require changing the one module that hides the associated decision. The approach
@@ -243,7 +140,7 @@ change.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
-%------------------------------------------------------------------------------
+
 The module design should be as general as possible. However, a general system is
 more complex. Sometimes this complexity is not necessary. Fixing some design
 decisions at the system architecture stage can simplify the software design. If
@@ -259,9 +156,8 @@ decisions will be changed.
 \item ...
 \end{description}
 
-%==============================================================================
 \section{Module Hierarchy} \label{SecMH}
-%==============================================================================
+
 This section provides an overview of the module design. Modules are summarized
 in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
 below, which are leaves in the hierarchy tree, are the modules that will
@@ -303,18 +199,13 @@ actually be implemented.
 \label{TblMH}
 \end{table}
 
-
-%==============================================================================
 \section{Connection Between Requirements and Design} \label{SecConnection}
-%==============================================================================
+
 The design of the system is intended to satisfy the requirements developed in
 the SRS. In this stage, the system is decomposed into modules. The connection
 between requirements and modules is listed in Table \ref{TblRT}.
 
-
-%==============================================================================
 \section{Module Decomposition} \label{SecMD}
-%==============================================================================
 
 Modules are decomposed according to the principle of ``information hiding''
 proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module
@@ -332,9 +223,8 @@ that the module is not a leaf and will not have to be implemented. Whether or
 not this module is implemented depends on the programming language
 selected.
 
-
 \subsection{Hardware Hiding Modules (\mref{mHH})}
-%------------------------------------------------------------------------------
+
 \begin{description}
 \item[Secrets:]The data structure and algorithm used to implement the virtual
   hardware.
@@ -344,9 +234,8 @@ selected.
 \item[Implemented By:] OS
 \end{description}
 
-
 \subsection{Behaviour-Hiding Module}
-%------------------------------------------------------------------------------
+
 \begin{description}
 \item[Secrets:]The contents of the required behaviours.
 \item[Services:]Includes programs that provide externally visible behaviour of
@@ -357,9 +246,8 @@ selected.
 \item[Implemented By:] --
 \end{description}
 
-
 \subsubsection{Input Format Module (\mref{mInput})}
-%-----------------------------------------------------------
+
 \begin{description}
 \item[Secrets:]The format and structure of the input data.
 \item[Services:]Converts the input data into the data structure used by the
@@ -367,12 +255,10 @@ selected.
 \item[Implemented By:] [Your Program Name Here]
 \end{description}
 
-
 \subsubsection{Etc.}
-%-----------------------------------------------------------
+
 
 \subsection{Software Decision Module}
-%-----------------------------------------------------------
 
 \begin{description}
 \item[Secrets:] The design decision based on mathematical theorems, physical
@@ -387,10 +273,7 @@ selected.
 
 \subsubsection{Etc.}
 
-
-%==============================================================================
 \section{Traceability Matrix} \label{SecTM}
-%==============================================================================
 
 This section shows two traceability matrices: between the modules and the
 requirements and between the modules and the anticipated changes.
@@ -444,10 +327,7 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \label{TblACT}
 \end{table}
 
-
-%==============================================================================
 \section{Use Hierarchy Between Modules} \label{SecUse}
-%==============================================================================
 
 In this section, the uses hierarchy between modules is
 provided. \citet{Parnas1978} said of two programs A and B that A {\em uses} B if
