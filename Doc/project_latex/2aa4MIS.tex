@@ -1,0 +1,798 @@
+\documentclass[12pt]{article}
+\usepackage{report-style}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Create a module
+%
+%	\newModule{Name}
+%		{Uses}
+%		{ExportedTypes}{ExportedAccessPrograms}
+%		{StateVariables}{StateInvariant}
+%		{Assumptions}
+%		{AccessPrograms}{LocalFuntions}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\newModule}[9]{
+	%\label{#1}
+	\subsection* {Module}
+		#1
+	\subsection* {Uses}
+		#2
+	\subsection* {Syntax}
+		\subsubsection* {Exported Types}
+			#3
+		\subsubsection* {Exported Access Programs}
+			#4
+	\subsection* {Semantics}
+		\subsubsection* {State Variables}
+			#5
+		\subsubsection* {State Invariant}
+			#6
+		\subsubsection* {Assumptions}
+			#7
+		\subsubsection* {Access Routine Semantics}
+			#8
+		\subsubsection* {Local Functions}
+			#9
+}
+\newcommand{\newTemplateModule}[9]{
+	%\label{#1}
+	\subsection* {Template Module}
+		#1
+	\subsection* {Uses}
+		#2
+	\subsection* {Syntax}
+		\subsubsection* {Exported Types}
+			#3
+		\subsubsection* {Exported Access Programs}
+			#4
+	\subsection* {Semantics}
+		\subsubsection* {State Variables}
+			#5
+		\subsubsection* {State Invariant}
+			#6
+		\subsubsection* {Assumptions}
+			#7
+		\subsubsection* {Access Routine Semantics}
+			#8
+		\subsubsection* {Local Functions}
+			#9
+}
+\newcommand{\newConstantsModule}[6]{
+	%\label{#1}
+	\subsection* {Module}
+		#1
+	\subsection* {Uses}
+		#2
+	\subsection* {Syntax}
+		\subsubsection* {Exported Constants}
+			#3
+		\subsubsection* {Exported Access Programs}
+			#4
+	\subsection* {Semantics}
+		\subsubsection* {State Variables}
+			#5
+		\subsubsection* {State Invariant}
+			#6
+%		\subsubsection* {Assumptions}
+%			#7
+%		\subsubsection* {Access Routine Semantics}
+%			#8
+%		\subsubsection* {Local Functions}
+%			#9
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Create a new access program
+%	\newAccessProgram{name}{output}{exception}
+%	\newAccessProgram{someFunction(input1, input2)}{output equation}{SomeException}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\newAccessProgram}[4]{
+	\noindent #1:
+		\begin{itemize}
+			\item transition: #2
+			\item output: $out :=$ #3
+			\item exception: $exc :=$ #4
+		\end{itemize}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Exported Access Program Table
+%		\accessProgramsTableStart
+%			\row{one}{two}{three}{four}
+%		\accessProgramsTableEnd
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\row}[4]{#1 & #2 & #3 & #4 ~\\ \hline}
+\newcommand{\accessProgramsTableStart}{
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+}
+\newcommand{\accessProgramsTableEnd}{
+	\end{tabular}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%The xkeyval packages will let you define key/value options for commands.
+%\mycommand[key1=value1, key3=value3]{some text}
+%https://en.wikibooks.org/wiki/LaTeX/Macros
+\usepackage{xkeyval}
+
+
+%---------------------------------------------------------------------------------------
+\begin {document}
+%---------------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+%	Document Information
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+
+\newcommand{\name}{Dawson Myers}
+\newcommand{\macid}{myersd1}
+\newcommand{\sn}{400005616}
+\newcommand{\duedate}{April 5, 2017}
+\newcommand{\school}{McMaster University}
+\newcommand{\course}{SFWR ENG 2AA4}
+\newcommand{\assignmentTitle}{Assignment 4}
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+%	Title Page
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+
+
+\input{./titlepage.tex}
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+%	Report
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+%\def\thesection{\arabic{section}} 
+\renewcommand\thesection{\arabic{section}} 
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+
+
+\tableofcontents
+
+\lstlistoflistings
+
+\newpage
+
+
+%==============================================================================
+\section{Purpose}
+%==============================================================================
+The purpose of this assignment is to design and specify a module (or modules) to store the state of a game of Battleship. The modules cover the Model portion of the Model View Controller (MVC) design pattern.
+
+\newpage
+
+%==============================================================================
+\section{Program Specifications}
+%==============================================================================
+
+%------------------------------------------------------------------------------
+\section* {Constants Module}
+%------------------------------------------------------------------------------
+
+\label{Constants}
+
+\newConstantsModule{Constants}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		N/A
+	}
+	%------------------------------------------------------
+	{% Exported Constants
+	%------------------------------------------------------
+		GRID\_MAX = 10 \\
+		MAX\_SHIP\_SIZE = 5 \\
+		MAX\_SHIPS = 5
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+		none
+	}
+%	%------------------------------------------------------
+%	{% Assumptions
+%	%------------------------------------------------------
+%		none
+%	}
+%	%------------------------------------------------------
+%	{% Access Routine Semantics
+%	%------------------------------------------------------
+%		none
+%	}
+%	%------------------------------------------------------
+%	{% Local Functions
+%	%------------------------------------------------------
+%		none
+%	}
+
+\newpage
+
+%------------------------------------------------------------------------------
+\section* {Cell Module}
+%------------------------------------------------------------------------------
+
+\label{Cell}
+
+\newTemplateModule{CellT}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		Battleship
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		CellT = ?
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{CellT}{}{CellT}{}
+			\row{setShip}{BattleshipT}{}{ShipPlacementException}
+			\row{attack}{}{}{}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		ship: BattleShipT //
+		%beenAttacked: boolean
+		attackCount: int
+		setCount: int
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+	%------------------------------------------------------
+		%----------------
+		\newAccessProgram{CellT()}
+			{% Transition
+				$ship := null$
+			}
+			{% Output
+				self
+			}
+			{% Exception
+				$\mathit{none}$
+			}
+		\newAccessProgram{setShip(s)}
+			{% Transition
+				$ship := s; \\
+				setCount := setCount + 1$
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				$setCount > 1 \Rightarrow ShipPlacementException$
+			}
+		%----------------
+		\newAccessProgram{attack()}
+			{% Transition
+				$attackCount := attackCount + 1; \\
+				ship \neq null \Rightarrow ship.hit()$}
+			{% Output
+				none
+			}
+			{% Exception
+				$\mathit{none}$
+			}		
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+		none
+	}
+
+\newpage
+
+%------------------------------------------------------------------------------
+\section* {Battleship Module}
+%------------------------------------------------------------------------------
+
+\label{Battleship}
+
+\newTemplateModule{BattleshipT}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		Board, Cell, Constants
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		BattleshipT = ?
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{BattleshipT}{BoardT, int, int}{BattleshipT}{InvalidShipException}%}{CellT}{}
+			\row{placeShip}{int, int, int, int}{}{InvalidLocationException}
+			\row{hit}{}{}{}
+			%\row{setShip}{BattleShipT, int, int, int}{}{InvalidLocationException}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		board: Board \\
+		shipHealth: int \\ 
+		shipSize: int \\ 
+		shipId: int \\
+		startX: int \\
+		startY: int \\
+		endX: int \\
+		endY: int \\
+		 
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+		$size \leq MAX\_SHIP\_SIZE$
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+	%------------------------------------------------------
+		%----------------
+		\newAccessProgram{BattleshipT(b, id, size)}
+			{% Transition
+				$board, shipId, shipHealth, shipSize := p, id, size, size$
+			}
+			{% Output
+				self
+			}
+			{% Exception
+				$size > MAX\_SHIP\_SIZE \Rightarrow InvalidShipException$
+			}
+		%----------------
+		\newAccessProgram{placeShip(x1, y1, x2, y2)}
+			{% Transition
+				$startX, startY, endX, endY :=  x1, y1, x2, y2$
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				$\exists (a: int | a \in \{x1, y1, x2, y2\}: 0 < a > GRID\_MAX) 
+				\Rightarrow InvalidLocationException$
+			}	
+		\newAccessProgram{hit()}
+			{% Transition
+				$shipHealth := shipHealth - 1; \\
+				shipHealth < 1 \Rightarrow board.sunk(shipId);				
+				$
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}	
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+		none
+	}
+	
+\newpage
+
+%------------------------------------------------------------------------------
+\section* {Board Module}
+%------------------------------------------------------------------------------
+
+\label{Board}
+
+\newTemplateModule{BoardT}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		Battleship, Cell, Constants
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		BoardT = ?
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{BoardT}{PlayerT}{BoardT}{}
+			\row{placeShip}{int, int, int, int, int}{}{InvalidLocationException}
+			\row{hit}{int}{}{}
+			\row{sunk}{int}{}{}
+			%\row{setShip}{BattleShipT, int, int, int}{}{InvalidLocationException}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		player: PlayerT \\
+		sunkCount: int \\ 
+		ships: sequence of BattleShipT \\
+		grid: sequence of sequence of CellT \\
+		attacks: set of tuple of (x,y:int)
+		sunkShips: set of int
+		 
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+	%------------------------------------------------------
+		%----------------
+		\newAccessProgram{BoardT(p)}
+			{% Transition
+				$player := p$; \\
+				$ships := <BattleShipT(self, 1, 2), BattleShipT(self, 2, 3), \\
+							BattleShipT(self, 3, 3), BattleShipT(self, 4, 4),
+							BattleShipT(self, 5, 5)>; \\
+				grid: = <x:int | 0 \geq x \geq GRID\_MAX: \\
+							<y:int | 0 \geq y \geq GRID\_MAX: CellT()>
+						>; \\
+				sunkShips = \{\}$
+				%grid: = <x,y:int | 0 \geq (x \wedge y) \geq GRID\_MAX:%
+			}
+			{% Output
+				self
+			}
+			{% Exception
+				$size > MAX\_SHIP\_SIZE \Rightarrow InvalidShipException$
+			}
+		%----------------
+		\newAccessProgram{placeShip(id, x1, y1, x2, y2)}
+			{% Transition
+				$\{x \in \{x1-x2\} |
+					\{y \in \{y1-y2\} | grid[x][y].setShip(ships[id])\}
+				\}$
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				$\exists (a: int | a \in \{x1, y1, x2, y2\}: 0 < a > GRID\_MAX) 
+				\Rightarrow InvalidLocationException$
+			}	
+		\newAccessProgram{sunk(id)}
+			{% Transition
+				$sunkShips := sunkShips || \{id\}; \\
+				|sunkShips| > MAX\_SHIPS \Rightarrow Game.lost(player)$
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}	
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+	none
+	}
+	
+\newpage
+
+%------------------------------------------------------------------------------
+\section* {Player Module}
+%------------------------------------------------------------------------------
+
+\label{Player}
+
+\newTemplateModule{PlayerT}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		PlayerT
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{PlayerT}{int}{PlayerT}{}
+			\row{getId}{}{int}{}
+			\row{won}{}{}{}
+			\row{lost}{}{}{}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		id: int\\
+		won: boolean \\
+		lost: boolean		 
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+	%------------------------------------------------------
+		%----------------
+		\newAccessProgram{PlayerT(i)}
+			{% Transition
+				$id := i$
+			}
+			{% Output
+				self
+			}
+			{% Exception
+				none
+			}
+		%----------------
+		\newAccessProgram{getId(id)}
+			{% Transition
+				none
+			}
+			{% Output
+				id
+			}
+			{% Exception
+				none
+			}	
+		\newAccessProgram{won()}
+			{% Transition
+				$won := true$
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}	
+		\newAccessProgram{lost()}
+			{% Transition
+				$lost := true$
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}	
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+	none
+
+	}
+
+\newpage
+
+%------------------------------------------------------------------------------
+\section* {Game Module}
+%------------------------------------------------------------------------------
+
+\label{Game}
+
+\newModule{Game}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		Battleship, Player, Constants
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{init}{}{}{}
+			\row{lost}{int}{}{}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		players: sequence of PlayerT \\
+		boards: sequence of BoardT \\
+		winner: playerT \\
+%		player1: PlayerT \\
+%		player2: PlayerT \\
+%		board1: BoardT \\
+%		board2: BoardT \\
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+		$0 \geq |players| \leq 2; \\
+		0 \geq |boards| \leq 2;$
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		init() is called first to initialize the game.
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+	%------------------------------------------------------
+		%----------------
+		\newAccessProgram{init(p)}
+			{% Transition
+				$ 
+					players := <PlayerT(1), PlayerT(2)>; \\
+					boards  := <BoartT(players[0]), BoartT(players[1])> \\
+				$
+			}
+			{% Output
+				self
+			}
+			{% Exception
+				none
+			}
+		%----------------
+		\newAccessProgram{lost(loser)}
+			{% Transition
+				$winner := (players - <loser>)[0]$
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}	
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+	none
+	}
+
+
+
+%===================================================================
+%===================================================================
+%===================================================================
+
+%%------------------------------------------------------------------------------
+%% Module Heading
+%\section* {Region Module}
+%% Module Type
+%\subsection* {Template Module}
+%%------------------------------------------------------------------------------
+%\newModule{ModuleName}
+%	%------------------------------------------------------
+%	{% Uses
+%	%------------------------------------------------------
+%		SomeOtherModule
+%	}
+%	%------------------------------------------------------
+%	{% Exported Types
+%	%------------------------------------------------------
+%		Exported Types
+%	}
+%	%------------------------------------------------------
+%	{% Exported Access Programs
+%	%------------------------------------------------------
+%		\accessProgramsTableStart
+%		\row{name}{in}{out}{exception}
+%		\accessProgramsTableEnd
+%	}
+%	%------------------------------------------------------
+%	{% State Variant
+%	%------------------------------------------------------
+%		Variant
+%	}
+%	%------------------------------------------------------
+%	{% State Invariant
+%	%------------------------------------------------------
+%		Invariant
+%	}
+%	%------------------------------------------------------
+%	{% Assumptions
+%	%------------------------------------------------------
+%		No assumptions}
+%	%------------------------------------------------------
+%	{% Access Routine Semantics
+%	%------------------------------------------------------
+%		%----------------
+%		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
+%			{% Transition
+%				$\mathit{none}$}
+%			{% Output
+%				
+%			}
+%			{% Exception
+%				$\mathit{none}$
+%			}
+%		%----------------
+%		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
+%			{% Transition
+%				$\mathit{none}$}
+%			{% Output
+%				
+%			}
+%			{% Exception
+%				$\mathit{none}$
+%			}		
+%	}
+%	%------------------------------------------------------
+%	{% Local Functions
+%	%------------------------------------------------------
+%		%----------------
+%		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
+%			{% Transition
+%				$\mathit{none}$}
+%			{% Output
+%				
+%			}
+%			{% Exception
+%				$\mathit{none}$
+%			}
+%	}
+	
+	
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\end {document}
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------

@@ -1,251 +1,812 @@
+%\documentclass[12pt, titlepage]{article}
+
+%\usepackage{booktabs}
+%\usepackage{tabularx}
+%\usepackage{hyperref}
+%\hypersetup{
+%    colorlinks,
+%    citecolor=black,
+%    filecolor=black,
+%    linkcolor=red,
+%    urlcolor=blue
+%}
+%\usepackage[round]{natbib}
+%
+%\title{SE 3XA3: Test Plan\\Title of Project}
+%
+%\author{Team \#, Team Name
+%		\\ Student 1 name and macid
+%		\\ Student 2 name and macid
+%		\\ Student 3 name and macid
+%}
+%
+%\date{\today}
+%
+%\input{../Comments}
+%
+%\begin{document}
+%
+%\maketitle
+%
+%\pagenumbering{roman}
+%\tableofcontents
+%\listoftables
+%\listoffigures
+%
+%\begin{table}[bp]
+%\caption{\bf Revision History}
+%\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+%\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+%\midrule
+%Date 1 & 1.0 & Notes\\
+%Date 2 & 1.1 & Notes\\
+%\bottomrule
+%\end{tabularx}
+%\end{table}
+%
+%\newpage
+%
+%\pagenumbering{arabic}
+
 \documentclass[12pt, titlepage]{article}
+\usepackage{../project_latex/report-style}
+\usepackage{./customstyle}
 
-\usepackage{booktabs}
-\usepackage{tabularx}
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=red,
-    urlcolor=blue
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+% Document Info
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\newcommand{\docTitle}{Test Plan}
+\newcommand{\dueDate}{October 27, 2017}
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+% Revision Table
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\newcommand{\revisionTable}{
+	\begin{table}[hp]
+		
+		\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+			\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+			\midrule
+			
+			27-Oct-2017 & 0.0 & Revision 0\\
+			
+			\bottomrule
+		\end{tabularx}
+	\caption{\bf Revision History}
+	\end{table}
 }
-\usepackage[round]{natbib}
 
-\title{SE 3XA3: Test Plan\\Title of Project}
 
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
-}
 
-\date{\today}
 
-\input{../Comments}
+% Header
+%-------------------------------------------------------------------------------
+\usepackage{afterpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+%\fancyhead[LE,RO]{\slshape \rightmark}
+%\fancyhead[LO,RE]{\slshape \leftmark}
+\fancyhead[LE,RO]{\slshape Assignment 1}
+\fancyhead[LO,RE]{\slshape \leftmark}
+\fancyfoot[C]{\thepage}
+%\headrulewidth 0.4pt
+%\footrulewidth 0 pt
+
+\fancyhead{} % clear all header fields
+%\fancyhead[RO,LE]{\textbf{\docTitle}}
+\fancyhead[C]{\textbf{\docTitle}}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,CE]{\dueDate}
+%\fancyfoot[CO,RE]{\textbf{\teamname}}
+\fancyfoot[CO,RE]{\teamname}
+\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0.4pt}
+\setlength{\headsep}{0.2in}
 
 \begin{document}
+	%------------------------------------------------------------------------------
+	%------------------------------------------------------------------------------
+	%	Title Page
+	%------------------------------------------------------------------------------
+	%------------------------------------------------------------------------------
+	
+	
+	\input{../project_latex/titlepage.tex}
+	
+	
+	%------------------------------------------------------------------------------
+	%------------------------------------------------------------------------------
+	%	Report
+	%------------------------------------------------------------------------------
+	%------------------------------------------------------------------------------
+	
+	\pagenumbering{roman}
+	\def\thesection{\arabic{section}} 
+	\renewcommand\thesection{\arabic{section}} 
+	\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+	
+	\tableofcontents
+	
+	\listoftables
+	
+	\listoffigures
+	
+	
+	\newpage
+	
+	\pagenumbering{arabic}
+	%==============================================================================
+	\section{Revision History}
+	%==============================================================================
+	\revisionTable
+%	
+%	This document describes the requirements for the REST client testing tool. The template for the Software
+%	Requirements Specification (SRS) is a subset of the Volere template~\citep{RobertsonAndRobertson2012}.
+	
+	%==============================================================================
+	\section{Project Drivers}
+	%==============================================================================
+\newcommand{\labelWidth}{55pt}
+\newcommand{\descWidth}{5.13in}
 
-\maketitle
+	\newcommand{\pbox}[1]{\parbox[t]{\descWidth}{#1}}
 
-\pagenumbering{roman}
-\tableofcontents
-\listoftables
-\listoffigures
+	\newcommand{\labelbox}[1]{\parbox[t]{\labelWidth}{\textit{#1}}}
+	\newcommand{\myline}{%\par
+		\kern1pt % space above the rules
+		%	\hrule height 1.5pt
+		%	\kern2pt % space between the rules
+		\hrule height 0.8pt
+		\kern3pt % space below the rules
+	}
 
-\begin{table}[bp]
-\caption{\bf Revision History}
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
-\end{tabularx}
-\end{table}
 
-\newpage
+\newcommand\Tstrut{\rule{0pt}{0.5ex}}         % = `top' strut
+\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}}   % = `bottom' strut
+\newcounter{nfrCounter}
 
-\pagenumbering{arabic}
+% nonfunctional req
+\newcommand{\nfr}[7]{
+	\begin{center}
+		\noindent\vspace{5pt}
+		\refstepcounter{nfrCounter}
+		\fontsize{9pt}{5pt}\selectfont
+	
+		\parbox{\linewidth}{
+			\begin{tabular}[h]{l l}
+				\textbf{\textit{\labelbox{NFR\thenfrCounter}}} & \textit{\pbox{#1}} \\[2.5ex]
+				
+				\hline \\[-0.8ex]
 
-This document ...
+				\labelbox{Rationale} & \pbox{#2} \\
+				\labelbox{Fit Criterion} & \pbox{#3} \\[6pt]
+				\labelbox{Priority} & \pbox{#4} \\
+				\labelbox{Originator} & \pbox{#5} \\
+				\labelbox{History} & \pbox{#6} \\
+				\hline
+			\end{tabular}
+		} \par 
+	\end{center}
+}
 
+%-------------------------------------------------
+
+%\test{% tag
+%}{% Type
+%}{% Initial State
+%}{% Input
+%}{% Output
+%}{% Procedure
+%}
+
+% a counter that is reset after each subsubsection
+\newcounter{testCounter}[subsubsection]
+%\setcout
+\newcommand{\test}[6]{
+	\begin{center}
+		\noindent\vspace{5pt}
+		\refstepcounter{testCounter}
+		\fontsize{9pt}{5pt}\selectfont
+		
+		\parbox{\linewidth}{
+			\begin{tabular}[h]{l l}
+				\textbf{\textit{\labelbox{#1\kern-0.8ex{}-\thetestCounter}}} & \textit{\pbox{}} \\[0.5ex]
+%				\textbf{\textit{\labelbox{NFR\thesection}}} & \textit{\pbox{#1}} \\[2.5ex]
+				
+				\hline \\[-0.8ex]
+				
+				\labelbox{Type} &  \pbox{#2} \\
+				\labelbox{Initial State} & \pbox{#3} \\[0pt]
+%				\labelbox{Initial State} & \pbox{#3} \\[6pt]
+				\labelbox{Input} & \pbox{#4} \\
+				\labelbox{Output} & \pbox{#5} \\
+				\labelbox{Procedure} & \pbox{#6} \\
+%				\hline
+			\end{tabular}
+		} \par 
+	\end{center}
+}
+%\test{% tag
+%	
+%}{% Type
+%	
+%}{% Initial State
+%	
+%}{% Input
+%	
+%}{% Output
+%	
+%}{% Procedure
+%	
+%}
+\noindent
+
+%\test{% tag
+%
+%}{% Type
+%
+%}{% Initial State
+%
+%}{% Input
+%
+%}{% Output
+%
+%}{% Procedure
+%
+%}
+
+%%\requirement{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}\\
+%\nfr{In order to accommodate as many users as possible, the user should be able to adjust the font size for the app.
+%}{An application that is accessible to people with poor eyesight or other disabilities will increase the application’s potential user-base size.
+%}{The user should not have to wait for more than 1 second for any operation to complete. If this is not possible due to network conditions, then there should be some kind of visible progress displayed to the user.
+%}{Medium}{Dawson Myers}{October 6, 2017}
+%
+%\nfr{In order to accommodate as many users as possible, the user should be able to adjust the font size for the app.
+%}{An application that is accessible to people with poor eyesight or other disabilities will increase the application’s potential user-base size.
+%}{The user should not have to wait for more than 1 second for any operation to complete. If this is not possible due to network conditions, then there should be some kind of visible progress displayed to the user.
+%}{Medium}{Dawson Myers}{October 6, 2017}
+%
+%\nfr{In order to accommodate as many users as possible, the user should be able to adjust the font size for the app.
+%}{An application that is accessible to people with poor eyesight or other disabilities will increase the application’s potential user-base size.
+%}{The user should not have to wait for more than 1 second for any operation to complete. If this is not possible due to network conditions, then there should be some kind of visible progress displayed to the user.
+%}{Medium}{Dawson Myers}{October 6, 2017}
+
+%\reqs{a}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}
+%==============================================================================
 \section{General Information}
-
+%==============================================================================
+	
 \subsection{Purpose}
+%------------------------------------------------------------------------------
+The purpose of this document is to outline the testing, validation, verification procedures to be implemented for the reconstruction of the Sails Live Chrome app, named the REST Assured Test Client. Through testing, the REST Assured team aim to improve the product’s correctness and build confidence in the its functionality. The test plan helps provide proof that the project adheres to requirements specified in the Software Requirements Specification document. 
+Types of testing will include structural, static and dynamic, functional and nonfunctional, manual and automated unit testing. Various testing tools will be used to achieve these tests. Fault testing will occur throughout the course of implementation of the project.
 
 \subsection{Scope}
+%------------------------------------------------------------------------------
+The scope of testing aims to cover the system fault conditions, These testing procedures may be complemented by design review and code review as a strategy to improve outcomes. The REST Assured team aims to test early and often to reduce faults with minimal expenditure of resources and to maximize correctness, quality, and reliability of software for users.
 
-\subsection{Acronyms, Abbreviations, and Symbols}
-	
-\begin{table}[hbp]
-\caption{\textbf{Table of Abbreviations}} \label{Table}
+\subsection{Naming Conventions and Terminology}
+%\subsection{Acronyms, Abbreviations, and Symbols}
+%------------------------------------------------------------------------------
 
-\begin{tabularx}{\textwidth}{p{3cm}X}
-\toprule
-\textbf{Abbreviation} & \textbf{Definition} \\
-\midrule
-Abbreviation1 & Definition1\\
-Abbreviation2 & Definition2\\
-\bottomrule
-\end{tabularx}
-
-\end{table}
+%\begin{table}[hbp]
+%\caption{\textbf{Table of Abbreviations}} \label{Table}
+%
+%\begin{tabularx}{\textwidth}{p{3cm}X}
+%\toprule
+%\textbf{Abbreviation} & \textbf{Definition} \\
+%\midrule
+%Abbreviation1 & Definition1\\
+%Abbreviation2 & Definition2\\
+%\bottomrule
+%\end{tabularx}
+%
+%\end{table}
 
 \begin{table}[!htbp]
-\caption{\textbf{Table of Definitions}} \label{Table}
-
-\begin{tabularx}{\textwidth}{p{3cm}X}
-\toprule
-\textbf{Term} & \textbf{Definition}\\
-\midrule
-Term1 & Definition1\\
-Term2 & Definition2\\
-\bottomrule
-\end{tabularx}
-
+	\begin{tabularx}{\textwidth}{p{3cm}X}
+		\toprule
+		\textbf{Term} & \textbf{Definition}\\
+		\midrule
+		HTTP & Hypertext Transfer Protocol.\\
+		
+		REST & Representational state transfer (REST) or RESTful web services is a way of providing interoperability between computer systems on the Internet.\\
+		
+		JSON & JavaScript Object Notation. An open-standard file format that uses human-readable text to transmit data objects consisting of attribute–value pairs and array data types (or any other serializable value).\\
+		
+		API & Application Program Interface. A document detailing the name of each function the client may call in their software and the purpose of those functions.\\
+		
+		FR & Functional requirements that describes what the product will do.\\
+		
+		User & A person who will be using the final product.\\
+		
+		App & The application being designed; the system-to-be.\\
+		
+		\bottomrule
+	\end{tabularx}
+	%-------------------------------------------------
+	\caption{\textbf{Table of Definitions}} \label{Table:definitions}
+	%-------------------------------------------------
 \end{table}	
 
-\subsection{Overview of Document}
 
+%\begin{table}[!htbp]
+%	\begin{tabularx}{\textwidth}{p{3cm}X}
+%		\toprule
+%		\textbf{Term} & \textbf{Definition}\\
+%		\midrule
+%		RESOURCE\_ROOT\_URL & https://jsonplaceholder.typicode.com\\
+%		RESOURCE\_POSTS & /posts \\
+%		RESOURCE\_COMMENTS & /comments \\
+%		\bottomrule
+%	\end{tabularx}
+%	%-------------------------------------------------
+%	\caption{\textbf{Table of Symbols}} \label{Table:symbols}
+%	%-------------------------------------------------
+%\end{table}	
+
+\subsection{Overview of Document}
+%------------------------------------------------------------------------------
+This document begins with a general overview of the plan, including sections on the software description, introduction of the test team and tools used for testing, and the \href{Table:sched}{Testing Schedule} which will be followed. Next, detailed system test descriptions of functional and nonfunctional \href{tests:frt:ui}{tests} are presented, followed by tests for proof of concept. The document ends with the comparison to any existing implementation, and closing with unit testing plans.
+
+
+%==============================================================================
 \section{Plan}
-	
+%==============================================================================
+
 \subsection{Software Description}
+%------------------------------------------------------------------------------
+The REST Assured Test Client will provide software developers a tool in Web API building and testing. The application will provide tests endpoints and the capability to diagnose bugs in applications featuring RESTful interfaces. 
 
 \subsection{Test Team}
+%------------------------------------------------------------------------------
+The REST Assured team members responsible for all testing procedures are Dawson Myers, Brandon Roberts, and Yang Liu. These responsibilities include test writing and execution for various types of testing outlined in this document.
 
 \subsection{Automated Testing Approach}
+%------------------------------------------------------------------------------
+Automated testing for the REST Assured Test Client will be done in Webstorm, which incorporates a wide array of test plugins which may be configured to benefit JavaScript debugging.
 
 \subsection{Testing Tools}
+%------------------------------------------------------------------------------
+The majority of the project code is JavaScript front-end code. The following testing tools will be used:
+\begin{itemize}
+	\item Karma (Integration Tests)
+	\item PhantomJS (UI Testing)
+	\item Jasmine (Unit Testing) 
+\end{itemize}
+
 
 \subsection{Testing Schedule}
-		
-See Gantt Chart at the following url ...
-
-\section{System Test Description}
+%------------------------------------------------------------------------------
 	
-\subsection{Tests for Functional Requirements}
+	
+	See Gantt Chart at the following url: \href{https://gitlab.cas.mcmaster.ca/myersd1/3xa3-team31/blob/master/ProjectSchedule/Team%2031%20Gantt%20Project.pdf}{Team 31 Gant Project}
 
-\subsubsection{Area of Testing1}
+
+\begin{table}[!htbp]
+%	\begin{tabularx}{\textwidth}{p{3cm}X}
+	\begin{tabularx}{\textwidth}{X  X  X }
+		\toprule
+		\textbf{Task} & \textbf{Team Member} & Date\\
+		\midrule
+
+		PoC Testing & Dawson Myers & November 27, 2017 \\
+		FRT-UI-1 & Brandon Roberts & November 12, 2017 \\
+		FRT-UI-2 & Brandon Roberts & November 12, 2017 \\
+		FRT-UI-3 & Brandon Roberts & November 12, 2017 \\
+		FRT-UI-4 & Yang Liu & November 12, 2017 \\
+		FRT-UI-5 & Yang Liu & November 12, 2017 \\
+		FRT-UI-6 & Yang Liu & November 12, 2017 \\
+		FRT-UI-7 & Dawson Myers & November 12, 2017 \\
+		FRT-UI-8 & Dawson Myers & November 12, 2017 \\
+		FRT-UI-9 & Dawson Myers & November 12, 2017 \\
+		FRT-UI-10 & Dawson Myers & November 12, 2017 \\
+		FRT-P-1 & Brandon Roberts & November 3, 2017 \\
+		FRT-P-2 & Yang Liu & November 3, 2017 \\
+		FRT-CM-1 & Yang Liu & November 21, 2017 \\
+		NRT-P-1 & Dawson Myers & November 21, 2017 \\
+		NRT-P-2 & Brandon Roberts & November 21, 2017 \\
 		
-\paragraph{Title for Test}
+		\bottomrule
+	\end{tabularx}
+	%-------------------------------------------------
+	\caption{\textbf{Testing Schedule}} \label{Table:sched}
+	%-------------------------------------------------
+\end{table}
 
-\begin{enumerate}
+%==============================================================================
+\section{System Test Description}
+%==============================================================================
+The software will allow users to test their REST server’s responses to GET/POST/PUT/DELETE requests. It will be implemented with common front end languages (HTML, javascript, css) and libraries (react, jQuery, bootstrap).
 
-\item{test-id1\\}
+\subsection{Tests for Functional Requirements}
+%------------------------------------------------------------------------------
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+\subsubsection{User Input}
+%------------------------------------------------------
+\label{tests:frt:ui}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+\test{% tag
+	FRT-UI
+}{% Type
+	Manual
+	%Functional, Dynamic, Manual, Static etc.
+}{% Initial State
+	Request form has input data, and response form has response information
+}{% Input
+	‘clear’ button clicked
+}{% Output
+	Request form and response form are cleared, leaving no characters in field
+}{% Procedure
+	The function clearing the request form and response form will run, the tester will manually verify if both forms have been cleared
+}
 
-\end{enumerate}
+\test{% tag
+	FRT-UI
+}{% Type
+	Functional, Dynamic, Manual, Static etc.
+}{% Initial State
+	Input text fields empty
+}{% Input
+	‘clear’ button clicked
+}{% Output
+	Field remains cleared, no characters in field
+}{% Procedure
+	Manually perform test to verify if field has been cleared
+}
 
-\subsubsection{Area of Testing2}
+\test{% tag
+	FRT-UI
+}{% Type
+	Manual
+}{% Initial State
+	Input text fields cleared by ‘clear’ button
+}{% Input
+	HTTP POST/GET/DELETE/PUT requests to test url
+}{% Output
+	HTTP request returns output fitting to request criteria
+}{% Procedure
+	Manually perform test to verify whether field clearing action will interfere with HTTP request functionalities
+}
 
-...
+\test{% tag
+	FRT-UI
+}{% Type
+	Manual
+}{% Initial State
+	The selected test stub is open
+}{% Input
+	The user clicks another test stub in the test selection menu
+}{% Output
+	The test stub viewer will update to display information about the newly selected test stub
+}{% Procedure
+	The test will manually be performed by a tester, and the program will pass the test if the wanted behaviour is reflected
+}
+
+\test{% tag
+	FRT-UI
+}{% Type
+	Manual
+}{% Initial State
+	Test stub view is displayed
+}{% Input
+	HTTP POST/GET/DELETE/PUT requests to test url
+}{% Output
+	Test stub will change colour to corresponding request colour in the test selection menu
+}{% Procedure
+	The test will manually be performed by a tester, the functions corresponding to the HTTP requests will be run, we check the response and the program will pass the test if the desired behaviour is reflected
+}
+
+\test{% tag
+	FRT-UI
+}{% Type
+	Manual
+}{% Initial State
+	Request form is awaiting input data
+}{% Input
+	User inputs request data into request form
+}{% Output
+	Program will format data for HTTP request with parameters, fit for browser entry
+}{% Procedure
+	The test will manually be performed by a tester, and the program will pass the test if the wanted behaviour is reflected
+}
+
+\test{% tag
+	FRT-UI
+}{% Type
+	Manual
+}{% Initial State
+	A valid request entry has been entered in the request form as input data
+}{% Input
+	The save request entry button is clicked
+}{% Output
+	The saved request entry is added to the list of saved entries and appears in the saved entry selection window
+}{% Procedure
+	The save request entry function will be called for the input request entry, the test will manually verify that the input request is added to the saved list of requests and appears in the saved entry selection window
+}
+
+\test{% tag
+	FRT-UI
+}{% Type
+	Manual
+}{% Initial State
+	Request form has been cleared of input data
+}{% Input
+	A previously saved request entry is selected, submit button is clicked
+}{% Output
+	Request form has been loaded with the selected previously saved request entry as input data
+}{% Procedure
+	The load saved request entry function will be called for the selected request entry, the test will manually verify that the request form has been populated with the selected request
+}
+
+\test{% tag
+	FRT-UI
+}{% Type
+	Manual
+}{% Initial State
+	The program is open
+}{% Input
+	The user clicks the new test button
+}{% Output
+	A new test stub is created underneath the lowest test stub
+}{% Procedure
+	The test will manually be performed by a tester, the functions corresponding to the HTTP requests will be run, we check the response and the program will pass the test if the desired behaviour is reflected
+}
+
+\test{% tag
+	FRT-UI
+}{% Type
+	Manual
+}{% Initial State
+	The program is openThe program is openThe program is open
+}{% Input
+	The user clicks and drags a test stub
+}{% Output
+	The test stub will follow the cursor user’s cursor until the let go by the user
+}{% Procedure
+	The test will manually be performed by a tester, the functions corresponding to the HTTP requests will be run, we check the response and the program will pass the test if the desired behaviour is reflected
+}
+
+%\test{% tag
+%	FRT-UI
+%}{% Type
+%	Manual
+%}{% Initial State
+%	23
+%}{% Input
+%	some
+%}{% Output
+%	out
+%}{% Procedure
+%	Creates
+%}
+
+
+%\subsubsection{Area of Testing2}
+%------------------------------------------------------
+\subsubsection{Protocol Tests}
+%------------------------------------------------------
+\test{% tag
+	FRT-PT
+}{% Type
+	Functional
+}{% Initial State
+	At main window
+}{% Input
+	Properly formatted JSON
+}{% Output
+	Should return true
+}{% Procedure
+	How test will be performed: REST query string validator function is called with a JSON request object
+}
+
+\test{% tag
+	FRT-PT
+}{% Type
+	Functional
+}{% Initial State
+	At main window
+}{% Input
+	Improperly formatted JSON
+}{% Output
+	Should return false
+}{% Procedure
+	How test will be performed: REST query string validator function is called with a JSON request object
+}
+
+
+\subsubsection{HTTP Communications}
+%------------------------------------------------------
+\test{% tag
+	FRT-CM
+}{% Type
+	Functional
+}{% Initial State
+	At main window
+}{% Input
+	JSON request object
+}{% Output
+	JSON response object containing the correct set of data from the resource URL
+}{% Procedure
+	Test is run that will call the sendMsg function with a JSON request object. The function should return a JSON object with a data set from the server. The data will be validated to verify it is correct
+}
+
 
 \subsection{Tests for Nonfunctional Requirements}
+%------------------------------------------------------------------------------
 
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
 
-\begin{enumerate}
+\subsubsection{Performance}
+%------------------------------------------------------
+\test{% tag
+	NRT-P
+}{% Type
+	Functional
+}{% Initial State
+	At main window
+}{% Input
+	100,000 requests  are enqueued
+}{% Output
+	JSON responses
+}{% Procedure
+	A test will add 100,000 request objects to the send message queue. The app should be able to process the responses without becoming unresponsive. The response text box should only store the previous 1000 rows of text
+}
 
-\item{test-id1\\}
+\test{% tag
+	NRT-P
+}{% Type
+	Functional
+}{% Initial State
+	At main window
+}{% Input
+	JSON request for a very large data set
+}{% Output
+	JSON response
+}{% Procedure
+	A test will run that will make a request for a very large data set. The app should not become unresponsive while processing the response
+}
 
-Type: 
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+%\test{% tag
+%	NRT-P
+%}{% Type
+%	Functional
+%}{% Initial State
+%	At main window
+%}{% Input
+%	Improperly formatted JSON
+%}{% Output
+%	Should return false
+%}{% Procedure
+%	How
+%}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+%\test{% tag
+%	FRT-PT
+%}{% Type
+%	Manual
+%}{% Initial State
+%	23
+%}{% Input
+%	some
+%}{% Output
+%	out
+%}{% Procedure
+%	Creates
+%}
 
-\end{enumerate}
 
-\subsubsection{Area of Testing2}
 
-...
 
-\subsection{Traceability Between Test Cases and Requirements}
+%\subsubsection{Area of Testing2}
+%------------------------------------------------------
 
+
+
+%\subsection{Traceability Between Test Cases and Requirements}
+%------------------------------------------------------------------------------
+
+%==============================================================================
 \section{Tests for Proof of Concept}
+%==============================================================================
 
-\subsection{Area of Testing1}
-		
-\paragraph{Title for Test}
-
-\begin{enumerate}
-
-\item{test-id1\\}
-
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
-
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
-
-\end{enumerate}
-
-\subsection{Area of Testing2}
-
-...
-
+\subsection{User Input}
+%------------------------------------------------------------------------------
 	
+\test{% tag
+	PCT-UI
+}{% Type
+	Functional
+}{% Initial State
+	Main window waiting for request information
+}{% Input
+	User inputs request information
+}{% Output
+	The program unfolds the request information into a JSON object
+}{% Procedure
+	The test will manually be performed by a test member, and the program will pass the test if the wanted behaviour is reflected
+}
+
+
+\test{% tag
+	PCT-UI
+}{% Type
+	Functional
+}{% Initial State
+	Request form has input data, and response form has response information
+}{% Input
+	User clicks the clear button
+}{% Output
+	The Request form, and response form should be cleared of all information
+}{% Procedure
+	The test will manually be performed by a tester, and the program will pass the test if the wanted behaviour is reflected
+}
+
+%\subsection{Area of Testing2}
+%------------------------------------------------------------------------------
+
+
+
+%==============================================================================
 \section{Comparison to Existing Implementation}	
-				
+%==============================================================================
+The existing project had very few test cases. Thus, the team has had to develop tests from scratch.
+
+%==============================================================================			
 \section{Unit Testing Plan}
-		
+%==============================================================================
+Jasmine will be used to test internal functions.
+
 \subsection{Unit testing of internal functions}
-		
+%------------------------------------------------------------------------------
+Jasmine will also be used to test program output.
+
 \subsection{Unit testing of output files}		
+%------------------------------------------------------------------------------
+N/A
 
 \bibliographystyle{plainnat}
 
-\bibliography{SRS}
-
+\bibliography{TestPlan}
+None
 \newpage
 
+%==============================================================================
 \section{Appendix}
+%==============================================================================
 
-This is where you can place additional information.
+Additional information
 
-\subsection{Symbolic Parameters}
-
+\subsection{Symbolic Parameters} \label{app:symb}{Symbolic Parameters}
+%------------------------------------------------------------------------------
+%\ref{app:symb}
 The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
+\begin{table}[!htbp]
+	\fontsize{9pt}{5pt}\selectfont
+	\begin{tabularx}{\textwidth}{p{4cm}X}
+		\toprule
+		\textbf{Term} & \textbf{Definition}\\
+		\midrule
+		RESOURCE\_ROOT\_URL & https://jsonplaceholder.typicode.com\\
+		RESOURCE\_POSTS & /posts \\
+		RESOURCE\_COMMENTS & /comments \\
+		\bottomrule
+	\end{tabularx}
+	%-------------------------------------------------
+	\caption{\textbf{Table of Symbols}} \label{Table:symbols}
+	%-------------------------------------------------
+\end{table}	
 
-\subsection{Usability Survey Questions?}
+%\subsection{Usability Survey Questions?}
+%------------------------------------------------------------------------------
 
-This is a section that would be appropriate for some teams.
+%This is a section that would be appropriate for some teams.
 
 \end{document}

@@ -1,4 +1,51 @@
 \ProvidesPackage{reportstyle}
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+%	Document Information
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+
+% Team Info
+\newcommand{\teamname}{REST Assured}
+\newcommand{\teamnumber}{Team 31}
+
+% Project Info
+\newcommand{\course}{SE 3XA3}
+
+% \docTitle defined in main tex doc
+%\title{\course: \docTitle \\ \teamname}
+
+% Student 1
+\newcommand{\studentAname}{Dawson Myers}
+\newcommand{\studentAsid}{400005616}
+\newcommand{\studentAmid}{myersd1}
+\newcommand{\studentAInfo}{\studentAname \studentAsid \studentAmid}
+
+% Student 2
+\newcommand{\studentBname}{Yang Liu}
+\newcommand{\studentBsid}{400038517}
+\newcommand{\studentBmid}{liuy136}
+\newcommand{\studentBInfo}{\studentBname \studentBsid \studentBmid}
+
+% Student 3
+\newcommand{\studentCname}{Brandon Roberts}
+\newcommand{\studentCsid}{400018117}
+\newcommand{\studentCmid}{roberb1}
+\newcommand{\studentCInfo}{\studentCname \studentCsid \studentCmid}
+
+
+\author{\teamnumber
+	\\ \teamname
+	\\ \studentAInfo
+	\\ \studentBInfo
+	\\ \studentCInfo
+	%\\ Dawson Myers 400005616  mysersd1
+	%\\ Yang Liu 400038517 liuy136
+	%\\ Brandon Roberts 400018117 roberb1
+}
+
+\date{\dueDate}
+
 
 \usepackage{amsfonts}
 \usepackage{amsmath}
@@ -105,6 +152,32 @@
  
  \usepackage{booktabs}
  \usepackage{tabularx}
+ 
+ % \begin{itemize}[noitemsep] remove line space
+ \usepackage{enumitem}
+
+% Use expressions on lengths
+% \dimexpr{\linewidth - 20pt}
+ %\usepackage{etex}
+ 
+ % Make lists without having to use \item
+ \usepackage[ampersand]{easylist}
+% \begin{easylist}[itemize]
+% 	& Main item~:
+% 	&& Sub item.
+% 	&& Another sub item.
+% \end{easylist}
+ 
+% Customize list properties
+%\begin{easylist}[enumerate]
+%	\ListProperties(Style2*=,Numbers=a,Numbers1=R,FinalMark={)})
+%	& Main item~:
+%	&& Sub item.
+%	&& Another sub item.
+%\end{easylist}
+ 
+ 
+ 
 % \usepackage{hyperref}
 % \hypersetup{
 % 	colorlinks,

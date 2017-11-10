@@ -56,6 +56,60 @@
 		\textit{History:} \hspace{25pt}{#7} \\
 }}
 
+
+
+\newcommand{\labelWidth}{55pt}
+\newcommand{\descWidth}{5.13in}
+
+\newcommand{\pbox}[1]{\parbox[t]{\descWidth}{#1}}
+
+\newcommand{\labelbox}[1]{\parbox[t]{\labelWidth}{\textit{#1}}}
+\newcommand{\myline}{%\par
+	\kern1pt % space above the rules
+	%	\hrule height 1.5pt
+	%	\kern2pt % space between the rules
+	\hrule height 0.8pt
+	\kern3pt % space below the rules
+}
+
+
+% Uncomment all between lines for new requirement macro
+%-------------------------------------------------
+%\newcommand\Tstrut{\rule{0pt}{0.5ex}}         % = `top' strut
+%\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}}   % = `bottom' strut
+%\newcounter{nfrCounter}
+%
+%% nonfunctional req
+%\newcommand{\nfr}[7]{
+%	\begin{center}
+%		\noindent\vspace{5pt}
+%		\refstepcounter{nfrCounter}
+%		\fontsize{9pt}{5pt}\selectfont
+%		
+%		\parbox{\linewidth}{
+%			\begin{tabular}[h]{l l}
+%				\textbf{\textit{\labelbox{NFR\thenfrCounter}}} & \textit{\pbox{#1}} \\[2.5ex]
+%				
+%				\hline \\[-0.8ex]
+%				
+%				\labelbox{Rationale} & \pbox{#2} \\
+%				\labelbox{Fit Criterion} & \pbox{#3} \\[6pt]
+%				\labelbox{Priority} & \pbox{#4} \\
+%				\labelbox{Originator} & \pbox{#5} \\
+%				\labelbox{History} & \pbox{#6} \\
+%				\hline
+%			\end{tabular}
+%		} \par 
+%	\end{center}
+%}
+
+%%\requirement{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}\\
+%\nfr{In order to accommodate as many users as possible, the user should be able to adjust the font size for the app.
+%}{An application that is accessible to people with poor eyesight or other disabilities will increase the application’s potential user-base size.
+%}{The user should not have to wait for more than 1 second for any operation to complete. If this is not possible due to network conditions, then there should be some kind of visible progress displayed to the user.
+%}{Medium}{Dawson Myers}{October 6, 2017}
+%-------------------------------------------------
+
 \begin{document}
 %------------------------------------------------------------------------------
 %------------------------------------------------------------------------------
