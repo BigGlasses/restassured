@@ -172,7 +172,17 @@
 
 The Module Guide (MG)’s purpose is to decompose the system into modules to present its modular structures. The MG’s creation is guided by principles and patterns and follows the creation of the Software Requirements Specification, which specified functional and nonfunctional requirements to be implemented for the reconstruction of the Sails Live Chrome app, named the REST Assured Test Client. The MG serves in part to demonstrate how the system meets the functional and nonfunctional requirements specified in the SRS. The MG prepares the foundation for the MIS, which states the syntax of all exported routines (inputs, outputs, and exceptions), and semantics (state variables, environment variables, assumptions and special considerations, and access routine semantics) in more detail for the modules specified in the MG. 
 
+\subsection{Audience} 
 
+The MG is aimed to provide information for three potential groups of audience:
+
+\begin{itemize}
+\item Designers/developers: The MG provides module specifications and the traceback to requirements to ensure designers and developers can check for consistency and feasibility, and determine how the project satisfies the requirements specified. 
+
+\item New project members: The MG provides guidance for any onboarding project member to understand the project’s big picture and to be able to quickly locate desired relevant information. 
+
+\item Maintainers: The MG provides guidance for future maintenance for any anticipated changes. By the outline of the module hierarchy and interpretation of the uses relationships, maintainers are able to infer risk factors and better assess aspects involved in potential changes to the system. Note it is assumed that maintainers hold the responsibility to update relevant sections after making changes.
+\end{itemize}
 
 \hyperlink{Decomposing}{TESTER}
 \hypertarget{Decomposing}{Decomposing} a system into modules is a commonly accepted approach to developing
@@ -196,22 +206,8 @@ Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 After completing the first stage of the design, the Software Requirements
 Specification (SRS), the Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG
 specifies the modular structure of the system and is intended to allow both
-designers and maintainers to easily identify the parts of the software.  The
-potential readers of this document are as follows:
+designers and maintainers to easily identify the parts of the software.  
 
-\begin{itemize}
-\item New project members: This document can be a guide for a new project member
-  to easily understand the overall structure and quickly find the
-  relevant modules they are searching for.
-\item Maintainers: The hierarchical structure of the module guide improves the
-  maintainers' understanding when they need to make changes to the system. It is
-  important for a maintainer to update the relevant sections of the document
-  after changes have been made.
-\item Designers: Once the module guide has been written, it can be used to
-  check for consistency, feasibility and flexibility. Designers can verify the
-  system in various ways, such as consistency among modules, feasibility of the
-  decomposition, and flexibility of the design.
-\end{itemize}
 
 The rest of the document is organized as follows. Section
 \ref{SecChange} lists the anticipated and unlikely changes of the software
