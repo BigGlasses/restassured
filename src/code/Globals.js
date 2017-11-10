@@ -1,0 +1,1 @@
+REQUEST_TYPES = ["GET", "POST", "PUT"];
