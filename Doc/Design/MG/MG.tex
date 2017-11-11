@@ -184,6 +184,24 @@ The MG is aimed to provide information for three potential groups of audience:
 \item Maintainers: The MG provides guidance for future maintenance for any anticipated changes. By the outline of the module hierarchy and interpretation of the uses relationships, maintainers are able to infer risk factors and better assess aspects involved in potential changes to the system. Note it is assumed that maintainers hold the responsibility to update relevant sections after making changes.
 \end{itemize}
 
+\subsection{Design Principles} 
+
+Several design principles were used to guide the decomposition of the system into modules, these include information hiding and encapsulation, design for change, low coupling / high cohesion, and avoidance of the existence of cycles in the uses relation hierarchy. The principle of information hiding ensures that modules each holds a secret hidden from the system (for example, the file storage module hides I/O access). The principle of encapsulation ensures that the module interface remains the same (providing the same service to the system) even if the implementation details may change. Designing for change allows the design to be flexible and reusable. Low coupling / high cohesion ensures different modules are not interdependent on one another and that all components of each module are grouped together to contribute to a single well-defined goal of the module. Elimination of cycles in the uses relation ensures modules are not cyclically interdependent and thus do not cause errors or infinite loops.
+
+\subsection{Document Structure}
+
+The MG is organized with the following structure:
+
+Section 3: Anticipated and Unlikely Changes to the system’s implementation used for the traceability matrices
+Section 4: Module Hierarchy details all the modules and their hierarchy by secrets.
+Section 5: Connection Between Requirements and Design details the relationship between the requirements to modules.
+Section 6: Module Decomposition details the module name, secret, and service/responsibility
+for each module.
+Section 7: Traceability Matrices provide details on the connection from the requirements to the modules
+Section 8: Uses Hierarchy between Modules details the uses relations interrelationships between modules
+
+
+
 \hyperlink{Decomposing}{TESTER}
 \hypertarget{Decomposing}{Decomposing} a system into modules is a commonly accepted approach to developing
 software.  A module is a work assignment for a programmer or programming
