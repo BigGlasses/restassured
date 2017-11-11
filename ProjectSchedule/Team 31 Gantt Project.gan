@@ -5,7 +5,7 @@
         <field id="tpd4" name="Begin date" width="86" order="1"/>
         <field id="tpd5" name="End date" width="138" order="2"/>
         <field id="tpc0" name="Role" width="181" order="3"/>
-        <timeline><![CDATA[121,103,105]]></timeline>
+        <timeline><![CDATA[103,121,105]]></timeline>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="208" order="0"/>
@@ -118,6 +118,16 @@
             <task id="145" name="Users Guide (optional)" meeting="false" start="2017-11-10" duration="1" complete="0" expand="true"/>
             <task id="147" name="Source Code" meeting="false" start="2017-11-10" duration="1" complete="0" expand="true"/>
         </task>
+        <task id="185" name="Modules" meeting="false" start="2017-11-10" duration="5" complete="0" expand="true">
+            <task id="187" name="M1 Input" color="#8cb6ce" meeting="false" start="2017-11-10" duration="1" complete="0" expand="true"/>
+            <task id="189" name="M2 Request Testing" color="#8cb6ce" meeting="false" start="2017-11-14" duration="1" complete="0" expand="true"/>
+            <task id="191" name="M3 User Profile" color="#8cb6ce" meeting="false" start="2017-11-12" duration="1" complete="0" expand="true"/>
+            <task id="193" name="M4 Data Processing" color="#8cb6ce" meeting="false" start="2017-11-11" duration="1" complete="0" expand="true"/>
+            <task id="195" name="M5 Network" color="#000000" meeting="false" start="2017-11-11" duration="1" complete="0" expand="true"/>
+            <task id="211" name="M7 Request Test Structure" color="#8cb6ce" meeting="false" start="2017-11-13" duration="1" complete="0" expand="true"/>
+            <task id="197" name="M6 Test Flow" color="#8cb6ce" meeting="false" start="2017-11-12" duration="1" complete="0" expand="true"/>
+            <task id="201" name="M8 Output" color="#8cb6ce" meeting="false" start="2017-11-10" duration="1" complete="0" expand="true"/>
+        </task>
     </tasks>
     <resources>
         <resource id="0" name="Dawson Myers" function="3" contacts="" phone=""/>
@@ -138,6 +148,10 @@
         <allocation task-id="118" resource-id="0" function="3" responsible="true" load="33.0"/>
         <allocation task-id="0" resource-id="0" function="3" responsible="true" load="20.0"/>
         <allocation task-id="170" resource-id="0" function="3" responsible="true" load="33.0"/>
+        <allocation task-id="189" resource-id="0" function="3" responsible="true" load="10.0"/>
+        <allocation task-id="197" resource-id="0" function="3" responsible="false" load="10.0"/>
+        <allocation task-id="201" resource-id="0" function="3" responsible="true" load="10.0"/>
+        <allocation task-id="211" resource-id="0" function="3" responsible="true" load="10.5"/>
         <allocation task-id="29" resource-id="1" function="Default:0" responsible="false" load="20.0"/>
         <allocation task-id="31" resource-id="1" function="Default:0" responsible="false" load="20.0"/>
         <allocation task-id="32" resource-id="1" function="Default:0" responsible="false" load="20.0"/>
@@ -153,6 +167,9 @@
         <allocation task-id="128" resource-id="1" function="1" responsible="false" load="33.0"/>
         <allocation task-id="0" resource-id="1" function="1" responsible="false" load="20.0"/>
         <allocation task-id="170" resource-id="1" function="1" responsible="false" load="33.0"/>
+        <allocation task-id="191" resource-id="1" function="1" responsible="true" load="10.0"/>
+        <allocation task-id="193" resource-id="1" function="1" responsible="true" load="10.0"/>
+        <allocation task-id="197" resource-id="1" function="1" responsible="true" load="10.0"/>
         <allocation task-id="29" resource-id="2" function="Default:0" responsible="false" load="20.0"/>
         <allocation task-id="31" resource-id="2" function="Default:0" responsible="false" load="20.0"/>
         <allocation task-id="32" resource-id="2" function="Default:0" responsible="false" load="20.0"/>
@@ -168,6 +185,8 @@
         <allocation task-id="128" resource-id="2" function="2" responsible="false" load="33.0"/>
         <allocation task-id="0" resource-id="2" function="2" responsible="false" load="20.0"/>
         <allocation task-id="170" resource-id="2" function="2" responsible="false" load="33.0"/>
+        <allocation task-id="187" resource-id="2" function="2" responsible="true" load="10.0"/>
+        <allocation task-id="195" resource-id="2" function="2" responsible="true" load="10.0"/>
     </allocations>
     <vacations/>
     <previous/>
