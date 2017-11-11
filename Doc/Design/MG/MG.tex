@@ -272,9 +272,9 @@ change.
 \begin{description}
 \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The format of the output data.
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the input parameters.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the output data.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The implementation of the data structure that stores JSON profile.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The graphical user interface elements used to retrieve user input and their format.
+\item[\refstepcounter{acnum} \actheacnum \label{acSettings}:] The default settings.
+\item[\refstepcounter{acnum} \actheacnum \label{acData}:] The implementation of the data structure that stores JSON profile.
+\item[\refstepcounter{acnum} \actheacnum \label{acgui}:] The graphical user interface elements used to retrieve user input and their format.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -287,11 +287,9 @@ will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
-  a source of input data external to the software.
-\item ...
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] Storage method of output data.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be a source of input data external to the software.
 \end{description}
 
 %==============================================================================
@@ -318,33 +316,42 @@ actually be implemented.
 {Hardware-Hiding Module} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
+& Input Module\\
+& Request Testing Module\\
+& User Profile Module\\
+& Data Processing Module\\
+& Networking Module\\
+& Output Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{3}{0.3\textwidth}{Software Decision Module}\\
+& Request Test Structure Module\\
+& Test Flow Structure Module\\
+\midrule
+{Module Name} & {Module Number}\\
+\midrule
+Input Module & M1\\
+Request Testing Module & M2\\
+User Profile Module & M3\\
+Data Processing & M4\\
+Network Module & M5\\
+Test Flow Module & M6\\
+Request Test Structure Module & M7\\
+Output Module & M8\\
 \bottomrule
 
 \end{tabular}
 \caption{Module Hierarchy}
 \label{TblMH}
 \end{table}
-
+\newpage
 
 %==============================================================================
 \section{Connection Between Requirements and Design} \label{SecConnection}
 %==============================================================================
-The design of the system is intended to satisfy the requirements developed in
-the SRS. In this stage, the system is decomposed into modules. The connection
-between requirements and modules is listed in Table \ref{TblRT}.
+The design of the system aims to satisfy the requirements specified in the SRS. The decomposition of the system into component modules analyzes the connection between requirements and modules, which is detailed in the Traceability Matrices section below. To satisfy requirements, several design decisions were made with design principles in mind to guide the decomposition of the system into modules. The I/O class handles input and output of data storage and is used by other modules for this purpose to meet functional requirements, thus demonstrating the design principle of information hiding and encapsulation. The application class RestSuite connects all components in the system to ensure the program can be executed. Nonfunctional requirements related to appearance and usability are satisfied in the RestSuite.display module, since it handles user interaction and interface functions and capabilities. The programming language selected (JavaScript) enables cross-platform support of the application by using the Chrome JavaScript runtime, making it platform agnostic. Another design decision was to implement a drop down menu for the selection of the type of REST requests, which eliminates invalid input and contribute to an intuitive usability design. In addition, buttons are utilized to further simplify request submission for the user. These design decisions holistically contribute to ensure the meeting of the cultural requirements.
+\ref{TblRT}.
 
 
 %==============================================================================
@@ -399,9 +406,73 @@ selected.
 \item[Secrets:]The format and structure of the input data.
 \item[Services:]Converts the input data into the data structure used by the
   input parameters module.
-\item[Implemented By:] [Your Program Name Here]
+\item[Implemented By:] RestAssured
 \end{description}
 
+
+\subsubsection{Input Module}
+%------------------------------------------------------------------------------
+\begin{description}
+\item[Secrets:] Input
+\item[Services:] Allows the user to specify the test conditions at which the user wishes to run tests with, the order the user wishes to run tests, and what type of tests will be performed.
+\item[Implemented By:] javascript
+\end{description}
+
+\subsubsection{Request Testing Module}
+%------------------------------------------------------------------------------
+\begin{description}
+\item[Secrets:] Test of request.
+\item[Services:] Tests the success of request based on user-defined parameters.
+\item[Implemented By:] javascript
+\end{description}
+
+\subsubsection{User Profile Module}
+%------------------------------------------------------------------------------
+\begin{description}
+\item[Secrets:] User Profile Information.
+\item[Services:] Keeps track of user specific settings.
+\item[Implemented By:] javascript
+\end{description}
+
+\subsubsection{Data Processing Module}
+%------------------------------------------------------------------------------
+\begin{description}
+\item[Secrets:] Data Processing
+\item[Services:] Processes user input and request 	 and stores it for user and application analysis.
+\item[Implemented By:] javascript
+\end{description}
+
+\subsubsection{Network Module}
+%------------------------------------------------------------------------------
+\begin{description}
+\item[Secrets:] Network connection
+\item[Services:] Performs network operations such as retrieval of remote information and interaction between computers.
+\item[Implemented By:] javascript
+\end{description}
+
+\subsubsection{Output Module}
+%------------------------------------------------------------------------------
+\begin{description}
+\item[Secrets:] Visual Text
+\item[Services:]Creates multiple instances of RestStubs and outputs the response data to the screen.
+\item[Implemented By:] javascript
+\end{description}
+
+\subsubsection{Request Test Structure Module}
+%------------------------------------------------------------------------------
+\begin{description}
+\item[Secrets:] Request Test Structure
+\item[Services:] Structures tests uniformly for the application to analyse.
+\item[Implemented By:] javascript
+\end{description}
+
+\subsubsection{Test Flow Module}
+%------------------------------------------------------------------------------
+\begin{description}
+\item[Secrets:] Test Flow
+\item[Services:] Offers a intuitive way for the user to order tests.
+\item[Implemented By:] javascript
+\end{description}
 
 \subsubsection{Etc.}
 %-----------------------------------------------------------
@@ -438,17 +509,21 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+FR1 & M1, M5, M8\\
+FR2 & M1, M2, M4, M5, M8\\
+FR3 & M1, M3, M4, M6, M7, M8\\
+
+NFR1 & M1, M3, M4, M6, M7, M8\\
+NFR2 & M1, M8\\
+NFR3 & M1, M3, M6, M8\\
+NFR4 & M1, M3, M6, M8\\
+NFR5 & M1, M8\\
+NFR6 & M1, M4, M5, M8\\
+NFR7 & M1, M4\\
+NFR8 & M1, M4\\
+NFR9 & M1, M3, M6, M8\\
+NFR10 &  M1, M3, M6, M8\\
+
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -461,18 +536,12 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+AC1 & M8\\
+AC2 & M1\\
+AC3 & M1, M3, M4, M6, M8\\
+AC4 & M1, M3, M4, M8\\
+AC5 & M1, M3, M4, M6, M8\\
+
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -497,7 +566,7 @@ because they use modules from the lower levels.
 
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
