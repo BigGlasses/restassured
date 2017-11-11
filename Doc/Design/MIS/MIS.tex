@@ -102,6 +102,13 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %  Create a module
 %
@@ -182,6 +189,7 @@
 %		\subsubsection* {Local Functions}
 %			#9
 }
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Create a new access program
@@ -227,10 +235,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %\maketitle
 %
@@ -255,7 +265,7 @@
 %\pagenumbering{arabic}
 
 
-	%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 %------------------------------------------------------------------------------
 %	Title Page
 %------------------------------------------------------------------------------
@@ -322,8 +332,6 @@
             \row{setRequestType}{String}{}{}
             \row{getRequestType}{}{String}{}
             \row{runTest}{Function}{}{}
-            % \row{hit}{}{}{}
-			%\row{setShip}{BattleShipT, int, int, int}{}{InvalidLocationException}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
@@ -335,13 +343,10 @@
         request\_data: JSON - Data for the request. \\
         response\_data: JSON - Response data for the request. \\
         response\_expected: JSON - Expected response data. \\
-
-		 
 	}
 	%------------------------------------------------------
 	{% State Invariant
 	%------------------------------------------------------
-% 		$size \leq MAX\_SHIP\_SIZE$
         none
 	}
 	%------------------------------------------------------
@@ -470,12 +475,8 @@
 			\row{RestChain}{List$<$String$>$}{}{}
 			\row{addTest}{String}{}{}
             \row{removeTest}{String}{}{MissingTestException}
-            \row{moveTest}{}{String}{MissingTestException,
-IndexOutOfBounds
-}
+            \row{moveTest}{}{String}{MissingTestException, IndexOutOfBounds}
             \row{runTests}{Function}{}{}
-            % \row{hit}{}{}{}
-			%\row{setShip}{BattleShipT, int, int, int}{}{InvalidLocationException}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
@@ -488,7 +489,6 @@ IndexOutOfBounds
 	%------------------------------------------------------
 	{% State Invariant
 	%------------------------------------------------------
-% 		$size \leq MAX\_SHIP\_SIZE$
         none
 	}
 	%------------------------------------------------------
@@ -499,7 +499,6 @@ IndexOutOfBounds
 	%------------------------------------------------------
 	{% Access Routine Semantics
 	%------------------------------------------------------
-		%----------------
 		\newAccessProgram{RestChain(list)}
 			{% Input
 				List of RestStubidentifiers to store in chain.
@@ -552,7 +551,7 @@ IndexOutOfBounds
 			{% Exception
 				MissingTestException: Thrown if the RestStub is not in reststub\_list.
 			}
-			\newAccessProgram{moveTest(identifier, newIndex)}
+		\newAccessProgram{moveTest(identifier, newIndex)}
 			{% Input
 				Identifier of the RestStub, and new index in the list.
 			}
@@ -563,8 +562,8 @@ IndexOutOfBounds
 				none
 			}
 			{% Exception
-				MissingTestException: Thrown if the RestStub is not in reststub\_list.
-IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
+				MissingTestException: Thrown if the RestStub is not in reststub\_list. 
+				IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 			}
 		\newAccessProgram{runTests(callback)}
 			{% Input
@@ -579,7 +578,6 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 			{% Exception
 				none
 			}
-			
 	}
 	%------------------------------------------------------
 	{% Local Functions
@@ -617,21 +615,16 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 			\row{compare}{JSON, JSON}{}{}
 			\row{compareExact}{JSON, JSON}{JSON}{}
             \row{compareWithTolerance}{JSON, JSON, int}{}{}
-            % \row{hit}{}{}{}
-			%\row{setShip}{BattleShipT, int, int, int}{}{InvalidLocationException}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
 	{% State Variant
 	%------------------------------------------------------
 		none \\
-
-		 
 	}
 	%------------------------------------------------------
 	{% State Invariant
 	%------------------------------------------------------
-% 		$size \leq MAX\_SHIP\_SIZE$
         none
 	}
 	%------------------------------------------------------
@@ -642,7 +635,6 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 	%------------------------------------------------------
 	{% Access Routine Semantics
 	%------------------------------------------------------
-		%----------------
 		\newAccessProgram{compare(expected, received)}
 			{% Input
 				Two json objects to compare for similarities.
@@ -721,21 +713,16 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 			\row{saveAllToDisk}{}{}{}
             \row{loadAllFromDisk}{String}{}{}
             \row{saveSpecifiedToDisk}{}{}{}
-            % \row{hit}{}{}{}
-			%\row{setShip}{BattleShipT, int, int, int}{}{InvalidLocationException}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
 	{% State Variant
 	%------------------------------------------------------
 		none\\
-
-		 
 	}
 	%------------------------------------------------------
 	{% State Invariant
 	%------------------------------------------------------
-% 		$size \leq MAX\_SHIP\_SIZE$
         none
 	}
 	%------------------------------------------------------
@@ -746,7 +733,6 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 	%------------------------------------------------------
 	{% Access Routine Semantics
 	%------------------------------------------------------
-		%----------------
 		\newAccessProgram{display()}
 			{% Input
 				none
@@ -820,28 +806,15 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 	{% Exported Access Programs
 	%------------------------------------------------------
 	none
-% 		\accessProgramsTableStart
-% 			%\row{name}{in}{out}{exception}
-% 			\row{TestStub}{}{}{}
-% 			\row{toJSON}{}{JSON}{}
-%             \row{setRequestType}{String}{}{}
-%             \row{getRequestType}{}{String}{}
-%             \row{runTest}{Function}{}{}
-%             % \row{hit}{}{}{}
-% 			%\row{setShip}{BattleShipT, int, int, int}{}{InvalidLocationException}
-% 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
 	{% State Variant
 	%------------------------------------------------------
 		none\\
-
-		 
 	}
 	%------------------------------------------------------
 	{% State Invariant
 	%------------------------------------------------------
-% 		$size \leq MAX\_SHIP\_SIZE$
         none
 	}
 % 	%------------------------------------------------------
@@ -899,8 +872,6 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
             \row{newProfile}{}{String}{}
             \row{deleteRestStub}{String}{}{missingRestStub}
             \row{deleteRestChain}{String}{}{missingRestChain}
-            % \row{hit}{}{}{}
-			%\row{setShip}{BattleShipT, int, int, int}{}{InvalidLocationException}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
@@ -914,7 +885,6 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 	%------------------------------------------------------
 	{% State Invariant
 	%------------------------------------------------------
-% 		$size \leq MAX\_SHIP\_SIZE$
         none
 	}
 	%------------------------------------------------------
@@ -925,7 +895,6 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 	%------------------------------------------------------
 	{% Access Routine Semantics
 	%------------------------------------------------------
-		%----------------
 		\newAccessProgram{getRestStubFromID(identifier)}
 			{% Input
 				Ientifier of the RestChain to retrieve.
@@ -939,7 +908,6 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 			{% Exception
 				none
 			}
-			
 		\newAccessProgram{getRestChainFromID(identifier)}
 			{% Input
 				none
@@ -1073,8 +1041,6 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
             \row{addRestChain}{}{String}{}
             \row{removeRestStub}{String}{String}{}
             \row{removeRestStub}{String}{String}{}
-            % \row{hit}{}{}{}
-			%\row{setShip}{BattleShipT, int, int, int}{}{InvalidLocationException}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
@@ -1087,7 +1053,6 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 	%------------------------------------------------------
 	{% State Invariant
 	%------------------------------------------------------
-% 		$size \leq MAX\_SHIP\_SIZE$
         none
 	}
 	%------------------------------------------------------
@@ -1098,7 +1063,6 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 	%------------------------------------------------------
 	{% Access Routine Semantics
 	%------------------------------------------------------
-		%----------------
 		\newAccessProgram{getRestStubs()}
 			{% Input
 				none
@@ -1179,7 +1143,6 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 	%------------------------------------------------------
 	{% Exported Type
 	%------------------------------------------------------
-		
 	}
 	%------------------------------------------------------
 	{% Exported Access Programs
@@ -1188,21 +1151,16 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 			%\row{name}{in}{out}{exception}
 			\row{readFile}{String}{String}{MissingFileException, FileSizeError}
 			\row{saveFile}{String, String}{JSON}{MissingFileException}
-            % \row{hit}{}{}{}
-			%\row{setShip}{BattleShipT, int, int, int}{}{InvalidLocationException}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
 	{% State Variant
 	%------------------------------------------------------
-		none \\
-
-		 
+		none
 	}
 	%------------------------------------------------------
 	{% State Invariant
 	%------------------------------------------------------
-% 		$size \leq MAX\_SHIP\_SIZE$
         none
 	}
 	%------------------------------------------------------
@@ -1213,7 +1171,6 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 	%------------------------------------------------------
 	{% Access Routine Semantics
 	%------------------------------------------------------
-		%----------------
 		\newAccessProgram{readFile(location)}
 			{% Input
 				Storage location of file to read.
@@ -1249,168 +1206,11 @@ IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
 	
 \newpage
 
-
-
-% %------------------------------------------------------------------------------
-% % Module Heading
-% \section {Region Module}
-% % Module Type
-% \subsection* {Template Module}
-% %------------------------------------------------------------------------------
-% \newModule{ModuleName}
-% 	%------------------------------------------------------
-% 	{% Uses
-% 	%------------------------------------------------------
-% 		SomeOtherModule
-% 	}
-% 	%------------------------------------------------------
-% 	{% Exported Types
-% 	%------------------------------------------------------
-% 		Exported Types
-% 	}
-% 	%------------------------------------------------------
-% 	{% Exported Access Programs
-% 	%------------------------------------------------------
-% 		\accessProgramsTableStart
-% 		\row{name}{in}{out}{exception}
-% 		\accessProgramsTableEnd
-% 	}
-% 	%------------------------------------------------------
-% 	{% State Variant
-% 	%------------------------------------------------------
-% 		Variant
-% 	}
-% 	%------------------------------------------------------
-% 	{% State Invariant
-% 	%------------------------------------------------------
-% 		Invariant
-% 	}
-% 	%------------------------------------------------------
-% 	{% Assumptions
-% 	%------------------------------------------------------
-% 		No assumptions}
-% 	%------------------------------------------------------
-% 	{% Access Routine Semantics
-% 	%------------------------------------------------------
-% 		%----------------
-% 		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
-% 			{% Transition
-% 				$\mathit{none}$}
-% 			{% Output
-				
-% 			}
-% 			{% Exception
-% 				$\mathit{none}$
-% 			}
-% 		%----------------
-% 		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
-% 			{% Transition
-% 				$\mathit{none}$}
-% 			{% Output
-				
-% 			}
-% 			{% Exception
-% 				$\mathit{none}$
-% 			}		
-% 	}
-% 	%------------------------------------------------------
-% 	{% Local Functions
-% 	%------------------------------------------------------
-% 		%----------------
-% 		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
-% 			{% Transition
-% 				$\mathit{none}$}
-% 			{% Output
-				
-% 			}
-% 			{% Exception
-% 				$\mathit{none}$
-% 			}
-% 	}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
-
-
-
-%%------------------------------------------------------------------------------
-%% Module Heading
-%\section* {Region Module}
-%% Module Type
-%\subsection* {Template Module}
-%%------------------------------------------------------------------------------
-%\newModule{ModuleName}
-%	%------------------------------------------------------
-%	{% Uses
-%	%------------------------------------------------------
-%		SomeOtherModule
-%	}
-%	%------------------------------------------------------
-%	{% Exported Types
-%	%------------------------------------------------------
-%		Exported Types
-%	}
-%	%------------------------------------------------------
-%	{% Exported Access Programs
-%	%------------------------------------------------------
-%		\accessProgramsTableStart
-%		\row{name}{in}{out}{exception}
-%		\accessProgramsTableEnd
-%	}
-%	%------------------------------------------------------
-%	{% State Variant
-%	%------------------------------------------------------
-%		Variant
-%	}
-%	%------------------------------------------------------
-%	{% State Invariant
-%	%------------------------------------------------------
-%		Invariant
-%	}
-%	%------------------------------------------------------
-%	{% Assumptions
-%	%------------------------------------------------------
-%		No assumptions}
-%	%------------------------------------------------------
-%	{% Access Routine Semantics
-%	%------------------------------------------------------
-%		%----------------
-%		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
-%			{% Transition
-%				$\mathit{none}$}
-%			{% Output
-%				
-%			}
-%			{% Exception
-%				$\mathit{none}$
-%			}
-%		%----------------
-%		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
-%			{% Transition
-%				$\mathit{none}$}
-%			{% Output
-%				
-%			}
-%			{% Exception
-%				$\mathit{none}$
-%			}		
-%	}
-%	%------------------------------------------------------
-%	{% Local Functions
-%	%------------------------------------------------------
-%		%----------------
-%		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
-%			{% Transition
-%				$\mathit{none}$}
-%			{% Output
-%				
-%			}
-%			{% Exception
-%				$\mathit{none}$
-%			}
-%	}
-
 
 
 %%------------------------------------------------------------------------------
