@@ -35,7 +35,7 @@
 \author{Team \#, Team Name
 		\\ Dawson Myers mysersd1
 		\\ Brandon Roberts roberb1
-		\\ Yang Liu name liuy136
+		\\ Yang Liu liuy136
 }
 
 \date{\today}
@@ -59,8 +59,7 @@
 %------------------------------------------------------------------------------
 %------------------------------------------------------------------------------
 \newcommand{\revisionTable}{
-	\
-	{table}[hp]
+	\begin{table}[hp]
 		
 		\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 			\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
@@ -171,7 +170,7 @@
 
 \subsection{Context}
 
-The Module Guide (MG)’s purpose is to decompose the system into modules to present its modular structures. The MG’s creation is guided by principles and patterns and follows the creation of the Software Requirements Specification, which specified functional and nonfunctional requirements to be implemented for the reconstruction of the Sails Live Chrome app, named the REST Assured Test Client. The MG serves in part to demonstrate how the system meets the functional and nonfunctional requirements specified in the SRS. The MG prepares the foundation for the MIS, which states the syntax of all exported routines (inputs, outputs, and exceptions), and semantics (state variables, environment variables, assumptions and special considerations, and access routine semantics) in more detail for the modules specified in the MG. 
+The Module Guide (MG)’s purpose is to decompose the system into modules to present its modular structures. The MG’s creation is guided by principles and patterns, following the creation of the Software Requirements Specification, which specified functional and nonfunctional requirements to be implemented for the reconstruction of the Sails Live Chrome app, named the REST Assured Test Client. The MG serves in part to demonstrate how the system meets the functional and nonfunctional requirements specified in the SRS. The MG prepares the foundation for the MIS, which states the syntax of all exported routines (inputs, outputs, and exceptions), and semantics (state variables, environment variables, assumptions and special considerations, and access routine semantics) in more detail for the modules specified in the MG.  
 
 \subsection{Audience} 
 
@@ -193,27 +192,34 @@ Several design principles were used to guide the decomposition of the system int
 
 The MG is organized with the following structure:
 
-Section 3: Anticipated and Unlikely Changes to the system’s implementation used for the traceability matrices
-Section 4: Module Hierarchy details all the modules and their hierarchy by secrets.
-Section 5: Connection Between Requirements and Design details the relationship between the requirements to modules.
-Section 6: Module Decomposition details the module name, secret, and service/responsibility
+\begin{itemize}
+\item [Section 3]
+Anticipated and Unlikely Changes to the system’s implementation used for the traceability matrices.
+\item [Section 4]
+Module Hierarchy details all the modules and their hierarchy by secrets.
+\item [Section 5]
+Connection Between Requirements and Design details the relationship between the requirements to modules.
+\item [Section 6]
+Module Decomposition details the module name, secret, and service/responsibility.
 for each module.
-Section 7: Traceability Matrices provide details on the connection from the requirements to the modules
-Section 8: Uses Hierarchy between Modules details the uses relations interrelationships between modules
+\item [Section 7]
+Traceability Matrices provide details on the connection from the requirements to the modules.
+\item [Section 8]
+Uses Hierarchy between Modules details the uses relations interrelationships between modules.
+\end{itemize}
 
 
 
-\hyperlink{Decomposing}{TESTER}
-\hypertarget{Decomposing}{Decomposing} a system into modules is a commonly accepted approach to developing
+
+\hypertarget{Decomposing}{Decomposing} a system into modules is a commonly accepted approach to developing.
 software.  A module is a work assignment for a programmer or programming
-team~\citep{ParnasEtAl1984}.  We advocate a decomposition
-based on the principle of information hiding~\citep{Parnas1972a}.  This
-principle supports design for change, because the ``secrets'' that each module
+team.  We advocate a decomposition
+based on the principle of information hiding.  This principle supports design for change, because the ``secrets'' that each module
 hides represent likely future changes.  Design for change is valuable in SC,
 where modifications are frequent, especially during initial development as the
-solution space is explored.  
+solution space is explored.
 
-Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
+Our design follows the rules laid out by Parnas, as follows:
 \begin{itemize}
 \item System details that are likely to change independently should be the
   secrets of separate modules.
@@ -223,22 +229,29 @@ Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \end{itemize}
 
 After completing the first stage of the design, the Software Requirements
-Specification (SRS), the Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG
+Specification (SRS), the Module Guide (MG) is developed. The MG
 specifies the modular structure of the system and is intended to allow both
 designers and maintainers to easily identify the parts of the software.  
 
 
-The rest of the document is organized as follows. Section
-\ref{SecChange} lists the anticipated and unlikely changes of the software
-requirements. Section \ref{SecMH} summarizes the module decomposition that
-was constructed according to the likely changes. Section \ref{SecConnection}
+The rest of the document is organized as follows. 
+\begin {itemize}
+\item [Section \ref{SecChange}] lists the anticipated and unlikely changes of the software
+requirements. 
+\item [Section \ref{SecMH}] summarizes the module decomposition that
+was constructed according to the likely changes. 
+\item [Section \ref{SecConnection}]
 specifies the connections between the software requirements and the
-modules. Section \ref{SecMD} gives a detailed description of the
-modules. Section \ref{SecTM} includes two traceability matrices. One checks
+modules. 
+\item [Section \ref{SecMD}]
+gives a detailed description of the
+modules. 
+\item [Section \ref{SecTM}]
+includes two traceability matrices. One checks
 the completeness of the design against the requirements provided in the SRS. The
-other shows the relation between anticipated changes and the modules. Section
-\ref{SecUse} describes the use relation between modules.
-
+other shows the relation between anticipated changes and the modules. Section\item [Section \ref{SecUse}] 
+the use relation between modules.
+\end {itemize}
 %==============================================================================
 \section{Anticipated and Unlikely Changes} \label{SecChange}
 %==============================================================================
@@ -257,11 +270,11 @@ adapted here is called design for
 change.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The format of the output data.
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the input parameters.
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the output data.
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The implementation of the data structure that stores JSON profile.
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The graphical user interface elements used to retrieve user input and their format.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
