@@ -327,10 +327,10 @@
 	%------------------------------------------------------
 		\accessProgramsTableStart
 			%\row{name}{in}{out}{exception}
-			\row{RestStub}{}{}{}
+			\row{RestStub}{JSON}{}{}
 			\row{toJSON}{}{JSON}{}
             \row{setRequestType}{String}{}{}
-            \row{getRequestType}{}{String}{}
+            \row{getRequestType}{}{}{}
             \row{runTest}{Function}{}{}
 		\accessProgramsTableEnd
 	}
@@ -403,7 +403,7 @@
 				rtype
 			}
 			{% Transition
-				Sets the request\_type of the rtype
+				Sets the value of request\_type field to rtype
 			}
 			{% Output
 				none
@@ -475,7 +475,7 @@
 			\row{RestChain}{List$<$String$>$}{}{}
 			\row{addTest}{String}{}{}
             \row{removeTest}{String}{}{MissingTestException}
-            \row{moveTest}{}{String}{MissingTestException, IndexOutOfBounds}
+            \row{moveTest}{}{String, int}{MissingTestException, IndexOutOfBounds}
             \row{runTests}{Function}{}{}
 		\accessProgramsTableEnd
 	}
@@ -501,7 +501,7 @@
 	%------------------------------------------------------
 		\newAccessProgram{RestChain(list)}
 			{% Input
-				List of RestStubidentifiers to store in chain.
+				List of RestStub identifiers to store in chain.
 			}
 			{% Transition
 				The module constructor.
@@ -543,7 +543,7 @@
 				Identifier of test to remove from the RestChain.
 			}
 			{% Transition
-				Test is removed from reststub\_list.
+				Test identifier is removed from reststub\_list.
 			}
 			{% Output
 				none
@@ -711,8 +711,8 @@
 			%\row{name}{in}{out}{exception}
 			\row{display}{}{}{}
 			\row{saveAllToDisk}{}{}{}
-            \row{loadAllFromDisk}{String}{}{}
-            \row{saveSpecifiedToDisk}{}{}{}
+            \row{loadAllFromDisk}{}{}{}
+            \row{saveSpecifiedToDisk}{String}{}{}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
@@ -759,15 +759,28 @@
 			{% Exception
 				none
 			}
-			\newAccessProgram{loadAllFromDisk(location)}
+			\newAccessProgram{loadAllFromDisk()}
 			{% Input
-				Location of the file to load from the user's storage.
+				none
 			}
 			{% Transition
 				none
 			}
 			{% Output
-				Updates the application's state with the selected file.
+				Updates the application's state with information from a selected file.
+			}
+			{% Exception
+				none
+			}
+			\newAccessProgram{saveSpecifiedToDisk(data)}
+			{% Input
+				none
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				Saves specified information to a file.
 			}
 			{% Exception
 				none
@@ -1040,7 +1053,7 @@
             \row{addRestStub}{}{String}{}
             \row{addRestChain}{}{String}{}
             \row{removeRestStub}{String}{String}{}
-            \row{removeRestStub}{String}{String}{}
+            \row{removeRestChain}{String}{String}{}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
@@ -1111,6 +1124,33 @@
 			}
 			{% Output
 				Identifier of the new RestChain.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{removeRestStub(identifier)}
+			{% Input
+				Identifier of RestChain to remove from Profile.
+			}
+			{% Transition
+				Removes the RestStub local\_RestStubs, if it exists.
+				Performs the RemoveRestStub(identifier) on all TestChains in local\_RestChains.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{removeRestChain(identifier)}
+			{% Input
+				Identifier of RestChain to remove from Profile.
+			}
+			{% Transition
+				Removes the RestChain local\_RestChains, if it exists.
+			}
+			{% Output
+				none
 			}
 			{% Exception
 				none
