@@ -24,14 +24,14 @@ class Profile {
     Adds a RestStub to this Profile.
   */
   addRestStub (identifier){
-      local_RestStubs.add(identifier);
+      local_RestStubs.push(identifier);
   } 
 
   /*
     Adds a RestChain to this Profile.
   */
   addRestChain  (identifier){
-      local_RestChains.add(identifier);
+      local_RestChains.push(identifier);
   } 
 
   /*
