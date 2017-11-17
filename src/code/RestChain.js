@@ -23,14 +23,14 @@ class RestChain {
 	Adds a test identifier to the TestChain at the end.
   */
   addTest(identifier){
-  	this.reststublist.add(identifier);
+  	this.reststublist.push(identifier);
   }
 
   /*
 	Removes a test identifier from the TestChain.
   */
   removeTest(identifier){
-  	if (identifier in this.reststublist)
+  	if (this.reststublist.indexOf(identifier) > -1)
   			this.reststublist.splice(this.reststublist.indexOf(identifier), 1);
   }
 
@@ -38,7 +38,7 @@ class RestChain {
 
   */
   moveTest(identifier, location){
-  	if (identifier in this.reststublist){
+  	if (this.reststublist.indexOf(identifier) > -1){
 	  	this.removeTest(identifier);
 	  	this.reststublist.splice(location, 0, identifier);
 	}

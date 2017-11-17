@@ -1,8 +1,11 @@
 // import * as Constants from 'Constants.js';
-
-class TestStub {
+/*
+  Class for running individual test.
+*/
+class RestStub {
   constructor(data) {
   	this.label = "Basic TestStub";
+    this.resource = "http://google.ca"
   	this.requestType = "GET";
   	this.requestData = {};
   	this.responseData = {};
@@ -13,6 +16,7 @@ class TestStub {
   	//Load data if TestStub is created from a saved file.
   	if (data != null){
   		this.label = data.label;
+      this.resource = data.resource;
   		this.requestType = data.requestType;
   		this.requestData = data.requestData;
   		this.responseData = data.responseData;
@@ -22,9 +26,14 @@ class TestStub {
 
   }
 
-  toJSON(){
-  	data = {};
+
+  /*
+    Converts this class into a json.
+  */
+  toJson(){
+  var data = {};
 	data.label = this.label;
+  data.resource = this.resource;
 	data.requestType = this.requestType;
 	data.requestData = this.requestData;
 	data.responseData = this.responseData;
@@ -37,7 +46,7 @@ class TestStub {
 
   // Set requestType
   set setRequestType(newType){
-  	if (newType in Globals.REQUESTTYPES){
+  	if (Globals.REQUESTTYPES.indexOf(newType) > -1){
   		this.requestType = newType;
   	}
   	else{
@@ -47,12 +56,11 @@ class TestStub {
   	}
   }
   
-  // Set requestType
-  get getRequestType(){
+  // Get requestType
+  getRequestType(){
   	return this.requestType;
   }
 
-  // Set
   runTest(callback){
 
   }
