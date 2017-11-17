@@ -14,7 +14,6 @@ class ProfileStore {
    }
 
 
-
 	getRestStubFromID(identifier){
 		return arraySearch(allRestStubs, identifier);
 	}
@@ -28,8 +27,8 @@ class ProfileStore {
 	Returns the RestStub's identifier.
 	*/
 	newRestStub(){
-		newRst = new RestStub(null);
-		newIdentifier = generateIdentifier();
+		var newRst = new RestStub(null);
+		var newIdentifier = generateIdentifier();
 		newRst.identifier = newIdentifier;
 		allRestStubs.add(newRst);
 		return newIdentifier;
@@ -40,8 +39,8 @@ class ProfileStore {
 	Returns the RestChain's identifier.
 	*/
 	newRestChain(){
-		newRst = new RestChain(null);
-		newIdentifier = generateIdentifier();
+		var newRst = new RestChain(null);
+		var newIdentifier = generateIdentifier();
 		newRst.identifier = newIdentifier;
 		allRestChains.add(newRst);
 		return newIdentifier;
@@ -55,8 +54,8 @@ class ProfileStore {
 		rst = getRestStubFromID(identifier);
 		rstJson = rst.toJson();
 
-		newRst = new RestStub(rstJson);
-		newIdentifier = generateIdentifier();
+		var newRst = new RestStub(rstJson);
+		var newIdentifier = generateIdentifier();
 		newRst.identifier = newIdentifier;
 		allRestStubs.add(newRst);
 		return newIdentifier;
@@ -67,10 +66,10 @@ class ProfileStore {
 	Returns the RestChain's identifier.
 	*/
 	copyRestChain(identifier){
-		rst = getRestChainFromID(identifier);
-		newIdentifier = generateIdentifier();
+		var rst = getRestChainFromID(identifier);
+		var newIdentifier = generateIdentifier();
 		rst.identifier = newIdentifier;
-		newRst = new RestChain(rst.reststublist);
+		var newRst = new RestChain(rst.reststublist);
 		allRestStubs.add(newRst);
 		return newIdentifier;
 	}
@@ -79,6 +78,7 @@ class ProfileStore {
 	Generate a unique identifier.
 	*/
 	generateIdentifier(){
+		var newIdentifier = "";
 		do {
 			newIdentifier = randomHash();
 		} while (newIdentifier in allIdentifiers);
