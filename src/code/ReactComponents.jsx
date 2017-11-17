@@ -10,9 +10,9 @@
 
 	function stubSelect(stub){
 
-		var copyCommand = function() {uiCopyRestStub(stub.identifier)};
-		var deleteCommand = function() {uiDeleteRestStub(stub.identifier)};
-		var changeCommand = function() {changeCurrentRestStub(stub.identifier)};
+		var copyCommand = function(e) {uiCopyRestStub(stub.identifier);e.stopPropagation();};
+		var deleteCommand = function(e) {uiDeleteRestStub(stub.identifier);e.stopPropagation();};
+		var changeCommand = function(e) {changeCurrentRestStub(stub.identifier);e.stopPropagation();};
 		var colorClass = "";
 		if (stub.selected) colorClass += " restStubSelectSelected";
 		if (stub.success) colorClass += " restStubSelectSuccess";
@@ -25,10 +25,10 @@
 	          <div className="col-12 restStubSelect-title">
 	              {stub.label}
 	          </div>
-	          <div className="col-6">
+	          <div className="col-4">
 	              <button type="button" className="btn btn-primary" onClick={copyCommand}>Copy</button>
 	          </div>
-	          <div className="col-6">
+	          <div className="col-4">
 	              <button type="button" className="btn btn-danger" onClick={deleteCommand}>Delete</button>
 	          </div>
 	          <div className="col-6 text-left restStubSelect-type">

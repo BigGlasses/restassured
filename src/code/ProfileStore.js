@@ -30,7 +30,7 @@ class ProfileStore {
 		var newRst = new RestStub(null);
 		var newIdentifier = this.generateIdentifier();
 		newRst.identifier = newIdentifier;
-		newRst.label += this.allRestStubs.length;
+		newRst.label += " " + this.allRestStubs.length;
 		this.allRestStubs.push(newRst);
 		return newIdentifier;
 	}
@@ -58,6 +58,7 @@ class ProfileStore {
 		var newRst = new RestStub(rstJson);
 		var newIdentifier = this.generateIdentifier();
 		newRst.identifier = newIdentifier;
+		newRst.label += " - Copy"
 		this.allRestStubs.push(newRst);
 		return newIdentifier;
 	}
@@ -113,6 +114,7 @@ class ProfileStore {
 	Deletes a RestStub.
 	*/
 	deleteRestStub(identifier){
+			console.log("lol")
 			// Remove the stub.
 			for (var i = 0; i < this.allRestStubs.length; i ++){
 				if(identifier == this.allRestStubs[i].identifier){
@@ -129,8 +131,6 @@ class ProfileStore {
 			for (var i = 0; i < this.allRestChains.length; i ++){
 				this.allRestChains[i].removeTest(identifier);
 
-				console.log(identifier);
-				console.log(this.allRestChains[i].reststublist);
 			}
 	}
 

@@ -11,14 +11,14 @@ class RestStubDOM extends React.Component {
 
 function stubSelect(stub) {
 
-    var copyCommand = function () {
-        uiCopyRestStub(stub.identifier);
+    var copyCommand = function (e) {
+        ;e.stopPropagation();uiCopyRestStub(stub.identifier);e.stopPropagation();
     };
-    var deleteCommand = function () {
-        uiDeleteRestStub(stub.identifier);
+    var deleteCommand = function (e) {
+        ;e.stopPropagation();uiDeleteRestStub(stub.identifier);e.stopPropagation();
     };
-    var changeCommand = function () {
-        changeCurrentRestStub(stub.identifier);
+    var changeCommand = function (e) {
+        e.stopPropagation(); changeCurrentRestStub(stub.identifier)
     };
     var colorClass = "";
     if (stub.selected) colorClass += " restStubSelectSelected";
@@ -39,7 +39,7 @@ function stubSelect(stub) {
             ),
             React.createElement(
                 "div",
-                { className: "col-6" },
+                { className: "col-4" },
                 React.createElement(
                     "button",
                     { type: "button", className: "btn btn-primary", onClick: copyCommand },
@@ -48,7 +48,7 @@ function stubSelect(stub) {
             ),
             React.createElement(
                 "div",
-                { className: "col-6" },
+                { className: "col-4" },
                 React.createElement(
                     "button",
                     { type: "button", className: "btn btn-danger", onClick: deleteCommand },

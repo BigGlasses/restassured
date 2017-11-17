@@ -42,10 +42,11 @@ function reRenderTestSelect(){
 }
 
 function uiDeleteRestStub(identifier){
-	currentProfileStore.deleteRestStub(identifier);
+	currentRestChain.removeTest(identifier);
 	if (currentRestStub.identifier == identifier){
-		changeCurrentRestStub(currentProfileStore.allRestStubs[0].identifier);
+		changeCurrentRestStub(currentRestChain.reststublist[0]);
 	}
+	displayCurrentRestStub();
 	reRenderTestSelect();
 }
 
@@ -96,9 +97,11 @@ function updateCurrentRestStub(){
 
 //Change between expanded tests.
 function changeCurrentRestStub(identifier){
+	console.log("Changing to " + identifier)
 	updateCurrentRestStub();
 	currentRestStub = currentProfileStore.getRestStubFromID(identifier);
 	displayCurrentRestStub();
+	reRenderTestSelect();
 }
 
 //Show an expanded version of the current test.
@@ -180,6 +183,7 @@ function runNextTest(){
 		params = $.param(requestData);
 		request_url = currentRestStub.resource + "?" + params;
 		console.log(test.resource);
+		setTimeout(function() {
 			$.ajax({
 	  dataType: "json",
 	  url: test.resource	,
@@ -200,7 +204,7 @@ function runNextTest(){
 			test.success = false;
 			failTests();
 		}
-	});
+	}); }, 1000)
 
 	}
 	else{
