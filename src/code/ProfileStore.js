@@ -15,11 +15,11 @@ class ProfileStore {
 
 
 	getRestStubFromID(identifier){
-		return arraySearch(allRestStubs, identifier);
+		return arraySearch(this.allRestStubs, identifier);
 	}
 
 	getRestChainFromID(identifier){
-		return arraySearch(allRestChains, identifier);
+		return arraySearch(this.allRestChains, identifier);
 	}
 
 	/*
@@ -28,9 +28,10 @@ class ProfileStore {
 	*/
 	newRestStub(){
 		var newRst = new RestStub(null);
-		var newIdentifier = generateIdentifier();
+		var newIdentifier = this.generateIdentifier();
 		newRst.identifier = newIdentifier;
-		allRestStubs.add(newRst);
+		newRst.label += this.allRestStubs.length;
+		this.allRestStubs.push(newRst);
 		return newIdentifier;
 	}
 
@@ -40,9 +41,9 @@ class ProfileStore {
 	*/
 	newRestChain(){
 		var newRst = new RestChain(null);
-		var newIdentifier = generateIdentifier();
+		var newIdentifier = this.generateIdentifier();
 		newRst.identifier = newIdentifier;
-		allRestChains.add(newRst);
+		this.allRestChains.push(newRst);
 		return newIdentifier;
 	}
 
@@ -51,13 +52,13 @@ class ProfileStore {
 	Returns the RestStub's identifier.
 	*/
 	copyRestStub(identifier){
-		rst = getRestStubFromID(identifier);
-		rstJson = rst.toJson();
+		var rst = this.getRestStubFromID(identifier);
+		var rstJson = rst.toJson();
 
 		var newRst = new RestStub(rstJson);
-		var newIdentifier = generateIdentifier();
+		var newIdentifier = this.generateIdentifier();
 		newRst.identifier = newIdentifier;
-		allRestStubs.add(newRst);
+		this.allRestStubs.push(newRst);
 		return newIdentifier;
 	}
 
@@ -66,11 +67,11 @@ class ProfileStore {
 	Returns the RestChain's identifier.
 	*/
 	copyRestChain(identifier){
-		var rst = getRestChainFromID(identifier);
-		var newIdentifier = generateIdentifier();
-		rst.identifier = newIdentifier;
-		var newRst = new RestChain(rst.reststublist);
-		allRestStubs.add(newRst);
+		var rst = this.getRestChainFromID(identifier);
+		var newIdentifier = this.generateIdentifier();
+		var newRst = new RestChain(rst);
+		newRst.identifier = newIdentifier;
+		this.allRestChains.push(newRst);
 		return newIdentifier;
 	}
 
@@ -80,9 +81,9 @@ class ProfileStore {
 	generateIdentifier(){
 		var newIdentifier = "";
 		do {
-			newIdentifier = randomHash();
-		} while (newIdentifier in allIdentifiers);
-		allIdentifiers.add(newIdentifier);
+			newIdentifier = this.randomHash();
+		} while (this.allIdentifiers.indexOf(newIdentifier) > -1);
+		this.allIdentifiers.push(newIdentifier);
 		return newIdentifier;
 	}
 
@@ -91,9 +92,9 @@ class ProfileStore {
 	*/
 	randomHash(){
 		var s = "";
-		for (i = 0; i < Constants.ID_LENGTH; i ++){
-			var j = Math.floor(Math.random()*Constants.ID_POOL.length);
-			s += Constants.ID_POOL.charAt(j);
+		for (var i = 0; i < ID_LENGTH; i ++){
+			var j = Math.floor(Math.random()*ID_CHARACTERPOOL.length);
+			s += ID_CHARACTERPOOL.charAt(j);
 		}
 		return s;
 	}
@@ -104,7 +105,7 @@ class ProfileStore {
 	*/
 	newProfile(){
 		p = Profile();
-		allProfiles.add(p);
+		this.allProfiles.push(p);
 		return p;
 	}
 
@@ -113,20 +114,23 @@ class ProfileStore {
 	*/
 	deleteRestStub(identifier){
 			// Remove the stub.
-			for (i = 0; i < allRestStubs.length; i ++){
-				if(identifier = allRestStubs[i].identifier){
-					allRestStubs.splice(i, 1);
+			for (var i = 0; i < this.allRestStubs.length; i ++){
+				if(identifier == this.allRestStubs[i].identifier){
+					this.allRestStubs.splice(i, 1);
 				}
 			}
 
 			// Remove the stub from all profiles.
-			for (i = 0; i < allProfiles.length; i ++){
-				allProfiles[i].removeRestStub(identifier);
+			for (var i = 0; i < this.allProfiles.length; i ++){
+				this.allProfiles[i].removeRestStub(identifier);
 			}
 
 			// Remove the stub from all testchains.
-			for (i = 0; i < allRestChains.length; i ++){
-				allRestChains[i].removeTest(identifier);
+			for (var i = 0; i < this.allRestChains.length; i ++){
+				this.allRestChains[i].removeTest(identifier);
+
+				console.log(identifier);
+				console.log(this.allRestChains[i].reststublist);
 			}
 	}
 
@@ -136,34 +140,34 @@ class ProfileStore {
 	deleteRestChain(identifier){
 
 			// Remove the stub from all testchains.
-			for (i = 0; i < allRestChains.length; i ++){
-				if(identifier = allRestChains[i].identifier){
-					allRestChains.splice(i, 1);
+			for (var i = 0; i < this.allRestChains.length; i ++){
+				if(identifier = this.allRestChains[i].identifier){
+					this.allRestChains.splice(i, 1);
 				}
 			}
 			// Remove the chain from all profiles.
-			for (i = 0; i < allProfiles.length; i ++){
-				allProfiles[i].removeRestChain(identifier);
+			for (var i = 0; i < this.allProfiles.length; i ++){
+				this.allProfiles[i].removeRestChain(identifier);
 			}
 
 	}
 
-	/*
-	Inserts an element into an array.
-	*/
-	arrayInsert(l, obj){
-		l.add(obj);
-	}
+}
+/*
+Inserts an element into an array.
+*/
+function arrayInsert(l, obj){
+	l.push(obj);
+}
 
-	/*
-	Searches for an element in an array.
-	*/
-	arraySearch(l, identifier){
-		for (i = 0; i < l.length; i ++)
-			if (l[i].identifier == identifier)
-				return identifier;
-		
-		Console.log("No object with identifier " + identifier);
-		return null
-	}
+/*
+Searches for an element in an array.
+*/
+function arraySearch(l, identifier){
+	for (i = 0; i < l.length; i ++)
+		if (l[i].identifier == identifier)
+			return l[i];		
+	
+	console.log("No object with identifier " + identifier);
+	return null
 }
