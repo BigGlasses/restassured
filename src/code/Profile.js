@@ -56,14 +56,4 @@ class Profile {
     
   } 
 
-  /*
-    Converts this class into a json.
-  */
-  toJson(){
-  	data = {};
-	data.label = this.label;
-	data.reststublist = this.reststublist;
-	data.identifier = this.identifier;
-	return data;
-  }
 }
