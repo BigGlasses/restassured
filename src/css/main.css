@@ -1,0 +1,32 @@
+.my-group .form-control{
+    width:50%;
+}
+
+.restStubExpanded{
+
+}
+.restStubSelect{
+		height:  120px;
+		border: 2px black solid;
+		border-radius: 5px;
+		margin-top: 10px;
+		transition-duration: 1s;
+		cursor: pointer;
+		background:  lightgrey;
+}
+.restStubSelect:hover{
+	background: white;
+}
+
+.restStubSelect-title{
+	font-weight: bold;
+
+}
+.restStubSelect-type{
+	font-weight: bold;
+
+}
+.restStubSelect-id{
+	color: gray;
+
+}
