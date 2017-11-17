@@ -3,11 +3,14 @@
 }
 
 .restStubExpanded{
-
+	border: black 1px solid; 
+	padding: 50px;
+	height: 85%; 
 }
 .restStubSelect{
 		height:  120px;
-		border: 2px black solid;
+		border: 1px black solid;
+		box-shadow: 2px 2px 5px black;
 		border-radius: 5px;
 		margin-top: 10px;
 		transition-duration: 1s;
@@ -18,6 +21,33 @@
 	background: white;
 }
 
+.restStubSelectSuccess{
+	background: lawngreen;
+
+}
+.restStubSelectSuccess:hover{
+	background: green;
+
+}
+.restStubSelectFailure{
+	background: orangered;
+}
+.restStubSelectFailure:hover{
+	background: red;
+}
+.restStubSelectSelected{
+	border-width: 3px;
+	border-color: deepskyblue;
+
+}
+.restStubSelectTop{
+		height:  120px;
+		border: 1px black solid;
+		box-shadow: 2px 2px 5px black;
+		border-radius: 5px;
+		margin-top: 10px;
+		background:  lightblue;
+}
 .restStubSelect-title{
 	font-weight: bold;
 
@@ -29,4 +59,16 @@
 .restStubSelect-id{
 	color: gray;
 
+}
+.testWindow{
+	position: fixed;
+	top: 0%;
+	height: 100%;
+}
+
+.restChainWindow{
+	border: black 2px solid; 
+	height: 85%; 
+	position: relative;
+	overflow-y: auto;
 }

@@ -11,6 +11,9 @@ class RestStub {
   	this.responseData = {};
   	this.expectedData = {};
   	this.identifier = null;
+    this.selected = false;
+    this.success = false;
+    this.ranTest = false;
 
 
   	//Load data if TestStub is created from a saved file.

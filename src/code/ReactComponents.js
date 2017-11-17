@@ -20,9 +20,15 @@ function stubSelect(stub) {
     var changeCommand = function () {
         changeCurrentRestStub(stub.identifier);
     };
+    var colorClass = "";
+    if (stub.selected) colorClass += " restStubSelectSelected";
+    if (stub.success) colorClass += " restStubSelectSuccess";
+    if (stub.ranTest && stub.success == false) colorClass += " restStubSelectFailure";
+    var resourceShorter = stub.resource;
+    resourceShorter = resourceShorter.substring(Math.max(0, resourceShorter.length - 32), resourceShorter.length);
     return React.createElement(
         "div",
-        { className: "col-12 restStubSelect ", key: stub.identifier, onClick: changeCommand },
+        { className: "col-12 restStubSelect" + colorClass, key: stub.identifier, onClick: changeCommand },
         React.createElement(
             "div",
             { className: "row" },
@@ -52,7 +58,7 @@ function stubSelect(stub) {
             React.createElement(
                 "div",
                 { className: "col-6 text-left restStubSelect-type" },
-                stub.resource
+                resourceShorter
             ),
             React.createElement(
                 "div",

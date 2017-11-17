@@ -27,7 +27,9 @@ function reRenderTestSelect(){
 	rList = [];
 	tests = currentRestChain.reststublist;
 	for (var i = 0; i < tests.length; i ++){
-		rList.push(currentProfileStore.getRestStubFromID(tests[i]));
+		var k = currentProfileStore.getRestStubFromID(tests[i]);
+		k.selected = k == currentRestStub;
+		rList.push(k);
 	}
 
 	listItems = rList.map(stubSelect);
@@ -78,17 +80,17 @@ function updateCurrentRestStub(){
 	responseData = $('#responseTextArea').val();
 	typeData = $('#inputTypeSelect').val();
 	sendData = JSON.parse($('#inputDataTextArea').val());
+	resourceLocation = $('#inputRequest').val();
 
 	currentRestStub.label = label;
 	currentRestStub.requestType = typeData;
+	currentRestStub.responseData = JSON.parse(responseData);
 	currentRestStub.requestData = JSON.parse(requestData);
 	currentRestStub.responseData = JSON.parse(responseData);
+	currentRestStub.resource = resourceLocation;
 	console.log(requestExpectedData)
 	currentRestStub.expectedData = JSON.parse(requestExpectedData);
 
-	params = $.param(sendData);
-	request_url = currentRestStub.resource + "?" + params;
-	$('#inputHTTPRequest').val(request_url);
 	reRenderTestSelect();
 }
 
@@ -107,6 +109,7 @@ function displayCurrentRestStub(){
 	$('#inputExpectedResponseTextArea').val(prettify(currentRestStub.expectedData));
 	$('#responseTextArea').val(prettify(currentRestStub.responseData));
 	$('#inputTypeSelect').val(currentRestStub.requestType);
+	$('#inputRequest').val(currentRestStub.resource);
 
 
 	sendData = currentRestStub.requestData;
@@ -130,7 +133,7 @@ uiCreateRestStub();
 // );
 
 
-//
+// Nice Tabs, thanks stackoverflow!
 var textareas = document.getElementsByTagName('textarea');
 var count = textareas.length;
 for(var i=0;i<count;i++){
@@ -142,4 +145,77 @@ for(var i=0;i<count;i++){
             this.selectionEnd = s+1; 
         }
     }
+}
+
+$('input').change(function() {
+    updateCurrentRestStub();
+}).click(function() {
+    // do something
+});
+$('select').change(function() {
+    updateCurrentRestStub();
+}).click(function() {
+    // do something
+});
+
+var testQueue = []
+function runAllTests(){
+	if (testQueue != []){
+		testQueue = currentRestChain.reststublist.slice();
+		runNextTest();
+	}
+	else{
+		alert("Tests are already running!");
+	}
+}
+
+function runNextTest(){
+	reRenderTestSelect();
+	if (testQueue.length > 0){
+		console.log('run');
+		var testid = testQueue.splice(0, 1) [0];
+		var test = currentProfileStore.getRestStubFromID(testid);
+		test.ranTest = true;
+		var requestData = test.requestData;
+		params = $.param(requestData);
+		request_url = currentRestStub.resource + "?" + params;
+		console.log(test.resource);
+			$.ajax({
+	  dataType: "json",
+	  url: test.resource	,
+	  data: requestData,
+	  success: function(data) {
+			var s = compare(test.expectedData, data);
+			test.success = s;
+			console.log("pfft");
+			if (s){
+				runNextTest();
+			}
+			else{
+				failTests();
+			}
+
+		},
+		failure: function(data){
+			test.success = false;
+			failTests();
+		}
+	});
+
+	}
+	else{
+		succeedTests();
+
+	}
+}
+
+function failTests(){
+	reRenderTestSelect();
+	testQueue = [];
+	alert("Tests failed!");
+}
+function succeedTests(){
+	reRenderTestSelect();
+	testQueue = [];
+	alert("Tests succeeded!");
 }
