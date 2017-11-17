@@ -5,7 +5,8 @@
 */
 class RestChain {
   /*
-	Creast a RestChain.
+	Creates a RestChain.
+	If data is not null, the class will load data from it.
   */
   constructor(data) {
   	this.label = "RestChain";
@@ -30,7 +31,7 @@ class RestChain {
   */
   removeTest(identifier){
   	if (identifier in this.reststublist)
-  			this.reststublist.splice(array.indexOf(identifier), 1);
+  			this.reststublist.splice(this.reststublist.indexOf(identifier), 1);
   }
 
   /*
