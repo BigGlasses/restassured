@@ -178,33 +178,27 @@ function runNextTest(){
 		console.log('run');
 		var testid = testQueue.splice(0, 1) [0];
 		var test = currentProfileStore.getRestStubFromID(testid);
-		test.ranTest = true;
-		var requestData = test.requestData;
-		params = $.param(requestData);
-		request_url = currentRestStub.resource + "?" + params;
-		console.log(test.resource);
-		setTimeout(function() {
-			$.ajax({
-	  dataType: "json",
-	  url: test.resource	,
-	  data: requestData,
-	  success: function(data) {
+
+		var successFunction = function(data){
 			var s = compare(test.expectedData, data);
 			test.success = s;
-			console.log("pfft");
 			if (s){
 				runNextTest();
 			}
 			else{
 				failTests();
 			}
+		}
 
-		},
-		failure: function(data){
+		var failureFunction = function(data){
 			test.success = false;
 			failTests();
 		}
-	}); }, 1000)
+
+		test.ranTest = true;
+		setTimeout(function() {
+			runTest(test, successFunction, failureFunction);
+			}, 500)
 
 	}
 	else{

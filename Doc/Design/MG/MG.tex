@@ -319,26 +319,26 @@ actually be implemented.
 \multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
 & Input Module\\
 & Request Testing Module\\
-& User Profile Module\\
-& Data Processing Module\\
+& Profile Module\\
+& ProfileStore Module\\
 & Network Module\\
-& Output Module\\
+& ReactComponents Module\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module}\\
-& Request Test Structure Module\\
+& RestStub Module\\
 & Test Flow Structure Module\\
 \midrule
 {Module Name} & {Module Number}\\
 \midrule
 Input Module & M1\\
 Request Testing Module & M2\\
-User Profile Module & M3\\?
-Data Processing & M4\\
+Profile Module & M3\\?
+ProfileStore Module & M4\\
 Network Module & M5\\
-Test Flow Module & M6\\
-Request Test Structure Module & M7\\
-Output Module & M8\\
+RestChain Module & M6\\
+RestStub Module & M7\\
+ReactComponents Module & M8\\
 \bottomrule
 
 \end{tabular}
@@ -418,7 +418,7 @@ selected.
 \item[Implemented By:] javascript
 \end{description}
 
-\subsubsection{Request Testing Module}
+\subsubsection{RestStubEvaluator Module}
 %------------------------------------------------------------------------------
 \begin{description}
 \item[Secrets:] Test of request.
@@ -426,15 +426,15 @@ selected.
 \item[Implemented By:] javascript
 \end{description}
 
-\subsubsection{User Profile Module}
+\subsubsection{Profile Module}
 %------------------------------------------------------------------------------
 \begin{description}
-\item[Secrets:] User Profile Information.
+\item[Secrets:] Profile Information.
 \item[Services:] Keeps track of user specific settings.
 \item[Implemented By:] javascript
 \end{description}
 
-\subsubsection{Data Processing Module}
+\subsubsection{ProfileStore Module}
 %------------------------------------------------------------------------------
 \begin{description}
 \item[Secrets:] Data Processing
@@ -442,7 +442,7 @@ selected.
 \item[Implemented By:] javascript
 \end{description}
 
-\subsubsection{Network Module}
+\subsubsection{Ajax Module}
 %------------------------------------------------------------------------------
 \begin{description}
 \item[Secrets:] Network connection
@@ -450,7 +450,7 @@ selected.
 \item[Implemented By:] javascript
 \end{description}
 
-\subsubsection{Output Module}
+\subsubsection{ReactComponents Module}
 %------------------------------------------------------------------------------
 \begin{description}
 \item[Secrets:] Visual Text
@@ -458,24 +458,22 @@ selected.
 \item[Implemented By:] javascript
 \end{description}
 
-\subsubsection{Request Test Structure Module}
+\subsubsection{RestStub Module}
 %------------------------------------------------------------------------------
 \begin{description}
-\item[Secrets:] Request Test Structure
+\item[Secrets:] RestStub
 \item[Services:] Structures tests uniformly for the application to analyse.
 \item[Implemented By:] javascript
 \end{description}
 
-\subsubsection{Test Flow Module}
+\subsubsection{RestChain Module}
 %------------------------------------------------------------------------------
 \begin{description}
-\item[Secrets:] Test Flow
+\item[Secrets:] RestChain
 \item[Services:] Offers a intuitive way for the user to order tests.
 \item[Implemented By:] javascript
 \end{description}
 
-\subsubsection{Etc.}
-%-----------------------------------------------------------
 
 \subsection{Software Decision Module}
 %-----------------------------------------------------------

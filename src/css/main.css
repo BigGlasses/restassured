@@ -41,20 +41,23 @@ background-repeat:repeat-x;
 		cursor: pointer;
 		background:  white;
 }
+
 .testbutton{
 	width:  100%;
 	cursor: pointer;
 }
+
 .restStubSelect:hover{
 	background: white;
+	border-width: 5px;
 }
 
 .restStubSelectSuccess{
-	background: lawngreen;
+	background: palegreen;
 
 }
 .restStubSelectSuccess:hover{
-	background: green;
+	background: lawngreen;
 
 }
 .restStubSelectFailure{
