@@ -42,13 +42,13 @@ class RestChain {
 	  	this.removeTest(identifier);
 	  	this.reststublist.splice(location, 0, identifier);
 	}
-  }	
+  }
 
   /*
 
   */
   toJson(){
-  	data = {};
+  var data = {};
 	data.label = this.label;
 	data.reststublist = this.reststublist;
 	data.identifier = this.identifier;

@@ -48,14 +48,14 @@ class RestStub {
 
 
   // Set requestType
-  set setRequestType(newType){
-  	if (Globals.REQUESTTYPES.indexOf(newType) > -1){
+  setRequestType(newType){
+  	if (REQUEST_TYPES.indexOf(newType) > -1){
   		this.requestType = newType;
   	}
   	else{
-  		console.log("New request type: ");
-  		console.log(newType);
-  		throw "Type of request does not exist." + newType;
+  		//console.log("New request type: ");
+  		//console.log(newType);
+  		throw new Error("Type of request does not exist." + newType);
   	}
   }
   

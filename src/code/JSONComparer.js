@@ -1,6 +1,4 @@
 function compare(expected, received){
-    return (true);
-	return (prettify(expected) == prettify(received));
     for (var key in expected){
         var attrName = key;
         var attrValue = expected[key];
@@ -13,11 +11,11 @@ function compare(expected, received){
 }
 
 function compareExact(expected, received){
-	return expected == received;
+    return (prettify(expected) == prettify(received));
 }
 
 function compareWithTolerance(expected, received, mostDifferences){
-	misses = 0;
+	var misses = 0;
 
     for (var key in expected){
         var attrName = key;
@@ -25,7 +23,7 @@ function compareWithTolerance(expected, received, mostDifferences){
         if (received.hasOwnProperty(key)){
         	if (received[key] != attrValue)
         		misses ++;
-        	if (missed > mostDifferences)
+        	if (misses > mostDifferences)
         		return false;
         }
     }
