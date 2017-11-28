@@ -97,9 +97,27 @@ function updateCurrentRestStub(){
 
 //Change between expanded tests.
 function changeCurrentRestStub(identifier){
-	console.log("Changing to " + identifier)
+	console.log("Changing to " + identifier);
 	updateCurrentRestStub();
 	currentRestStub = currentProfileStore.getRestStubFromID(identifier);
+	displayCurrentRestStub();
+	reRenderTestSelect();
+}
+
+//Move up tests.
+function moveUpCurrentRestStub(identifier){
+	var i = currentRestChain.reststublist.indexOf(identifier);
+	currentRestChain.moveTest(identifier, i - 1);
+	updateCurrentRestStub();
+	displayCurrentRestStub();
+	reRenderTestSelect();
+}
+
+//Move down tests.
+function moveDownCurrentRestStub(identifier){
+	var i = currentRestChain.reststublist.indexOf(identifier);
+	currentRestChain.moveTest(identifier, i + 1);
+	updateCurrentRestStub();
 	displayCurrentRestStub();
 	reRenderTestSelect();
 }

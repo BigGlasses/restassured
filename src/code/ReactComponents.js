@@ -12,13 +12,19 @@ class RestStubDOM extends React.Component {
 function stubSelect(stub) {
 
     var copyCommand = function (e) {
-        ;e.stopPropagation();uiCopyRestStub(stub.identifier);e.stopPropagation();
+        uiCopyRestStub(stub.identifier);e.stopPropagation();
     };
     var deleteCommand = function (e) {
-        ;e.stopPropagation();uiDeleteRestStub(stub.identifier);e.stopPropagation();
+        uiDeleteRestStub(stub.identifier);e.stopPropagation();
     };
     var changeCommand = function (e) {
-        e.stopPropagation(); changeCurrentRestStub(stub.identifier)
+        changeCurrentRestStub(stub.identifier);e.stopPropagation();
+    };
+    var upCommand = function (e) {
+        moveUpCurrentRestStub(stub.identifier);e.stopPropagation();
+    };
+    var downCommand = function (e) {
+        moveDownCurrentRestStub(stub.identifier);e.stopPropagation();
     };
     var colorClass = "";
     if (stub.selected) colorClass += " restStubSelectSelected";
@@ -48,11 +54,29 @@ function stubSelect(stub) {
             ),
             React.createElement(
                 "div",
-                { className: "col-4" },
+                { className: "col-3" },
                 React.createElement(
                     "button",
                     { type: "button", className: "btn btn-danger", onClick: deleteCommand },
-                    "Delete"
+                    "Del"
+                )
+            ),
+            React.createElement(
+                "div",
+                { className: "col-2" },
+                React.createElement(
+                    "button",
+                    { type: "button", className: "btn btn-primary", onClick: upCommand },
+                    "/\\"
+                )
+            ),
+            React.createElement(
+                "div",
+                { className: "col-2" },
+                React.createElement(
+                    "button",
+                    { type: "button", className: "btn btn-danger", onClick: downCommand },
+                    "\\/"
                 )
             ),
             React.createElement(
