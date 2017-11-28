@@ -97,3 +97,17 @@ function stubSelect(stub) {
         )
     );
 }
+
+function consoleMessage(m) {
+    return React.createElement(
+        "div",
+        { className: "col-12" },
+        React.createElement(
+            "a",
+            null,
+            " ",
+            m,
+            " "
+        )
+    );
+}

@@ -51,3 +51,11 @@
 	      </div>
 		 </div>);
 	}
+
+	function consoleMessage(m){
+		return (
+		<div className="col-12">
+		<a> {m} </a>
+		</div>
+		)
+	}
