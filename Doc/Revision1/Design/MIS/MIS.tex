@@ -1,0 +1,1331 @@
+\documentclass[12pt, titlepage]{article}
+\usepackage{../../project_latex/report-style}
+% \usepackage{../../project_latex/mishelper}
+
+\usepackage{fullpage}
+\usepackage[round]{natbib}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+
+\newcounter{acnum}
+\newcommand{\actheacnum}{AC\theacnum}
+\newcommand{\acref}[1]{AC\ref{#1}}
+
+\newcounter{ucnum}
+\newcommand{\uctheucnum}{UC\theucnum}
+\newcommand{\uref}[1]{UC\ref{#1}}
+
+\newcounter{mnum}
+\newcommand{\mthemnum}{M\themnum}
+\newcommand{\mref}[1]{M\ref{#1}}
+
+\title{SE 3XA3: Software Requirements Specification\\Title of Project}
+
+
+\date{\today}
+
+%\input{../../Comments}
+
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+% Document Info
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\newcommand{\docTitle}{MIS}
+\newcommand{\dueDate}{November 10, 2017}
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+% Revision Table
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\newcommand{\revisionTable}{
+	\begin{table}[hp]
+		
+		\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+			\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+			\midrule
+			
+			10-Nov-2017 & 0.0 & Revision 0\\
+			
+			\bottomrule
+		\end{tabularx}
+		\caption{\bf Revision History}
+	\end{table}
+}
+
+
+
+
+% Header
+%-------------------------------------------------------------------------------
+\usepackage{afterpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+%\fancyhead[LE,RO]{\slshape \rightmark}
+%\fancyhead[LO,RE]{\slshape \leftmark}
+\fancyhead[LE,RO]{\slshape Assignment 1}
+\fancyhead[LO,RE]{\slshape \leftmark}
+\fancyfoot[C]{\thepage}
+%\headrulewidth 0.4pt
+%\footrulewidth 0 pt
+
+\fancyhead{} % clear all header fields
+%\fancyhead[RO,LE]{\textbf{\docTitle}}
+\fancyhead[C]{\textbf{\docTitle}}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,CE]{\dueDate}
+%\fancyfoot[CO,RE]{\textbf{\teamname}}
+\fancyfoot[CO,RE]{\teamname}
+\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0.4pt}
+\setlength{\headsep}{0.2in}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Create a module
+%
+%	\newModule{Name}
+%		{Uses}
+%		{ExportedTypes}{ExportedAccessPrograms}
+%		{StateVariables}{StateInvariant}
+%		{Assumptions}
+%		{AccessPrograms}{LocalFuntions}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\newModule}[9]{
+	%\label{#1}
+	\subsection* {Module}
+		#1
+	\subsection* {Uses}
+		#2
+	\subsection* {Syntax}
+		\subsubsection* {Exported Types}
+			#3
+		\subsubsection* {Exported Access Programs}
+			#4
+	\subsection* {Semantics}
+		\subsubsection* {State Variables}
+			#5
+		\subsubsection* {State Invariant}
+			#6
+		\subsubsection* {Assumptions}
+			#7
+		\subsubsection* {Access Routine Semantics}
+			#8
+		\subsubsection* {Local Functions}
+			#9
+}
+\newcommand{\newTemplateModule}[9]{
+	%\label{#1}
+	\subsection* {Template Module}
+		#1
+	\subsection* {Uses}
+		#2
+	\subsection* {Syntax}
+		\subsubsection* {Exported Types}
+			#3
+		\subsubsection* {Exported Access Programs}
+			#4
+	\subsection* {Semantics}
+		\subsubsection* {State Variables}
+			#5
+		\subsubsection* {State Invariant}
+			#6
+		\subsubsection* {Assumptions}
+			#7
+		\subsubsection* {Access Routine Semantics}
+			#8
+		\subsubsection* {Local Functions}
+			#9
+}
+\newcommand{\newConstantsModule}[6]{
+	%\label{#1}
+	\subsection* {Module}
+		#1
+	\subsection* {Uses}
+		#2
+	\subsection* {Syntax}
+		\subsubsection* {Exported Constants}
+			#3
+		\subsubsection* {Exported Access Programs}
+			#4
+	\subsection* {Semantics}
+		\subsubsection* {State Variables}
+			#5
+		\subsubsection* {State Invariant}
+			#6
+%		\subsubsection* {Assumptions}
+%			#7
+%		\subsubsection* {Access Routine Semantics}
+%			#8
+%		\subsubsection* {Local Functions}
+%			#9
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Create a new access program
+%	\newAccessProgram{name}{output}{exception}
+%	\newAccessProgram{someFunction(input1, input2)}{output equation}{SomeException}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\newAccessProgram}[5]{
+	\noindent #1:
+		\begin{itemize}
+		    \item input: #2
+			\item transition: #3
+			\item output: #4
+			\item exception: #5
+		\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Exported Access Program Table
+%		\accessProgramsTableStart
+%			\row{one}{two}{three}{four}
+%		\accessProgramsTableEnd
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\row}[4]{#1 & #2 & #3 & #4 ~\\ \hline}
+\newcommand{\accessProgramsTableStart}{
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+}
+\newcommand{\accessProgramsTableEnd}{
+	\end{tabular}
+}
+
+% \newenvironment{\accessProgramsTable}{
+% 	\begin{tabular}{| l | l | l | l |}
+% 		\hline
+% 		\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+% 		\hline
+% }{
+% 	\end{tabular}
+% }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\maketitle
+%
+%\pagenumbering{roman}
+%\tableofcontents
+%\listoftables
+%\listoffigures
+%
+%\begin{table}[bp]
+%\caption{\bf Revision History}
+%\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+%\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+%\midrule
+%Date 1 & 1.0 & Notes\\
+%Date 2 & 1.1 & Notes\\
+%\bottomrule
+%\end{tabularx}
+%\end{table}
+%
+%\newpage
+%
+%\pagenumbering{arabic}
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+%	Title Page
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+
+
+\input{../../project_latex/titlepage.tex}
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+%	Report
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+
+\pagenumbering{roman}
+\def\thesection{\arabic{section}} 
+\renewcommand\thesection{\arabic{section}} 
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+
+\tableofcontents
+
+\listoftables
+
+\listoffigures
+
+
+\newpage
+
+\pagenumbering{arabic}
+%==============================================================================
+\section{Revision History}
+%==============================================================================
+\revisionTable
+
+
+%------------------------------------------------------------------------------
+% Module Heading
+\section {RestStub Module}
+% Module Type
+% \subsection* {Template Module}
+%------------------------------------------------------------------------------
+
+\label{RestStub}
+
+\newTemplateModule{RestStubT}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		Constants
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		RestStubT = ?
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{RestStub}{JSON}{}{}
+			\row{toJSON}{}{JSON}{}
+            \row{setRequestType}{String}{}{}
+            \row{getRequestType}{}{}{}
+            \row{runTest}{Function}{}{}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		label: String - User readable label of the test stub. \\
+        identifier: String - Unique string used to identify test stubs. \\
+        request\_type: String - Type of request for the test, GET, PUT, POST, DELETE. \\
+        request\_data: JSON - Data for the request. \\
+        response\_data: JSON - Response data for the request. \\
+        response\_expected: JSON - Expected response data. \\
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+        none
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+	%------------------------------------------------------
+		%----------------
+		\newAccessProgram{RestStub(data)}
+			{% Input
+				Rest Stub fields.
+			}
+			{% Transition
+				The module constructor. Loads information from data if possible.
+			}
+			{% Output
+				Assign fields to the data fields, if data is null the fields are set to defaults.
+			}
+			{% Exception
+				none
+			}
+		%----------------
+		\newAccessProgram{toJSON()}
+			{% Input
+				Rest Stub fields.
+			}
+			{% Transition
+				The module constructor. Loads information from data if possible.
+			}
+			{% Output
+				Assign fields to the data fields, if data is null the fields are set to defaults.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{toJSON()}
+			{% Input
+				none
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				JSON equivalent of the object.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{setRequestType(rtype)}
+			{% Input
+				rtype
+			}
+			{% Transition
+				Sets the value of request\_type field to rtype
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{getRequestType()}
+			{% Input
+				none
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				Value of request\_type
+			}
+			{% Exception
+				none
+			}
+			\newAccessProgram{runTest(callback)}
+			{% Input
+				none
+			}
+			{% Transition
+				Runs the test and executes the callback operation based on the test success.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+		none
+	}
+	
+\newpage
+
+
+%------------------------------------------------------------------------------
+% Module Heading
+\section {RestChain Module}
+% Module Type
+% \subsection* {Template Module}
+%------------------------------------------------------------------------------
+
+\label{RestChain}
+
+\newTemplateModule{RestChainT}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		Constants
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		RestChain = ?
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{RestChain}{List$<$String$>$}{}{}
+			\row{addTest}{String}{}{}
+            \row{removeTest}{String}{}{MissingTestException}
+            \row{moveTest}{}{String, int}{MissingTestException, IndexOutOfBounds}
+            \row{runTests}{Function}{}{}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		label: String - User readable label of the RestChain. \\
+        identifier: String - Unique string used to identify RestChain. \\
+        reststub\_list: List$<$String$>$ - List of RestChain identifiers to be run by the RestChain. \\
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+        none
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+	%------------------------------------------------------
+		\newAccessProgram{RestChain(list)}
+			{% Input
+				List of RestStub identifiers to store in chain.
+			}
+			{% Transition
+				The module constructor.
+			}
+			{% Output
+				Assign fields to the data fields, if data is null the fields are set to defaults.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{toJSON()}
+			{% Input
+				none
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+			\newAccessProgram{addTest(testid)}
+			{% Input
+				String of the identifier for the RestStub to add to the RestChain.
+			}
+			{% Transition
+				Appends the identifier, to the reststub\_list.
+			}
+			{% Output
+				Json equivalent of the object.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{removeTest(identifier)}
+			{% Input
+				Identifier of test to remove from the RestChain.
+			}
+			{% Transition
+				Test identifier is removed from reststub\_list.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				MissingTestException: Thrown if the RestStub is not in reststub\_list.
+			}
+		\newAccessProgram{moveTest(identifier, newIndex)}
+			{% Input
+				Identifier of the RestStub, and new index in the list.
+			}
+			{% Transition
+				Moves the position of the corresponding RestStub in reststub\_list.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				MissingTestException: Thrown if the RestStub is not in reststub\_list. 
+				IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
+			}
+		\newAccessProgram{runTests(callback)}
+			{% Input
+				none
+			}
+			{% Transition
+				Runs the tests in the RestChain and executes callback function with success boolean.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+		none
+	}
+	
+\newpage
+
+%------------------------------------------------------------------------------
+% Module Heading
+\section {JsonComparer Module}
+% Module Type
+% \subsection* {Template Module}
+%------------------------------------------------------------------------------
+
+\label{JsonComparer}
+
+\newModule{JsonComparer}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		Constants
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{compare}{JSON, JSON}{}{}
+			\row{compareExact}{JSON, JSON}{JSON}{}
+            \row{compareWithTolerance}{JSON, JSON, int}{}{}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		none \\
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+        none
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+	%------------------------------------------------------
+		\newAccessProgram{compare(expected, received)}
+			{% Input
+				Two json objects to compare for similarities.
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				True if received is a subset of expected.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{compareExact(expected, received)}
+			{% Input
+				Two json objects to compare for similarities.
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				True if received is identical to expected.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{compareWithTolerance(expected, received, mostDifferences)}
+			{% Input
+				Two json objects to compare for similarities, and an int for the maximum number of differences between the json objects.
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+		none
+	}
+	
+\newpage
+
+
+%------------------------------------------------------------------------------
+% Module Heading
+\section {RestSuite Module}
+% Module Type
+% \subsection* {Template Module}
+%------------------------------------------------------------------------------
+
+\label{RestSuite}
+
+\newModule{RestSuite}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		Constants, ProfileStore, IO, JsonParser
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{display}{}{}{}
+			\row{saveAllToDisk}{}{}{}
+            \row{loadAllFromDisk}{}{}{}
+            \row{saveSpecifiedToDisk}{String}{}{}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		none\\
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+        none
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+	%------------------------------------------------------
+		\newAccessProgram{display()}
+			{% Input
+				none
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				Visual information for the Window to display to the user.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{saveAllToDisk}
+			{% Input
+				none
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				Downloads the application's state to the user's machine.
+			}
+			{% Exception
+				none
+			}
+			\newAccessProgram{loadAllFromDisk()}
+			{% Input
+				none
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				Updates the application's state with information from a selected file.
+			}
+			{% Exception
+				none
+			}
+			\newAccessProgram{saveSpecifiedToDisk(data)}
+			{% Input
+				none
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				Saves specified information to a file.
+			}
+			{% Exception
+				none
+			}
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+		none
+	}
+	
+\newpage
+
+
+%------------------------------------------------------------------------------
+% Module Heading
+\section {Constants Module}
+% Module Type
+% \subsection* {Template Module}
+%------------------------------------------------------------------------------
+
+\label{Constants}
+%\newConstantsModule{module}{uses}{expConst}{expAccProg}{stateVar}{stateInvariant}
+\newConstantsModule{Constants}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		Constants
+	}
+	%------------------------------------------------------
+	{% Exported Constants
+	%------------------------------------------------------
+		REQUEST\_TYPES: List$<$String$>$ - String of valid requests
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+	none
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		none\\
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+        none
+	}
+% 	%------------------------------------------------------
+% 	{% Assumptions
+% 	%------------------------------------------------------
+% 		none
+% 	}
+% 	%------------------------------------------------------
+% 	{% Access Routine Semantics
+% 	%------------------------------------------------------
+% 		%----------------
+% 		
+% 	}
+% 	%------------------------------------------------------
+% 	{% Local Functions
+% 	%------------------------------------------------------
+% 		none
+% 	}
+	
+\newpage
+
+%------------------------------------------------------------------------------
+% Module Heading
+\section {ProfileStorage Module}
+% Module Type
+% \subsection* {Template Module}
+%------------------------------------------------------------------------------
+
+\label{ProfileStorage}
+
+\newModule{ProfileStore}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		Constants
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{init}{}{}{}
+			\row{getRestStubFromID}{String}{RestStub}{missingRestStub}
+            \row{getRestChainFromID}{String}{RestChain}{missingRestChain}
+            \row{newRestStub}{}{String}{}
+            \row{newRestChain}{}{String}{}
+            \row{copyRestStub}{String}{String}{missingRestStub}
+            \row{copyRestChain}{String}{String}{missingRestChain}
+            \row{generateIdentifier}{}{String}{}
+            \row{newProfile}{}{String}{}
+            \row{deleteRestStub}{String}{}{missingRestStub}
+            \row{deleteRestChain}{String}{}{missingRestChain}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		all\_RestStubs: List$<$RestStub$>$ - List of all identifiers for RestStubs in memory. \\
+        all\_RestChains: List$<$RestChain$>$ - List of all identifiers for RestChains in memory. \\
+        all\_identifiers: List$<$String$>$ - List of all identifiers in memory. \\
+        all\_profiles: List$<$Profile$>$ - List of all profiles in memory. \\
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+        none
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+	%------------------------------------------------------
+		\newAccessProgram{getRestStubFromID(identifier)}
+			{% Input
+				Ientifier of the RestChain to retrieve.
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				RestChain with the identifier.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{getRestChainFromID(identifier)}
+			{% Input
+				none
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{newRestStub()}
+			{% Input
+				none
+			}
+			{% Transition
+				Creates a new RestStub, and appends it to all\_RestStubs.
+			}
+			{% Output
+				Identifier of the new RestStub.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{copyRestStub(identifier)}
+			{% Input
+				Identifier of the RestStub to copy.
+			}
+			{% Transition
+				Creates a deep copy of an existing RestStub, and appends it to all\_RestStubs.
+			}
+			{% Output
+				Identifier of the new RestStub.
+			}
+			{% Exception
+				none
+			}
+			\newAccessProgram{copyRestChain(identifier)}
+			{% Input
+				Identifier of the RestChain to copy.
+			}
+			{% Transition
+				Creates a deep copy of an existing RestChain, and appends it to all\_RestChains.
+			}
+			{% Output
+				New identifier.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{newProfile()}
+			{% Input
+				none
+			}
+			{% Transition
+				Creates a new Profile, and appends it to allProfiles.
+			}
+			{% Output
+				Identifier of the new Profile.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{deleteRestStub(identifier)}
+			{% Input
+				none
+			}
+			{% Transition
+				Removes a RestStub from allRestStubs, and performs removeRestStub(identifier) on all Profile objects in allProfiles.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{deleteRestChain(identifier)}
+			{% Input
+				none
+			}
+			{% Transition
+				 Removes a RestChain from all\_RestStubs, and performs removeRestChain(identifier) on all Profile objects in all\_RestChains.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+		none
+	}
+	
+\newpage
+
+
+%------------------------------------------------------------------------------
+% Module Heading
+\section {Profile Module}
+% Module Type
+% \subsection* {Template Module}
+%------------------------------------------------------------------------------
+
+\label{Profile}
+
+\newModule{ProfileT}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		RestStub, RestChain
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{init}{}{}{}
+			\row{getRestStubs}{}{List$<$String$>$}{}
+            \row{getRestChains}{List$<$String$>$}{}{}
+            \row{addRestStub}{String}{}{}
+            \row{addRestChain}{String}{}{}
+            \row{removeRestStub}{String}{String}{}
+            \row{removeRestChain}{String}{String}{}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		loca\_RestStubs: List$<$String$>$ - List of identifiers for RestStubs in this Profile.\\
+        local\_RestChains: List$<$String$>$ - List of identifiers for RestChains in this Profile.\\
+        local\_identifiers: List$<$String$>$ -  List of identifiers in this Profile.\\
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+        none
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+	%------------------------------------------------------
+		\newAccessProgram{getRestStubs()}
+			{% Input
+				none
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				copy of local\_RestStubs
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{getRestChains()}
+			{% Input
+				none
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				Copy of local\_RestChains.
+			}
+			{% Exception
+				none
+			}
+			\newAccessProgram{addRestStub()}
+			{% Input
+				Identifier of RestStub to add to Profile.
+			}
+			{% Transition
+				Adds corresponding RestStub, and appends it to local\_RestStubs.
+			}
+			{% Output
+				dentifier of the new RestStub.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{addRestChain()}
+			{% Input
+				Identifier of RestChain to add to Profile.
+			}
+			{% Transition
+				Creates a new RestChain, and appends it to local\_RestChains.
+			}
+			{% Output
+				Identifier of the new RestChain.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{removeRestStub(identifier)}
+			{% Input
+				Identifier of RestChain to remove from Profile.
+			}
+			{% Transition
+				Removes the RestStub local\_RestStubs, if it exists.
+				Performs the RemoveRestStub(identifier) on all TestChains in local\_RestChains.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{removeRestChain(identifier)}
+			{% Input
+				Identifier of RestChain to remove from Profile.
+			}
+			{% Transition
+				Removes the RestChain local\_RestChains, if it exists.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+		none
+	}
+	
+\newpage
+
+
+%------------------------------------------------------------------------------
+% Module Heading
+\section {IO Module}
+% Module Type
+% \subsection* {Template Module}
+%------------------------------------------------------------------------------
+
+\label{IO}
+
+\newModule{IO}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		Constants
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{readFile}{String}{String}{MissingFileException, FileSizeError}
+			\row{saveFile}{String, String}{JSON}{MissingFileException}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+        none
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+	%------------------------------------------------------
+		\newAccessProgram{readFile(location)}
+			{% Input
+				Storage location of file to read.
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				String of file contents.
+			}
+			{% Exception
+				none
+			}
+		\newAccessProgram{saveFile(fileName, data)}
+			{% Input
+				Name of file to save to the user's computer, and the data to store in the file.
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				String of file contents.
+			}
+			{% Exception
+				none
+			}
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+		none
+	}
+	
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+
+%%------------------------------------------------------------------------------
+%% Module Heading
+%\section* {Region Module}
+%% Module Type
+%\subsection* {Template Module}
+%%------------------------------------------------------------------------------
+%\newModule{ModuleName}
+%	%------------------------------------------------------
+%	{% Uses
+%	%------------------------------------------------------
+%		SomeOtherModule
+%	}
+%	%------------------------------------------------------
+%	{% Exported Types
+%	%------------------------------------------------------
+%		Exported Types
+%	}
+%	%------------------------------------------------------
+%	{% Exported Access Programs
+%	%------------------------------------------------------
+%		\accessProgramsTableStart
+%		\row{name}{in}{out}{exception}
+%		\accessProgramsTableEnd
+%	}
+%	%------------------------------------------------------
+%	{% State Variant
+%	%------------------------------------------------------
+%		Variant
+%	}
+%	%------------------------------------------------------
+%	{% State Invariant
+%	%------------------------------------------------------
+%		Invariant
+%	}
+%	%------------------------------------------------------
+%	{% Assumptions
+%	%------------------------------------------------------
+%		No assumptions}
+%	%------------------------------------------------------
+%	{% Access Routine Semantics
+%	%------------------------------------------------------
+%		%----------------
+%		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
+%			{% Transition
+%				$\mathit{none}$}
+%			{% Output
+%				
+%			}
+%			{% Exception
+%				$\mathit{none}$
+%			}
+%		%----------------
+%		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
+%			{% Transition
+%				$\mathit{none}$}
+%			{% Output
+%				
+%			}
+%			{% Exception
+%				$\mathit{none}$
+%			}		
+%	}
+%	%------------------------------------------------------
+%	{% Local Functions
+%	%------------------------------------------------------
+%		%----------------
+%		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
+%			{% Transition
+%				$\mathit{none}$}
+%			{% Output
+%				
+%			}
+%			{% Exception
+%				$\mathit{none}$
+%			}
+%	}

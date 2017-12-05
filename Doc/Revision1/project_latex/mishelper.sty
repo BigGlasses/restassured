@@ -1,0 +1,209 @@
+\ProvidesPackage{mishelper}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Create a module
+%
+%	\newModule{Name}
+%		{Uses}
+%		{ExportedTypes}{ExportedAccessPrograms}
+%		{StateVariables}{StateInvariant}
+%		{Assumptions}
+%		{AccessPrograms}{LocalFuntions}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\newModule}[9]{
+	%\label{#1}
+	\subsection* {Module}
+	#1
+	\subsection* {Uses}
+	#2
+	\subsection* {Syntax}
+	\subsubsection* {Exported Types}
+	#3
+	\subsubsection* {Exported Access Programs}
+	#4
+	\subsection* {Semantics}
+	\subsubsection* {State Variables}
+	#5
+	\subsubsection* {State Invariant}
+	#6
+	\subsubsection* {Assumptions}
+	#7
+	\subsubsection* {Access Routine Semantics}
+	#8
+	\subsubsection* {Local Functions}
+	#9
+}
+\newcommand{\newTemplateModule}[9]{
+	%\label{#1}
+	\subsection* {Template Module}
+	#1
+	\subsection* {Uses}
+	#2
+	\subsection* {Syntax}
+	\subsubsection* {Exported Types}
+	#3
+	\subsubsection* {Exported Access Programs}
+	#4
+	\subsection* {Semantics}
+	\subsubsection* {State Variables}
+	#5
+	\subsubsection* {State Invariant}
+	#6
+	\subsubsection* {Assumptions}
+	#7
+	\subsubsection* {Access Routine Semantics}
+	#8
+	\subsubsection* {Local Functions}
+	#9
+}
+\newcommand{\newConstantsModule}[6]{
+	%\label{#1}
+	\subsection* {Module}
+	#1
+	\subsection* {Uses}
+	#2
+	\subsection* {Syntax}
+	\subsubsection* {Exported Constants}
+	#3
+	\subsubsection* {Exported Access Programs}
+	#4
+	\subsection* {Semantics}
+	\subsubsection* {State Variables}
+	#5
+	\subsubsection* {State Invariant}
+	#6
+	%		\subsubsection* {Assumptions}
+	%			#7
+	%		\subsubsection* {Access Routine Semantics}
+	%			#8
+	%		\subsubsection* {Local Functions}
+	%			#9
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Create a new access program
+%	\newAccessProgram{name}{output}{exception}
+%	\newAccessProgram{someFunction(input1, input2)}{output equation}{SomeException}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\newAccessProgram}[4]{
+	\noindent #1:
+	\begin{itemize}
+		\item transition: #2
+		\item output: $out :=$ #3
+		\item exception: $exc :=$ #4
+	\end{itemize}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Exported Access Program Table
+%		\accessProgramsTableStart
+%			\row{one}{two}{three}{four}
+%		\accessProgramsTableEnd
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\row}[4]{#1 & #2 & #3 & #4 ~\\ \hline}
+\newcommand{\accessProgramsTableStart}{
+	\begin{tabular}{| l | l | l | l |}
+		\hline
+		\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+		\hline
+	}
+	\newcommand{\accessProgramsTableEnd}{
+	\end{tabular}
+}
+
+\newenvironment{\accessProgramsTable}{
+	\begin{tabular}{| l | l | l | l |}
+		\hline
+		\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+		\hline
+}{
+	\end{tabular}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+%%------------------------------------------------------------------------------
+%% Module Heading
+%\section* {Region Module}
+%% Module Type
+%\subsection* {Template Module}
+%%------------------------------------------------------------------------------
+%\newModule{ModuleName}
+%	%------------------------------------------------------
+%	{% Uses
+%	%------------------------------------------------------
+%		SomeOtherModule
+%	}
+%	%------------------------------------------------------
+%	{% Exported Types
+%	%------------------------------------------------------
+%		Exported Types
+%	}
+%	%------------------------------------------------------
+%	{% Exported Access Programs
+%	%------------------------------------------------------
+%		\accessProgramsTableStart
+%		\row{name}{in}{out}{exception}
+%		\accessProgramsTableEnd
+%	}
+%	%------------------------------------------------------
+%	{% State Variant
+%	%------------------------------------------------------
+%		Variant
+%	}
+%	%------------------------------------------------------
+%	{% State Invariant
+%	%------------------------------------------------------
+%		Invariant
+%	}
+%	%------------------------------------------------------
+%	{% Assumptions
+%	%------------------------------------------------------
+%		No assumptions}
+%	%------------------------------------------------------
+%	{% Access Routine Semantics
+%	%------------------------------------------------------
+%		%----------------
+%		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
+%			{% Transition
+%				$\mathit{none}$}
+%			{% Output
+%				
+%			}
+%			{% Exception
+%				$\mathit{none}$
+%			}
+%		%----------------
+%		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
+%			{% Transition
+%				$\mathit{none}$}
+%			{% Output
+%				
+%			}
+%			{% Exception
+%				$\mathit{none}$
+%			}		
+%	}
+%	%------------------------------------------------------
+%	{% Local Functions
+%	%------------------------------------------------------
+%		%----------------
+%		\newAccessProgram{is\_validSegment($p_1$, $p_2$)}
+%			{% Transition
+%				$\mathit{none}$}
+%			{% Output
+%				
+%			}
+%			{% Exception
+%				$\mathit{none}$
+%			}
+%	}
