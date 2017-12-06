@@ -3,6 +3,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{color}
+\usepackage[normalem]{ulem}
 
 \title{SE 3XA3: Development Plan\\Chrome App REST Test Client}
 
@@ -20,11 +22,16 @@
 
 \begin{table}[hp]
 \caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
+\begin{tabularx}{\textwidth}{lXlX}
 \toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change} & \textbf{Revision}\\
 \midrule
-29-Sep-2017 Rev0 & Revision 0\\
+Sept​ ​29,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Revision​ ​0 & 0\\
+\hline
+Nov​ ​22,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Revision​ ​1 Proofread & 1\\
+\hline
+Dec 6,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Revision​ ​1 Completion & 1\\
+\hline
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -49,8 +56,8 @@ During meetings, the team will adhere to the Harvard guidelines as discussed in 
 \item Work on upcoming deliverables
 \item For next meeting
 \begin{itemize}
-    \item Identify each member’s preparations and action items before the next meeting
-    \item Draft goals for next meeting
+\item Identify each member’s preparations and action items before the next meeting
+\item Draft goals for next meeting
 \end{itemize}
 \item Review meeting’s effectiveness
 \end{itemize}
@@ -70,17 +77,17 @@ Roles for team members may change as project progresses. Each team member is res
          \hline
          Dawson Myers & Team Leader and Tester & Git, LaTex, REST, JavaScript, Angular \\  
          Yang Liu & Scribe and administration & Documentation, JavaScript \\
-         Brandon Roberts & Developer & Git, LaTex, JavaScript, Technology \\
+         Brandon Roberts & Developer \textcolor{red}{and Tester} & Git, LaTex, JavaScript, Technology \\
     \end{tabular}
 \end{center}
 
 \section{Git Workflow Plan}
-The team repository will be divided into a master branch and a development branch. All team members will have read/write access to the development branch; the master branch will only be writable by the team leader. When the team members push a new feature to the development branch, they will submit a pull request to the team leader for approval. The team leader will be responsible for merging approved pull requests.
+The team repository will be divided into a master branch and a development branch. All team members will have read/write access to the development branch\sout{; the master branch will only be writable by the team leader}. Ideally, when the team members push a new feature to the development branch, they will submit a pull request to the team leader for approval. The team leader will be responsible for merging approved pull requests. \textcolor{red}{Members who are solely responsible for to-do items assigned to them can directly make changes upon those items. When intending to do this, each member is responsible for ensuring that other members are informed of their ownership scope prior to making changes.}
 
 \section{Proof of Concept Demonstration Plan}
-The only risk in this project comes from the fact that the team dog shit easy is made up of students in the same program. This means that there is a very real risk that team will all be tied up with work from other courses i.e. all members having an upcoming. This could lead to extremely slow development at times. To reduce the severity of this, the team plans to prepare milestones in advance of foreseen periods of decreased development. 
+Risks may include the fact that the team is made up of students in the same program, which means members may be tied up with work from other courses. \textcolor{red}{Since members are from the same program, these academic responsibilities from other courses may be due in a similar schedule, making it difficult for project items to be distributed among members in such a way to minimize the number of items overlapping.} This could lead to extremely slow development at times. To reduce the severity of this, the team plans to prepare milestones in advance of foreseen periods of decreased development. 
 
-Other than that we all have experience in creating these types of applications, so the team anticipates very little technical difficulty. We also expect minor issues with dependencies at compilation time, but that is typically common in any web-based application due to the fact that libraries in the web ecosystem are frequently updated. 
+All members have experience in creating these types of applications, so the team anticipates very little technical difficulty. We also expect minor issues with dependencies at compilation time, but that is typically common in any web-based application due to the fact that libraries in the web ecosystem are frequently updated. 
 
 
 \section{Technology}
@@ -90,7 +97,8 @@ The following technologies will be utilized in this project:
     \item NodeJs
     \item WebSockets
     \item Visual Studio
-    \item Karma Test Runner
+    \item \sout{Karma Test Runner}
+    \item \textcolor{red}{Jasmine}
     \item Electron
 \end{itemize}
 
@@ -100,9 +108,9 @@ All JavaScript development will strictly follow the Google JavaScript Style Guid
 \section{Project Schedule}
 The team will be tracking the progress of the project using the gantt chart in the ProjectSchedule directory of the GitLab repo.
 \newline
-\href{https://gitlab.cas.mcmaster.ca/myersd1/3xa3-team31/blob/master/ProjectSchedule/Team31GanttProjectRev0.pdf}{Click this to go to our gantt chart in the repo.}
+\href{https://gitlab.cas.mcmaster.ca/myersd1/3xa3-team31/blob/master/ProjectSchedule/Team31GanttProjectRev1.pdf}{Click this to go to our gantt chart in the repo.}
 \newline
-\url{https://gitlab.cas.mcmaster.ca/myersd1/3xa3-team31/blob/master/ProjectSchedule/Team31GanttProjectRev0.pdf}
+\url{https://gitlab.cas.mcmaster.ca/myersd1/3xa3-team31/blob/master/ProjectSchedule/Team31GanttProjectRev1.pdf}
 
 %\section{Project Review}
 
