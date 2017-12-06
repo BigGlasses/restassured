@@ -3,6 +3,8 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage{graphicx}
+\usepackage{color}
+\usepackage[normalem]{ulem}
 
 \title{SE 3XA3: Problem Statement\\Title of Project\\Revision 0	}
 
@@ -29,6 +31,10 @@ Sept​ ​22,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Initial Dr
 \hline
 Sept​ ​25,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Revision​ ​0​ ​Completion & 0\\
 \hline
+Nov​ ​22,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Revision​ ​1 Proofread & 1\\
+\hline
+Dec 6,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Revision​ ​1 Completion & 1\\
+\hline
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -39,15 +45,15 @@ Sept​ ​25,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Revision�
 
 \newpage
 \section{Problem Statement}
-RESTful web services are a very popular way to implement web applications and mobile applications. They simplify the delivery of resources between the front-end and back-end of an application by allowing the programmers to link resources to simple API endpoints. These services provide a window to clients to access resources such as data, files, and other information, and enable developers to build maintainable and scalable web services and            applications. Developers need solutions for testing their RESTful web applications. The reproduction of the Sails Live Chrome application delivers a REST API testing tool that caters to this​ ​need​ ​by​ ​executing​ ​requests​ ​and​ ​providing​ ​response​ ​to​ ​these​ ​requests.
+RESTful web services are a very popular way to implement web applications and mobile applications. They simplify the delivery of resources between the front-end and back-end of an application by allowing the programmers to link resources to simple API endpoints. These services provide a window to clients to access resources such as data, files, and other information, and enable developers to build maintainable and scalable web services and applications. Developers \sout{need solutions} \textcolor{red}{require tools and solutions} for testing their RESTful web applications. The reproduction of the Sails Live Chrome application delivers a REST API testing tool that caters to this​ ​need​ ​by​ ​executing​ ​requests​ ​and​ ​providing​ ​response​ ​to​ ​these​ ​requests.
 
 \subsection{Issues​ ​to​ ​be​ ​addressed​ ​and​ ​problems​ ​to​ ​be​ ​solved.}
 
-The application will provide a user interface through which HTML requests can be made. Using               the app, users can specify route into an address bar, initiate GET, POST, PUT and DELETE                requests with custom payload and manage these created requests. The application will provide             JSON-formatted responses for user-input requests (using query terms) and confirmation on           whether​ ​the​ ​request​ ​was​ ​successful. 
+The application will provide a user interface through which HTML requests can be made. Using the app, users can specify route in an address bar, initiate GET, POST, PUT and DELET requests with custom payload, \textcolor{red}{save created tests,} and manage these created requests. \textcolor{red}{The API tests, called REST stubs, can be chained together and run sequentially. A failed requests would break the chain of REST stubs and subsequent tests would not be ran.} The application will provide JSON-formatted responses for user-input requests (using query terms) and confirmation on whether​ ​the​ ​request​ ​was​ ​successful. 
 
 \subsection{Importance​ ​of​ ​the​ ​problem }
 
-The development of this application will save valuable development time by allowing true black box testing to be performed by people other than a backend programmer. For example, a secondary developer can create test cases and test API endpoints by monitoring the responses from the tool. This can be more convenient in many situations, including the early stages of development when a project will generally lack a UI, and a tester’s alternative would often be making crude HTTP requests manually. We aim to create a lightweight Chrome application that will allow developers of small projects to test their REST API endpoints without having to use the​ ​aforementioned​ ​crude​ ​method,​ ​or​ ​a​ ​heavier​ ​application​ ​like​ ​Sails​ ​Live​ ​or​ ​Postman. 
+The development of this application will save valuable development time by allowing true black box testing to be performed by people other than a backend programmer. For example, a secondary developer can create test cases and test API endpoints by monitoring the responses from the tool. This can be more convenient in many situations, including the early stages of development when a project will generally lack a UI, and a tester’s alternative would often be making crude HTTP requests manually.  \textcolor{red}{Since Chrome applications are being phased out, we aim to create a lightweight web application} that will allow developers of small projects to test their REST API endpoints without having to use the​ ​aforementioned​ ​crude​ ​method,​ ​or​ ​a​ ​heavier​ ​application​ ​like​ ​Sails​ ​Live​ ​or​ ​Postman. 
 
 \newpage
 \subsection{ Context​ ​of​ ​the​ ​problem }
@@ -57,7 +63,7 @@ The recreation of the app is not limited to any particular platform since most d
 Multiple parties will be affected by the reproduction of the application. The set of stakeholders               include team members, the course instructor, teaching assistants, and users of the end product              of the project. Team members participating in the development of the application will benefit              from the experiential learning presented by the challenges of the reproduction and development             process. With the guidance of the course instructor and teaching assistants, team members aim              to successfully reproduce the application within the defined scope. A special subset of             stakeholders who should be highlighted are software developers using RESTful web services in             their​ ​application​ ​who​ ​wish​ ​to​ ​test​ ​the​ ​correctness​ ​of​ ​the​ ​implemented​ ​RESTful​ ​services. 
 
 \subsubsection{ Software​ ​Environment  }
-The application will be reproduced in the Google Chrome App format and thus will not require any special software environment (standard environment able to support the Chrome browser will suffice; OS includes Mac, Linux, and Windows). The app aims to serve software developers involved​ ​in​ ​building​ ​RESTful​ ​web​ ​services. 
+The application will be reproduced in the \sout{Google Chrome App} \textcolor{red}{web application} format and thus will not require any special software environment (standard environment able to support the web browser will suffice; OS includes Mac, Linux, and Windows). The app aims to serve software developers involved​ ​in​ ​building​ ​RESTful​ ​web​ ​services. 
 
 
 
@@ -73,4 +79,4 @@ The application will be reproduced in the Google Chrome App format and thus will
 
 %\mh{comment}
 
-\end{document}
+\end{document}\grid
