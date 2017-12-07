@@ -691,9 +691,170 @@
 	%------------------------------------------------------
 		none
 	}
-	
 \newpage
 
+%------------------------------------------------------------------------------
+% Module Heading
+\section {\textcolor{red}{JsonParser Module}}
+% Module Type
+% \subsection* {Template Module}
+%------------------------------------------------------------------------------
+
+\label{JsonParser}
+
+\newModule{\textcolor{red}{JsonParser}}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		Constants
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{\textcolor{red}{prettify}}{JSON}{String}{}
+			\row{\textcolor{red}{JSONtoParam}}{JSON}{String}{}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		none \\
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+        none
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+		\revAccessProgram{prettify(data)}
+			{% Input
+				json object to prettify (turn into user-readable Srting)
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				Returns prettified version of data.
+			}
+			{% Exception
+				none
+			}
+		\revAccessProgram{JSONtoParam(data)}
+			{% Input
+				json object to paramaterize.
+			}
+			{% Transition
+				none
+			}
+			{% Output
+				Returns a paramaterized version of data that can be used in HTTP requests.
+			}
+			{% Exception
+				none
+			}
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+		none
+	}
+	
+\newpage
+\newpage
+
+%------------------------------------------------------------------------------
+% Module Heading
+\section {\textcolor{red}{JsonParser Module}}
+% Module Type
+% \subsection* {Template Module}
+%------------------------------------------------------------------------------
+
+\label{RestConsole}
+
+\newModule{\textcolor{red}{RestConsole}}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{\textcolor{red}{restLog}}{String}{}{}
+			\row{\textcolor{red}{reRenderConsole}}{}{}{}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		none \\
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+        none
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+		\revAccessProgram{restLog(message)}
+			{% Input
+				String message to add to the console.
+			}
+			{% Transition
+				Adds the message to the console list. 
+				Calls reRenderConsole to display the data to the user.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+		\revAccessProgram{reRenderConsole()}
+			{% Input
+				none
+			}
+			{% Transition
+				Displays the diagnostic console information to the user.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+		none
+	}
+	
 
 %------------------------------------------------------------------------------
 % Module Heading
@@ -708,7 +869,7 @@
 	%------------------------------------------------------
 	{% Uses
 	%------------------------------------------------------
-		Constants, ProfileStore, IO, JsonParser
+		Constants, ProfileStore, IO, JsonParser, RestConsole
 	}
 	%------------------------------------------------------
 	{% Exported Type
