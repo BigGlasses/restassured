@@ -47,7 +47,8 @@ class RestChain {
   }
 
   /*
-
+    Returns a json object equivalent for this RestChain 
+    This can either be used for storage or to create a copy RestChain (through the constructor)
   */
   toJson(){
   var data = {};
