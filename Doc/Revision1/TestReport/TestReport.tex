@@ -18,16 +18,18 @@
 %------------------------------------------------------------------------------
 \newcommand{\revisionTable}{
 	\begin{table}[hp]
-		
-		\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-			\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-			\midrule
-			
-			6-Dec-2017 & 0.0 & Revision 1\\
-			
-			\bottomrule
+		\caption{\bf Revision History}
+		\begin{tabularx}{\textwidth}{lXlX}
+		\toprule
+		\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}
+		\textbf{Revision}\\
+		\midrule
+		Nov​ ​29,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Revision​ ​1 Draft & 1\\
+		\hline
+		Dec 6,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Revision​ ​1 Completion & 1\\
+		\hline
+		\bottomrule
 		\end{tabularx}
-	\caption{\bf Revision History}
 	\end{table}
 }
 
@@ -88,6 +90,10 @@
 	
 	\listoftables
 	
+<<<<<<< HEAD
+	%\listoffigures
+=======
+>>>>>>> e50dce788878d8d0b510ed27237c61e0c32419e8
 	
 	
 	\newpage
@@ -265,12 +271,12 @@
 	
 \subsection{Purpose}
 %------------------------------------------------------------------------------
-The purpose of this document is to outline the testing, validation, verification procedures to be implemented for the reconstruction of the Sails Live Chrome app, named the REST Assured Test Client. Through testing, the REST Assured team aim to improve the product’s correctness and build confidence in the its functionality. The test plan helps provide proof that the project adheres to requirements specified in the Software Requirements Specification document. 
-Types of testing will include structural, static and dynamic, functional and nonfunctional, manual and automated unit testing. Various testing tools will be used to achieve these tests. Fault testing will occur throughout the course of implementation of the project.
+The purpose of this document is to outline the testing, validation, verification results that were carried out on the reconstruction of the Sails Live Chrome app, named the REST Assured Test Client. Through testing, the REST Assured team used rigorous unit testing as well as manual testing to improve the product’s correctness and build confidence. The testing helped provide proof that the project adheres to the requirements specified in the Software Requirements Specification document. 
+Types of testing included structural, static and dynamic, functional and nonfunctional, manual and automated unit testing. Various testing tools were used to achieve these test results.
 
-\subsection{Scope}
-%------------------------------------------------------------------------------
-The scope of testing aims to cover the system fault conditions, These testing procedures may be complemented by design review and code review as a strategy to improve outcomes. The REST Assured team aims to test early and often to reduce faults with minimal expenditure of resources and to maximize correctness, quality, and reliability of software for users.
+% \subsection{Scope}
+% %------------------------------------------------------------------------------
+% The scope of testing aims to cover the system fault conditions, These testing procedures may be complemented by design review and code review as a strategy to improve outcomes. The REST Assured team aims to test early and often to reduce faults with minimal expenditure of resources and to maximize correctness, quality, and reliability of software for users.
 
 \subsection{Naming Conventions and Terminology}
 %\subsection{Acronyms, Abbreviations, and Symbols}
@@ -290,7 +296,7 @@ The scope of testing aims to cover the system fault conditions, These testing pr
 %
 %\end{table}
 
-\begin{table}[!htbp]
+\begin{table}[H]
 	\begin{tabularx}{\textwidth}{p{3cm}X}
 		\toprule
 		\textbf{Term} & \textbf{Definition}\\
@@ -333,31 +339,29 @@ The scope of testing aims to cover the system fault conditions, These testing pr
 %\end{table}	
 
 \subsection{Overview of Document}
-%------------------------------------------------------------------------------
-This document begins with a general overview of the plan, including sections on the software description, introduction of the test team and tools used for testing, and the \href{Table:sched}{Testing Schedule} which will be followed. Next, detailed system test descriptions of functional and nonfunctional \href{tests:frt:ui}{tests} are presented, followed by tests for proof of concept. The document ends with the comparison to any existing implementation, and closing with unit testing plans.
-
+% %------------------------------------------------------------------------------
+This document begins with a general overview of the application and tests, including sections on the software description, introduction of the test team and tools used for testing. Next, detailed system test results for \hyperref[tests:frt:ui]{functional} and \hyperref[tests:nrt:per]{nonfunctional} requirements, as well as  \hyperref[tests:unittest]{unit tests}. After that, the \hyperref[trace:req]{requirement} and \hyperref[trace:module]{module} traceability matrices are displayed
 
 %==============================================================================
-\section{Plan}
+% \section{Plan}
 %==============================================================================
 
 \subsection{Software Description}
 %------------------------------------------------------------------------------
-The REST Assured Test Client will provide software developers a tool in Web API building and testing. The application will provide tests endpoints and the capability to diagnose bugs in applications featuring RESTful interfaces. 
+The REST Assured Test Client provides software developers with a tool for web API building and testing. The application provides tests endpoints and the capability to diagnose bugs in applications featuring RESTful interfaces. 
 
 \subsection{Test Team}
 %------------------------------------------------------------------------------
-The REST Assured team members responsible for all testing procedures are Dawson Myers, Brandon Roberts, and Yang Liu. These responsibilities include test writing and execution for various types of testing outlined in this document.
+The REST Assured team members that were responsible for all testing procedures are Dawson Myers, Brandon Roberts, and Yang Liu. These responsibilities included test writing and execution for various types of testing outlined in this document.
 
 \subsection{Automated Testing Approach}
 %------------------------------------------------------------------------------
-Automated testing for the REST Assured Test Client will be done in Webstorm, which incorporates a wide array of test plugins which may be configured to benefit JavaScript debugging.
+Automated testing for the REST Assured Test Client was done in using Jasmine.
 
 \subsection{Testing Tools}
 %------------------------------------------------------------------------------
-The majority of the project code is JavaScript front-end code. The following testing tools will be used:
+The majority of the project code is JavaScript front-end code. The following testing tools were used:
 \begin{itemize}
-	\item Karma (Integration Tests)
 	\item PhantomJS (UI Testing)
 	\item Jasmine (Unit Testing) 
 \end{itemize}
@@ -591,6 +595,7 @@ The software will allow users to test their REST server’s responses to GET/POS
 
 
 %\subsubsection{Area of Testing2}
+
 %------------------------------------------------------
 \subsubsection{Protocol Tests}
 %------------------------------------------------------
@@ -647,6 +652,7 @@ The software will allow users to test their REST server’s responses to GET/POS
 
 
 \subsection{Tests for Nonfunctional Requirements}
+\label{tests:nrt:per}
 %------------------------------------------------------------------------------
 
 
@@ -775,6 +781,7 @@ The existing project had very few test cases. Thus, the team has had to develop 
 
 %==============================================================================			
 \section{Unit Testing}
+\label{tests:unittest}
 %==============================================================================
 Jasmine was used for test unit testing internal functions.
 
@@ -1019,6 +1026,7 @@ Jasmine was used for test unit testing internal functions.
 
 \section{Trace to Requirements}
 % %------------------------------------------------------------------------------
+\label{trace:req}
 \begin{table}[H]
 			\begin{tabularx}{\textwidth}{XX}
 				\toprule
@@ -1077,6 +1085,7 @@ Jasmine was used for test unit testing internal functions.
 
 \section{Trace to Modules}		
 % %------------------------------------------------------------------------------
+\label{trace:module}
 \begin{table}[H]
 			\begin{tabularx}{\textwidth}{XX}
 				\toprule
@@ -1132,9 +1141,11 @@ Jasmine was used for test unit testing internal functions.
 % 			\makeatother
 			\label{Table}
 		\end{table}
+		
+		
 \section{Code Coverage Metrics}
 % %------------------------------------------------------------------------------
-Code coverage meterics were not used due to 
+The test for \textit{RestAssured} have approximately covered 90\% of the project code.
 % \subsection{Internal Functions}
 % %------------------------------------------------------------------------------
 % Jasmine will also be used to test program output.
