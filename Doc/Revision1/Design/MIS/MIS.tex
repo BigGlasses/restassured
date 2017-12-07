@@ -858,6 +858,77 @@
 
 %------------------------------------------------------------------------------
 % Module Heading
+\section {\textcolor{red}{RestStubEvaluator Module}}
+% Module Type
+% \subsection* {Template Module}
+%------------------------------------------------------------------------------
+
+\label{RestStubEvaluator}
+
+\newModule{\textcolor{red}{RestStubEvaluator}}
+	%------------------------------------------------------
+	{% Uses
+	%------------------------------------------------------
+		jsonComparer
+	}
+	%------------------------------------------------------
+	{% Exported Type
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Exported Access Programs
+	%------------------------------------------------------
+		\accessProgramsTableStart
+			%\row{name}{in}{out}{exception}
+			\row{\textcolor{red}{runTest}}{RestStub, Function, Function}{}{}
+		\accessProgramsTableEnd
+	}
+	%------------------------------------------------------
+	{% State Variant
+	%------------------------------------------------------
+		none \\
+	}
+	%------------------------------------------------------
+	{% State Invariant
+	%------------------------------------------------------
+        none
+	}
+	%------------------------------------------------------
+	{% Assumptions
+	%------------------------------------------------------
+		none
+	}
+	%------------------------------------------------------
+	{% Access Routine Semantics
+		\revAccessProgram{runTest(restStub, successCallback, failureCallback)}
+			{% Input
+				RestStub to test.
+				Two functions that will be called if the test succeeds or fails.
+			}
+			{% Transition
+				Runs a comparison test on the restStub.
+				Runs the successCallback function if the RestStub passes its specified test.
+				Runs the failureCallback function if the RestStub fails its specified test.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+	}
+	%------------------------------------------------------
+	{% Local Functions
+	%------------------------------------------------------
+		none
+	}
+	
+
+\newpage
+
+%------------------------------------------------------------------------------
+% Module Heading
 \section {RestSuite Module}
 % Module Type
 % \subsection* {Template Module}
