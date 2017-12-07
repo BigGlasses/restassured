@@ -1,5 +1,7 @@
 # User Guide (Optional)
 
-The folders and files for this folder are as follows:
+Installation: this project is developed as a zero-install web app, the web app is hosted at [http://brandonroberts.me/rest/]
 
-Describe ...
+Uninstall is not necessary (user may simply close the web browser).
+
+

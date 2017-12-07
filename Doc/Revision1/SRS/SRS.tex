@@ -19,16 +19,23 @@
 \newcommand{\revisionTable}{
 	\begin{table}[hp]
 		\caption{\bf Revision History}
-		\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-			\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-			\midrule
-			
-			06-Oct-2017 & 0.0 & Revision 0\\
-			
-			\bottomrule
+		\begin{tabularx}{\textwidth}{lXlX}
+		\toprule
+		\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}
+		\textbf{Revision}\\
+		\midrule
+		Oct​ ​06,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Revision​ ​0 & 0\\
+		\hline
+		Nov​ ​29,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Revision​ ​1 Proofread & 1\\
+		\hline
+		Dec 6,​ ​2017 & Dawson Myers, Yang Liu, Brandon Roberts & Revision​ ​1 Completion & 1\\
+		\hline
+		\bottomrule
 		\end{tabularx}
 	\end{table}
 }
+
+
 
 \newcommand{\pbox}[1]{\parbox[t]{.85\linewidth}{#1}
 }
@@ -61,16 +68,16 @@
 \newcommand{\labelWidth}{55pt}
 \newcommand{\descWidth}{5.13in}
 
-\newcommand{\pbox}[1]{\parbox[t]{\descWidth}{#1}}
+%\newcommand{\pbox}[1]{\parbox[t]{\descWidth}{#1}}
 
 \newcommand{\labelbox}[1]{\parbox[t]{\labelWidth}{\textit{#1}}}
-\newcommand{\myline}{%\par
-	\kern1pt % space above the rules
-	%	\hrule height 1.5pt
-	%	\kern2pt % space between the rules
-	\hrule height 0.8pt
-	\kern3pt % space below the rules
-}
+%\newcommand{\myline}{%\par
+%	\kern1pt % space above the rules
+%	%	\hrule height 1.5pt
+%	%	\kern2pt % space between the rules
+%	\hrule height 0.8pt
+%	\kern3pt % space below the rules
+%}
 
 
 % Uncomment all between lines for new requirement macro
@@ -258,16 +265,22 @@ Figure \ref{image:usecase} shows a use case for the app.
 \end{center}
 
 
-\subsection{Functional Requirements}
+\subsection{Functional Requirements}\label{fr}
 %------------------------------------------------------------------------------
-\begin{enumerate}
-	\item[FR1] The app shall be able send and receive HTTP messages.
-	\item[FR2] Message format shall strictly follow the REST communication protocol.
-	\item[FR3] The app must provide a user interface that allows users to view the content of sent and received messages.
-	
-\end{enumerate}
+
+	\requirement{FR1}{The app shall be able send and receive HTTP messages.}
+{\textcolor{red}{In order to communicate information over the internet, the application will use the HTTP protocol.}}
+{\textcolor{red}{Messages should be able to be sent and received in less than one second.}}{High}{Dawson Myers}{October 6, 2017}
+	\requirement{FR2}{Message format shall strictly follow the REST communication protocol.}
+{\textcolor{red}{In order to simplify communication, the application will utilize the REST architectural style.}}
+{\textcolor{red}{Every message should follow protocols set forth by the formal REST  architectural style.}}{High}{Brandon Roberts}{October 6, 2017}
+	\requirement{FR3}{The app must provide a user interface that allows users to view the content of sent and received messages.}
+{\textcolor{red}{In order to maintain high usibility and feature visibility, and allows the user to easily translate goals into actions, the application will provide a user interface that is intuitive to navigate and to view the content of sent and received messages.}}
+{\textcolor{red}{More than 3/4 of test users should be able to navigate the web app without further instructions than labels presented on user interface.}}{High}{Yang Liu}{October 6, 2017}
+
+
 %==============================================================================
-\section{Non-functional Requirements}
+\section{Non-functional Requirements}\label{nfr}
 %==============================================================================
 
 
@@ -355,9 +368,9 @@ Health and safety are issues that should be considered for every engineering pro
 %------------------------------------------------------------------------------
 There are currently no open issues.
 
-\subsection{Off-the-Shelf Solutions}
+\subsection{Off-the-Shelf Solutions} \label{otss}
 %------------------------------------------------------------------------------
-Some off-the-shelf solutions that will be utilized for app include JavaScript frameworks such as Angular and jQuery.
+Some off-the-shelf solutions that may be utilized for the application include \textcolor{red}{JavaScript frameworks such as Angular, which is a structural framework for dynamic web apps that can be used for data binding and dependency injection. The cross-platform JavaScript library jQuery may be used to simplify the client-side scripting of HTML in application design. JavaScript libraries such as React may be used for building interative user interfaces that efficiently update and render the desired components.}
 
 \subsection{New Problems}
 %------------------------------------------------------------------------------
@@ -432,7 +445,7 @@ Features that are considered for future releases include:
 \end{itemize}
 \subsection{Ideas for Solutions}
 %------------------------------------------------------------------------------
-Stated in previous sections.
+\sout{Stated in previous sections.} \textcolor{red}{The fulfillmet of the \hyperref[fr]{functional} and \hyperref[nfr]{non-functional requirements} can be accomplishment through the development of a web application using tools mentioned in \hyperref[otss]{off-the-shelf solutions} as well as through iterative test-driven development (according to the fit-criterion of each requirement.}
 
 \bibliographystyle{plainnat}
 
@@ -443,8 +456,6 @@ Stated in previous sections.
 %==============================================================================
 \section{Appendix}
 %==============================================================================
-This section has been added to the Volere template.  This is where you can place
-additional information.
 
 \subsection{Symbolic Parameters}
 %------------------------------------------------------------------------------
