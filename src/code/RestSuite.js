@@ -155,10 +155,6 @@ var id = currentProfileStore.newRestChain();
 currentRestChain = currentProfileStore.getRestChainFromID(id);
 uiCreateRestStub();
 
-// ReactDOM.render(
-//   <div>{listItems}</div>,
-//   document.getElementById('stubholder')
-// );
 
 
 // Nice Tabs, thanks stackoverflow!
@@ -192,6 +188,10 @@ $('select').change(function() {
 });
 
 var testQueue = []
+
+/*
+	Runs all the tests in the RestChain.
+*/
 function runAllTests(){
 	if (testQueue != []){
 		testQueue = currentRestChain.reststublist.slice();
@@ -202,13 +202,16 @@ function runAllTests(){
 	}
 }
 
+/*
+	Runs the next test in the RestChain.
+*/
 function runNextTest(){
 	reRenderTestSelect();
 	if (testQueue.length > 0){
-		console.log('run');
 		var testid = testQueue.splice(0, 1) [0];
 		var test = currentProfileStore.getRestStubFromID(testid);
 
+		//Function callback for a successful test.
 		var successFunction = function(data){
 			test.responseData = data;
 			displayCurrentRestStub();
@@ -224,12 +227,14 @@ function runNextTest(){
 			}
 		}
 
+		//Function callback for a failed test.
 		var failureFunction = function(data){
 			restLog("Failed Test for RestStub: " + test.identifier);
 			test.success = false;
 			failTests();
 		}
 
+		//Runs the test after a brief delay.
 		test.ranTest = true;
 		setTimeout(function() {
 			restLog("Running Test for RestStub: " + test.identifier);
@@ -243,15 +248,20 @@ function runNextTest(){
 	}
 }
 
+/*
+	Notifies the user that the tests have failed.
+*/
 function failTests(){
 	reRenderTestSelect();
 	testQueue = [];
 	restLog("Tests failed!");
-	//alert("Tests failed!");
 }
+
+/*
+	Notifies the user that tests have been passed.
+*/
 function succeedTests(){
 	reRenderTestSelect();
 	testQueue = [];
 	restLog("All tests succeeded!");
-	//alert("Tests succeeded!");
 }

@@ -29,9 +29,9 @@ class RestStub {
 
   }
 
-
   /*
-    Converts this class into a json.
+    Returns a json object equivalent for this RestStub 
+    This can either be used for storage or to create a copy RestStub (through the constructor)
   */
   toJson(){
   var data = {};
@@ -47,7 +47,7 @@ class RestStub {
 
 
 
-  // Set requestType
+  // Set requestType of the RestStub
   setRequestType(newType){
   	if (REQUEST_TYPES.indexOf(newType) > -1){
   		this.requestType = newType;
@@ -59,13 +59,9 @@ class RestStub {
   	}
   }
   
-  // Get requestType
+  // Getter for requestType of teh RestStub
   getRequestType(){
   	return this.requestType;
-  }
-
-  runTest(callback){
-
   }
 
 }

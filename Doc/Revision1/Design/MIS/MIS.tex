@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage[normalem]{ulem}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -207,6 +208,27 @@
 		\end{itemize}
 }
 
+\newcommand{\oldAccessProgram}[5]{
+	\noindent \sout{#1}:
+		\begin{itemize}
+		    \item \sout{input: #2}
+			\item \sout{transition: #3}
+			\item \sout{output: #4}
+			\item \sout{exception: #5}
+		\end{itemize}
+}
+
+\newcommand{\revAccessProgram}[5]{
+	\noindent \textcolor{red}{#1}:
+		\begin{itemize}
+		    \item \textcolor{red}{input: #2}
+			\item \textcolor{red}{transition: #3}
+			\item \textcolor{red}{output: #4}
+			\item \textcolor{red}{exception: #5}
+		\end{itemize}
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	Exported Access Program Table
 %		\accessProgramsTableStart
@@ -331,7 +353,7 @@
 			\row{toJSON}{}{JSON}{}
             \row{setRequestType}{String}{}{}
             \row{getRequestType}{}{}{}
-            \row{runTest}{Function}{}{}
+            \row{\sout{runTest}}{Function}{}{}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
@@ -339,10 +361,11 @@
 	%------------------------------------------------------
 		label: String - User readable label of the test stub. \\
         identifier: String - Unique string used to identify test stubs. \\
-        request\_type: String - Type of request for the test, GET, PUT, POST, DELETE. \\
-        request\_data: JSON - Data for the request. \\
-        response\_data: JSON - Response data for the request. \\
-        response\_expected: JSON - Expected response data. \\
+        \textcolor{red}{requestType}: String - Type of request for the test: [GET, PUT, POST, DELETE] \\
+        \textcolor{red}{requestData}: JSON - Data for the request. \\
+        \textcolor{red}{responseData}: JSON - Response data for the request. \\
+        \textcolor{red}{expectedData}: JSON - Expected response data. \\
+        \textcolor{red}{resource: String - Resource location (HTTP)} \\
 	}
 	%------------------------------------------------------
 	{% State Invariant
@@ -360,7 +383,7 @@
 		%----------------
 		\newAccessProgram{RestStub(data)}
 			{% Input
-				Rest Stub fields.
+				\textcolor{red}{JSON equivalent copy of an existing RestStub, or null.}
 			}
 			{% Transition
 				The module constructor. Loads information from data if possible.
@@ -374,26 +397,13 @@
 		%----------------
 		\newAccessProgram{toJSON()}
 			{% Input
-				Rest Stub fields.
-			}
-			{% Transition
-				The module constructor. Loads information from data if possible.
-			}
-			{% Output
-				Assign fields to the data fields, if data is null the fields are set to defaults.
-			}
-			{% Exception
-				none
-			}
-		\newAccessProgram{toJSON()}
-			{% Input
 				none
 			}
 			{% Transition
 				none
 			}
 			{% Output
-				JSON equivalent of the object.
+				\textcolor{red}{JSON equivalent of the object.}
 			}
 			{% Exception
 				none
@@ -403,7 +413,7 @@
 				rtype
 			}
 			{% Transition
-				Sets the value of request\_type field to rtype
+				Sets the value of requestType field to rtype
 			}
 			{% Output
 				none
@@ -419,12 +429,12 @@
 				none
 			}
 			{% Output
-				Value of request\_type
+				Value of requestType
 			}
 			{% Exception
 				none
 			}
-			\newAccessProgram{runTest(callback)}
+			\oldAccessProgram{runTest(callback)}
 			{% Input
 				none
 			}
@@ -472,11 +482,11 @@
 	%------------------------------------------------------
 		\accessProgramsTableStart
 			%\row{name}{in}{out}{exception}
-			\row{RestChain}{List$<$String$>$}{}{}
+			\row{RestChain}{JSON}{}{}
 			\row{addTest}{String}{}{}
             \row{removeTest}{String}{}{MissingTestException}
             \row{moveTest}{}{String, int}{MissingTestException, IndexOutOfBounds}
-            \row{runTests}{Function}{}{}
+            \row{\sout{runTests}}{\sout{Function}}{}{}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
@@ -484,7 +494,7 @@
 	%------------------------------------------------------
 		label: String - User readable label of the RestChain. \\
         identifier: String - Unique string used to identify RestChain. \\
-        reststub\_list: List$<$String$>$ - List of RestChain identifiers to be run by the RestChain. \\
+        \textcolor{red}{reststublist}: List$<$String$>$ - List of RestChain identifiers to be run by the RestChain. \\
 	}
 	%------------------------------------------------------
 	{% State Invariant
@@ -499,9 +509,9 @@
 	%------------------------------------------------------
 	{% Access Routine Semantics
 	%------------------------------------------------------
-		\newAccessProgram{RestChain(list)}
+		\newAccessProgram{RestChain(data)}
 			{% Input
-				List of RestStub identifiers to store in chain.
+				\textcolor{red}{JSON equivalent copy of an existing RestChain, or null.}
 			}
 			{% Transition
 				The module constructor.
@@ -520,7 +530,7 @@
 				none
 			}
 			{% Output
-				none
+				\textcolor{red}{JSON equivalent of the object.}
 			}
 			{% Exception
 				none
@@ -530,7 +540,7 @@
 				String of the identifier for the RestStub to add to the RestChain.
 			}
 			{% Transition
-				Appends the identifier, to the reststub\_list.
+				Appends the identifier, to the \textcolor{red}{reststublist.}
 			}
 			{% Output
 				Json equivalent of the object.
@@ -543,29 +553,29 @@
 				Identifier of test to remove from the RestChain.
 			}
 			{% Transition
-				Test identifier is removed from reststub\_list.
+				Test identifier is removed from \textcolor{red}{reststublist.}
 			}
 			{% Output
 				none
 			}
 			{% Exception
-				MissingTestException: Thrown if the RestStub is not in reststub\_list.
+				MissingTestException: Thrown if the RestStub is not in \textcolor{red}{reststublist.}
 			}
 		\newAccessProgram{moveTest(identifier, newIndex)}
 			{% Input
 				Identifier of the RestStub, and new index in the list.
 			}
 			{% Transition
-				Moves the position of the corresponding RestStub in reststub\_list.
+				Moves the position of the corresponding RestStub in \textcolor{red}{reststublist.}
 			}
 			{% Output
 				none
 			}
 			{% Exception
-				MissingTestException: Thrown if the RestStub is not in reststub\_list. 
-				IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
+				MissingTestException: Thrown if the RestStub is not in \textcolor{red}{reststublist.} 
+				IndexOutOfBounds: newIndex is not a valid index for \textcolor{red}{reststublist.}
 			}
-		\newAccessProgram{runTests(callback)}
+		\oldAccessProgram{runTests(callback)}
 			{% Input
 				none
 			}
@@ -656,7 +666,8 @@
 				none
 			}
 			{% Output
-				True if received is identical to expected.
+				Returns True if received is identical to expected. 
+				\textcolor{red}{Otherwise, False is returned.}
 			}
 			{% Exception
 				none
@@ -718,7 +729,9 @@
 	%------------------------------------------------------
 	{% State Variant
 	%------------------------------------------------------
-		none\\
+        \textcolor{red}{currentRestChain: RestChain - Highlighted RestChain} \\
+        \textcolor{red}{currentRestStub: RestStub - Highlighted RestStub} \\
+        \textcolor{red}{currentProfileStore: ProfileStore - Highlighted ProfielStore} \\
 	}
 	%------------------------------------------------------
 	{% State Invariant
@@ -772,6 +785,7 @@
 			{% Exception
 				none
 			}
+			%-------------------
 			\newAccessProgram{saveSpecifiedToDisk(data)}
 			{% Input
 				none
@@ -781,6 +795,179 @@
 			}
 			{% Output
 				Saves specified information to a file.
+			}
+			{% Exception
+				none
+			}
+			%-------------------
+			\newAccessProgram{reRenderTestSelect()}
+			{% Input
+				none
+			}
+			{% Transition
+				Renders the RestStub information to the UI.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+			%-------------------
+			\revAccessProgram{uiDeleteRestStub(identifier)}
+			{% Input
+				identifier for the RestStub to delete.
+			}
+			{% Transition
+				Deletes the corresponding RestStub by performing deleteRestStub(identifier) on currentProfileStore.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+			%-------------------
+			\revAccessProgram{uiCopyRestStub(identifier)}
+			{% Input
+				identifier for the RestStub to copy.
+			}
+			{% Transition
+				Copies the corresponding RestStub by performing copyRestStub(identifier) on currentProfileStore.
+				Adds the new RestStub to currentRestChain by performing addTest with the new RestStub's identifier.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+			%-------------------
+			\revAccessProgram{uiCreateRestStub()}
+			{% Input
+			none
+			}
+			{% Transition
+				Creates a new RestStub by performing createRestStub() on currentProfileStore.
+				Adds the new RestStub to currentRestChain by performing addTest with the new RestStub's identifier.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+			%-------------------
+			\revAccessProgram{updateCurrentRestStub()}
+			{% Input
+			none
+			}
+			{% Transition
+				Takes form data from the master detail form, and stores it into currentRestStub by using setters. Finally calls reRenderTestSelect().
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+			%-------------------
+			\revAccessProgram{changeCurrentRestStub(identifier)}
+			{% Input
+				identifier for the RestStub to switch focus to.
+			}
+			{% Transition
+				currentRestStub will point to the RestStub with the corresponding identifier after performing getRestStubFromID(identifier) on currentProfileStore.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+			%-------------------
+			\revAccessProgram{moveDownCurrentRestStub(identifier)}
+			{% Input
+				identifier for the RestStub to move down currentRestChain.
+			}
+			{% Transition
+				The corresponding RestStub will be moved one position lower on the RestChain after performing moveRestStub (with appropriate parameters) on currentRestChain.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+			%-------------------
+			\revAccessProgram{displayCurrentRestStub()}
+			{% Input
+				none
+			}
+			{% Transition
+				Takes information from currentRestStub, and displays it unto the master detail form.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+			%-------------------
+			\revAccessProgram{runAllTests()}
+			{% Input
+				none
+			}
+			{% Transition
+				Performs all tests on RestStubs inside of currentRestChain.
+				Sequentially calls runNextTest until all tests are run or until one test fails.
+				If any RestStub fails a test, the UI notifies the user by calling failTests().
+				If all RestStubs pass their tests, the UI notifies the user by calling succeedTests().
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+			%-------------------
+			\revAccessProgram{runNextTest()}
+			{% Input
+				none
+			}
+			{% Transition
+				Perform the next test on RestStubs inside of currentRestChain.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+			%-------------------
+			\revAccessProgram{failTests()}
+			{% Input
+				none
+			}
+			{% Transition
+				Notifies the user that tests fails by displaying a message on the screen.
+			}
+			{% Output
+				none
+			}
+			{% Exception
+				none
+			}
+			%-------------------
+			\revAccessProgram{succeedTests()}
+			{% Input
+				none
+			}
+			{% Transition
+				Notifies the user that tests succeeded by displaying a message on the screen.
+			}
+			{% Output
+				none
 			}
 			{% Exception
 				none
@@ -814,6 +1001,8 @@
 	{% Exported Constants
 	%------------------------------------------------------
 		REQUEST\_TYPES: List$<$String$>$ - String of valid requests
+		\textcolor{red}{ID\_LENGTH: int - Length of valid identifiers}
+		\textcolor{red}{ID\_CHARACTERPOOL: String - String of valid characters for identifiers}
 	}
 	%------------------------------------------------------
 	{% Exported Access Programs
@@ -851,12 +1040,12 @@
 
 %------------------------------------------------------------------------------
 % Module Heading
-\section {ProfileStorage Module}
+\section {ProfileStore Module}
 % Module Type
 % \subsection* {Template Module}
 %------------------------------------------------------------------------------
 
-\label{ProfileStorage}
+\label{ProfileStore}
 
 \newModule{ProfileStore}
 	%------------------------------------------------------
@@ -885,15 +1074,16 @@
             \row{newProfile}{}{String}{}
             \row{deleteRestStub}{String}{}{missingRestStub}
             \row{deleteRestChain}{String}{}{missingRestChain}
+            \row{textcolor{red}{randomHash}}{String}{}{}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
 	{% State Variant
 	%------------------------------------------------------
-		all\_RestStubs: List$<$RestStub$>$ - List of all identifiers for RestStubs in memory. \\
-        all\_RestChains: List$<$RestChain$>$ - List of all identifiers for RestChains in memory. \\
-        all\_identifiers: List$<$String$>$ - List of all identifiers in memory. \\
-        all\_profiles: List$<$Profile$>$ - List of all profiles in memory. \\
+		textcolor{red}{allRestStubs}: List$<$RestStub$>$ - List of all identifiers for RestStubs in memory. \\
+        textcolor{red}{allRestChains}: List$<$RestChain$>$ - List of all identifiers for RestChains in memory. \\
+        textcolor{red}{allIdentifiers}: List$<$String$>$ - List of all identifiers in memory. \\
+        textcolor{red}{allProfiles}: List$<$Profile$>$ - List of all profiles in memory. \\
 	}
 	%------------------------------------------------------
 	{% State Invariant
@@ -939,7 +1129,7 @@
 				none
 			}
 			{% Transition
-				Creates a new RestStub, and appends it to all\_RestStubs.
+				Creates a new RestStub, and appends it to \textcolor{red}{allRestStubs}.
 			}
 			{% Output
 				Identifier of the new RestStub.
@@ -952,7 +1142,7 @@
 				Identifier of the RestStub to copy.
 			}
 			{% Transition
-				Creates a deep copy of an existing RestStub, and appends it to all\_RestStubs.
+				Creates a deep copy of an existing RestStub, and appends it to \textcolor{red}{allRestStubs}.
 			}
 			{% Output
 				Identifier of the new RestStub.
@@ -965,7 +1155,7 @@
 				Identifier of the RestChain to copy.
 			}
 			{% Transition
-				Creates a deep copy of an existing RestChain, and appends it to all\_RestChains.
+				Creates a deep copy of an existing RestChain, and appends it to \textcolor{red}{allRestChains}.
 			}
 			{% Output
 				New identifier.
@@ -978,7 +1168,7 @@
 				none
 			}
 			{% Transition
-				Creates a new Profile, and appends it to allProfiles.
+				Creates a new Profile, and appends it to \textcolor{red}{allProfiles}.
 			}
 			{% Output
 				Identifier of the new Profile.
@@ -991,7 +1181,7 @@
 				none
 			}
 			{% Transition
-				Removes a RestStub from allRestStubs, and performs removeRestStub(identifier) on all Profile objects in allProfiles.
+				Removes a RestStub from \textcolor{red}{allRestStubs}, and performs removeRestStub(identifier) on all Profile objects in \textcolor{red}{allProfiles}.
 			}
 			{% Output
 				none
@@ -1004,7 +1194,7 @@
 				none
 			}
 			{% Transition
-				 Removes a RestChain from all\_RestStubs, and performs removeRestChain(identifier) on all Profile objects in all\_RestChains.
+				 Removes a RestChain from \textcolor{red}{allRestStubs}, and performs removeRestChain(identifier) on all Profile objects in \textcolor{red}{allRestChains}.
 			}
 			{% Output
 				none

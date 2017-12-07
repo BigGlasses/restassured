@@ -1,3 +1,4 @@
+// Runs the RestStub, and makes appropriate callbacks for the application state to update.
 function runTest(restStub, successCallback, failureCallback){
 	var requestData = restStub.requestData;
 	$.ajax({
