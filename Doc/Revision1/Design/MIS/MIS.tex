@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage[normalem]{ulem}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -207,6 +208,16 @@
 		\end{itemize}
 }
 
+\newcommand{\oldAccessProgram}[5]{
+	\noindent \sout{#1}:
+		\begin{itemize}
+		    \item \sout{input: #2}
+			\item \sout{transition: #3}
+			\item \sout{output: #4}
+			\item \sout{exception: #5}
+		\end{itemize}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	Exported Access Program Table
 %		\accessProgramsTableStart
@@ -331,7 +342,7 @@
 			\row{toJSON}{}{JSON}{}
             \row{setRequestType}{String}{}{}
             \row{getRequestType}{}{}{}
-            \row{runTest}{Function}{}{}
+            \row{\sout{runTest}}{Function}{}{}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
@@ -339,10 +350,11 @@
 	%------------------------------------------------------
 		label: String - User readable label of the test stub. \\
         identifier: String - Unique string used to identify test stubs. \\
-        request\_type: String - Type of request for the test, GET, PUT, POST, DELETE. \\
-        request\_data: JSON - Data for the request. \\
-        response\_data: JSON - Response data for the request. \\
-        response\_expected: JSON - Expected response data. \\
+        \textcolor{red}{requestType}: String - Type of request for the test: [GET, PUT, POST, DELETE] \\
+        \textcolor{red}{requestData}: JSON - Data for the request. \\
+        \textcolor{red}{responseData}: JSON - Response data for the request. \\
+        \textcolor{red}{expectedData}: JSON - Expected response data. \\
+        \textcolor{red}{resource: String - Resource location (HTTP)} \\
 	}
 	%------------------------------------------------------
 	{% State Invariant
@@ -360,7 +372,7 @@
 		%----------------
 		\newAccessProgram{RestStub(data)}
 			{% Input
-				Rest Stub fields.
+				\textcolor{red}{JSON equivalent copy of an existing RestStub, or null.}
 			}
 			{% Transition
 				The module constructor. Loads information from data if possible.
@@ -374,26 +386,13 @@
 		%----------------
 		\newAccessProgram{toJSON()}
 			{% Input
-				Rest Stub fields.
-			}
-			{% Transition
-				The module constructor. Loads information from data if possible.
-			}
-			{% Output
-				Assign fields to the data fields, if data is null the fields are set to defaults.
-			}
-			{% Exception
-				none
-			}
-		\newAccessProgram{toJSON()}
-			{% Input
 				none
 			}
 			{% Transition
 				none
 			}
 			{% Output
-				JSON equivalent of the object.
+				\textcolor{red}{JSON equivalent of the object.}
 			}
 			{% Exception
 				none
@@ -403,7 +402,7 @@
 				rtype
 			}
 			{% Transition
-				Sets the value of request\_type field to rtype
+				Sets the value of requestType field to rtype
 			}
 			{% Output
 				none
@@ -419,12 +418,12 @@
 				none
 			}
 			{% Output
-				Value of request\_type
+				Value of requestType
 			}
 			{% Exception
 				none
 			}
-			\newAccessProgram{runTest(callback)}
+			\oldAccessProgram{runTest(callback)}
 			{% Input
 				none
 			}
@@ -472,11 +471,11 @@
 	%------------------------------------------------------
 		\accessProgramsTableStart
 			%\row{name}{in}{out}{exception}
-			\row{RestChain}{List$<$String$>$}{}{}
+			\row{RestChain}{JSON}{}{}
 			\row{addTest}{String}{}{}
             \row{removeTest}{String}{}{MissingTestException}
             \row{moveTest}{}{String, int}{MissingTestException, IndexOutOfBounds}
-            \row{runTests}{Function}{}{}
+            \row{\sout{runTests}}{\sout{Function}}{}{}
 		\accessProgramsTableEnd
 	}
 	%------------------------------------------------------
@@ -484,7 +483,7 @@
 	%------------------------------------------------------
 		label: String - User readable label of the RestChain. \\
         identifier: String - Unique string used to identify RestChain. \\
-        reststub\_list: List$<$String$>$ - List of RestChain identifiers to be run by the RestChain. \\
+        \textcolor{red}{reststublist}: List$<$String$>$ - List of RestChain identifiers to be run by the RestChain. \\
 	}
 	%------------------------------------------------------
 	{% State Invariant
@@ -499,9 +498,9 @@
 	%------------------------------------------------------
 	{% Access Routine Semantics
 	%------------------------------------------------------
-		\newAccessProgram{RestChain(list)}
+		\newAccessProgram{RestChain(data)}
 			{% Input
-				List of RestStub identifiers to store in chain.
+				\textcolor{red}{JSON equivalent copy of an existing RestChain, or null.}
 			}
 			{% Transition
 				The module constructor.
@@ -520,7 +519,7 @@
 				none
 			}
 			{% Output
-				none
+				\textcolor{red}{JSON equivalent of the object.}
 			}
 			{% Exception
 				none
@@ -530,7 +529,7 @@
 				String of the identifier for the RestStub to add to the RestChain.
 			}
 			{% Transition
-				Appends the identifier, to the reststub\_list.
+				Appends the identifier, to the \textcolor{red}{reststublist.}
 			}
 			{% Output
 				Json equivalent of the object.
@@ -543,29 +542,29 @@
 				Identifier of test to remove from the RestChain.
 			}
 			{% Transition
-				Test identifier is removed from reststub\_list.
+				Test identifier is removed from \textcolor{red}{reststublist.}
 			}
 			{% Output
 				none
 			}
 			{% Exception
-				MissingTestException: Thrown if the RestStub is not in reststub\_list.
+				MissingTestException: Thrown if the RestStub is not in \textcolor{red}{reststublist.}
 			}
 		\newAccessProgram{moveTest(identifier, newIndex)}
 			{% Input
 				Identifier of the RestStub, and new index in the list.
 			}
 			{% Transition
-				Moves the position of the corresponding RestStub in reststub\_list.
+				Moves the position of the corresponding RestStub in \textcolor{red}{reststublist.}
 			}
 			{% Output
 				none
 			}
 			{% Exception
-				MissingTestException: Thrown if the RestStub is not in reststub\_list. 
-				IndexOutOfBounds: newIndex is not a valid index for reststub\_list.
+				MissingTestException: Thrown if the RestStub is not in \textcolor{red}{reststublist.} 
+				IndexOutOfBounds: newIndex is not a valid index for \textcolor{red}{reststublist.}
 			}
-		\newAccessProgram{runTests(callback)}
+		\oldAccessProgram{runTests(callback)}
 			{% Input
 				none
 			}
