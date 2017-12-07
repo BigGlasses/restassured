@@ -338,14 +338,14 @@ actually be implemented.
 \midrule
 {Module Name} & {Module Number}\\
 \midrule
-Input Module & M1\\
-\textcolor{red}{RestStubEvaluator Module} & M2\\
-Profile Module & M3\\
-ProfileStore Module & M4\\
-\textcolor{red}{Jquery Module} & M5\\
-RestChain Module & M6\\
-RestStub Module & M7\\
-\textcolor{red}{RestSuite Module} & M8\\
+Input Module & \hyperref[m1]{M1}\\
+\textcolor{red}{RestStubEvaluator Module} & \hyperref[m2]{M2}\\
+Profile Module & \hyperref[m3]{M3}\\
+ProfileStore Module & \hyperref[m4]{M4}\\
+\textcolor{red}{Jquery Module} & \hyperref[m5]{M5}\\
+RestChain Module & \hyperref[m6]{M6}\\
+RestStub Module & \hyperref[m7]{M7}\\
+\textcolor{red}{RestSuite Module} & \hyperref[m8]{M8}\\
 \bottomrule
 
 \end{tabular}
@@ -426,7 +426,7 @@ selected.
 \end{description}
 
 
-\subsubsection{Input Module}
+\subsubsection{Input Module}\label{m1}
 %------------------------------------------------------------------------------
 \begin{description}
 \item[Secrets:] Input
@@ -434,7 +434,7 @@ selected.
 \item[Implemented By:] javascript
 \end{description}
 
-\subsubsection{\textcolor{red}{RestStubEvaluator Module}}
+\subsubsection{\textcolor{red}{RestStubEvaluator Module}}\label{m2}
 %------------------------------------------------------------------------------
 \begin{description}
 \item[Secrets:] Test of request.
@@ -445,7 +445,7 @@ selected.
 \item[\textcolor{red}{Last Modified:}] \textcolor{red}{November 30, 2017}
 \end{description}
 
-\subsubsection{Profile Module}
+\subsubsection{Profile Module}\label{m3}
 %------------------------------------------------------------------------------
 \begin{description}
 \item[Secrets:] Profile Information.
@@ -456,7 +456,7 @@ selected.
 \item[\textcolor{red}{Last Modified:}] \textcolor{red}{November 10, 2017}
 \end{description}
 
-\subsubsection{ProfileStore Module}
+\subsubsection{ProfileStore Module}\label{m4}
 %------------------------------------------------------------------------------
 \begin{description}
 \item[Secrets:] Data Processing
@@ -467,7 +467,7 @@ selected.
 \item[\textcolor{red}{Last Modified:}] \textcolor{red}{November 10, 2017}
 \end{description}
 
-\subsubsection{\textcolor{red}{Jquery Module}}
+\subsubsection{\textcolor{red}{Jquery Module}}\label{m5}
 %------------------------------------------------------------------------------
 \begin{description}
 \item[Secrets:] Network connection
@@ -478,7 +478,7 @@ selected.
 \item[\textcolor{red}{Last Modified:}] \textcolor{red}{October 13, 2017}
 \end{description}
 
-\subsubsection{\textcolor{red}{RestSuite Module}}
+\subsubsection{\textcolor{red}{RestSuite Module}}\label{m6}
 %------------------------------------------------------------------------------
 \begin{description}
 \item[Secrets:] Visual Text
@@ -489,7 +489,7 @@ selected.
 \item[\textcolor{red}{Last Modified:}] \textcolor{red}{November 30, 2017}
 \end{description}
 
-\subsubsection{RestStub Module}
+\subsubsection{RestStub Module}\label{m7}
 %------------------------------------------------------------------------------
 \begin{description}
 \item[Secrets:] RestStub
@@ -500,7 +500,7 @@ selected.
 \item[\textcolor{red}{Last Modified:}] \textcolor{red}{November 10, 2017}
 \end{description}
 
-\subsubsection{RestChain Module}
+\subsubsection{RestChain Module}\label{m8}
 %------------------------------------------------------------------------------
 \begin{description}
 \item[Secrets:] RestChain
@@ -525,7 +525,6 @@ selected.
   % improve performance than by externally imposed changes.
 \item\sout{[Implemented By:] --}
 \end{description}
-\subsubsection{Etc.}
 
 
 %==============================================================================
@@ -543,20 +542,20 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-FR1 & M1, M5, M8\\`
-FR2 & M1, M2, M4, M5, M8\\
-FR3 & M1, M3, M4, M6, M7, M8\\
+FR1 & \hyperref[m1]{M1}, \hyperref[m5]{M5}, \hyperref[m8]{M8}\\
+FR2 & \hyperref[m1]{M1}, \hyperref[m2]{M2}, \hyperref[m4]{M4}, \hyperref[m5]{M5}, \hyperref[m8]{M8}\\
+FR3 & \hyperref[m1]{M1}, \hyperref[m3]{M3}, \hyperref[m4]{M4}, \hyperref[m6]{M6}, \hyperref[m7]{M7}, \hyperref[m8]{M8}\\
 
-NFR1 & M1, M3, M4, M6, M7, M8\\
-NFR2 & M1, M8\\
-NFR3 & M1, M3, M6, M8\\
-NFR4 & M1, M3, M6, M8\\
-NFR5 & M1, M8\\
-NFR6 & M1, M4, M5, M8\\
-NFR7 & M1, M4\\
-NFR8 & M1, M4\\
-NFR9 & M1, M3, M6, M8\\
-NFR10 &  M1, M3, M6, M8\\
+NFR1 & \hyperref[m1]{M1}, \hyperref[m3]{M3}, \hyperref[m4]{M4}, \hyperref[m6]{M6}, \hyperref[m7]{M7}, \hyperref[m8]{M8}\\
+NFR2 & \hyperref[m1]{M1}, \hyperref[m8]{M8}\\
+NFR3 & \hyperref[m1]{M1}, \hyperref[m3]{M3}, \hyperref[m6]{M6}, \hyperref[m8]{M8}\\
+NFR4 & \hyperref[m1]{M1}, \hyperref[m3]{M3}, \hyperref[m6]{M6}, \hyperref[m8]{M8}\\
+NFR5 & \hyperref[m1]{M1}, \hyperref[m8]{M8}\\
+NFR6 & \hyperref[m1]{M1}, \hyperref[m4]{M4}, \hyperref[m5]{M5}, \hyperref[m8]{M8}\\
+NFR7 & \hyperref[m1]{M1}, \hyperref[m4]{M4}\\
+NFR8 & \hyperref[m1]{M1}, \hyperref[m4]{M4}\\
+NFR9 & \hyperref[m1]{M1}, \hyperref[m3]{M3}, \hyperref[m6]{M6}, \hyperref[m8]{M8}\\
+NFR10 &  \hyperref[m1]{M1}, \hyperref[m3]{M3}, \hyperref[m6]{M6}, \hyperref[m8]{M8}\\
 
 \bottomrule
 \end{tabular}
@@ -570,11 +569,11 @@ NFR10 &  M1, M3, M6, M8\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-AC1 & M8\\
-AC2 & M1\\
-AC3 & M1, M3, M4, M6, M8\\
-AC4 & M1, M3, M4, M8\\
-AC5 & M1, M3, M4, M6, M8\\
+AC1 & \hyperref[m8]{M8}\\
+AC2 & \hyperref[m1]{M1}\\
+AC3 & \hyperref[m1]{M1}, \hyperref[m3]{M3}, \hyperref[m4]{M4}, \hyperref[m6]{M6}, \hyperref[m8]{M8}\\
+AC4 & \hyperref[m1]{M1}, \hyperref[m3]{M3}, \hyperref[m4]{M4}, \hyperref[m8]{M8}\\
+AC5 & \hyperref[m1]{M1}, \hyperref[m3]{M3}, \hyperref[m4]{M4}, \hyperref[m6]{M6}, \hyperref[m8]{M8}\\
 
 \bottomrule
 \end{tabular}
@@ -607,7 +606,7 @@ system, and modules in the higher level of the hierarchy are essentially simpler
 \centering
 \includegraphics[width=0.7\textwidth]{gantt.png}
 \newline
-	See Gantt Chart at the following url: \href{https://gitlab.cas.mcmaster.ca/myersd1/3xa3-team31/blob/master/ProjectSchedule/Team%2031%20Gantt%20Project.pdf}{Team 31 Gant Project}
+See Gantt Chart at the following url: \href{https://gitlab.cas.mcmaster.ca/myersd1/3xa3-team31/blob/master/ProjectSchedule/Team\%2031\%20Gantt\%20Project.pdf}{Team 31 Gant Project}
 %\section*{References}
 
 \bibliographystyle {plainnat}
