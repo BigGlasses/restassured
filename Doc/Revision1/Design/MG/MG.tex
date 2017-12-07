@@ -318,27 +318,27 @@ actually be implemented.
 
 \multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
 & Input Module\\
-& Request Testing Module\\
+& RestStubEvaluator Module\\
 & Profile Module\\
 & ProfileStore Module\\
-& Network Module\\
-& ReactComponents Module\\
+& Jquery Module\\
+& RestSuite Module\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module}\\
 & RestStub Module\\
-& Test Flow Structure Module\\
+& RestChain Structure Module\\
 \midrule
 {Module Name} & {Module Number}\\
 \midrule
 Input Module & M1\\
-Request Testing Module & M2\\
-Profile Module & M3\\?
+\textcolor{red}{RestStubEvaluator Module} & M2\\
+Profile Module & M3\\
 ProfileStore Module & M4\\
-Network Module & M5\\
+\textcolor{red}{Jquery Module} & M5\\
 RestChain Module & M6\\
 RestStub Module & M7\\
-ReactComponents Module & M8\\
+\textcolor{red}{RestSuite Module} & M8\\
 \bottomrule
 
 \end{tabular}
@@ -400,7 +400,7 @@ selected.
 \end{description}
 
 
-\subsubsection{Input Format Module}
+\subsubsection{JsonParser Module}
 %-----------------------------------------------------------
 \begin{description}
 \item[Secrets:]The format and structure of the input data.
@@ -442,7 +442,7 @@ selected.
 \item[Implemented By:] javascript
 \end{description}
 
-\subsubsection{Ajax Module}
+\subsubsection{Jquery Module}
 %------------------------------------------------------------------------------
 \begin{description}
 \item[Secrets:] Network connection
@@ -559,8 +559,7 @@ the correct functioning of A depends upon the availability of a correct
 implementation of B.  Figure \ref{FigUH} illustrates the use relation between
 the modules. It can be seen that the graph is a directed acyclic graph
 (DAG). Each level of the hierarchy offers a testable and usable subset of the
-system, and modules in the higher level of the hierarchy are essentially simpler
-because they use modules from the lower levels.
+system, and modules in the higher level of the hierarchy are essentially simpler because they use modules from the lower levels.
 
 \begin{figure}[H]
 \centering
